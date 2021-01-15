@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'; 
-import NavBar from './molecules/NavBar'; 
+import NavBar from './organisms/NavBar'; 
 import Footer from './molecules/Footer'
 
 function App() {
