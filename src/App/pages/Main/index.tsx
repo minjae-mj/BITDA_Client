@@ -1,3 +1,14 @@
 import React from 'react'; 
 
-export {}
+let Main = () =>{
+  
+  return (
+    <div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  )
+}
+
+export default Main;
