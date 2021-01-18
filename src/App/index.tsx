@@ -5,7 +5,8 @@ import Footer from './molecules/Footer';
 import Landing from './pages/Landing'
 import DrinkDetail from './pages/DrinkDetail';
 import Main from './pages/Main/Main';
-import DrinkDesc from './organisms/DrinkDesc';
+import MyPage from './pages/Mypage'; 
+import DrinkDetail from './pages/DrinkDetail';
 import Signin from './pages/Sign/Signin';
 import Signup from './pages/Sign/Signup';
 
@@ -35,7 +36,7 @@ function App() {
         <DrinkDetail />
       </Route>
       <Route exact path="/users/mypage">
-        마이 페이지
+        <MyPage />
       </Route>
      </Switch>
 
