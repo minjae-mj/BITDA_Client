@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'; 
 import NavBar from './organisms/NavBar'; 
-import Footer from './molecules/Footer'
+import Footer from './molecules/Footer';
+import Landing from './pages/Landing'
 
 function App() {
   const [isLogin, setIsLogin] = useState(true); 
@@ -13,7 +14,7 @@ function App() {
 
      <Switch>
       <Route exact path="/">
-        랜딩페이지
+        <Landing />
       </Route>
       <Route exact path="/users/signin">
         로그인 페이지

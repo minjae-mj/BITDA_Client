@@ -1,3 +1,12 @@
 import React from 'react'; 
+import LandingTemplate from '../../templates/LandingTemplate'
 
-export {}
+
+const Landing = (): JSX.Element => {
+  
+  return (
+    <LandingTemplate />
+  )
+}
+
+export default Landing; 

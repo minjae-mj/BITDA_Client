@@ -1,6 +1,6 @@
 import React from 'react'; 
 
-const FooterStamp = () => {
+const FooterStamp = (): JSX.Element => {
   return (
     <div>Footer Stamp</div>
   )
