@@ -1,23 +1,23 @@
 import React from 'react'; 
 import { Link } from 'react-router-dom'; 
-import Button from '../atoms/Button'; 
+import NavCatetoryBtn from '../atoms/NavCategoryBtn'; 
 
 interface NavBtnProps {
   isLogin: boolean;
 }
 
-const NavBtn = ({ isLogin }: NavBtnProps) => {
+const NavBtn = ({ isLogin }: NavBtnProps): JSX.Element => {
 
   return (
     <ul>
       <li>
         <Link to={isLogin? "/users/mypage" : "/users/signin"}>
-          <Button text={isLogin? "마이 페이지" : "로그인"} />
+          <NavCatetoryBtn text={isLogin? "마이 페이지" : "로그인"} />
         </Link>
       </li>
       <li>
         <Link to={isLogin? "/users/signout" : "/users/signup"}>
-          <Button text={isLogin? "로그아웃" : "회원가입"} />
+          <NavCatetoryBtn text={isLogin? "로그아웃" : "회원가입"} />
         </Link>
       </li>
     </ul>
