@@ -1,2 +1,11 @@
 import React from 'react'; 
-export {}
+import MyPageTemplate from '../../templates/MyPageTemplate';
+
+const MyPage = () => {
+  
+  return (
+    <MyPageTemplate />
+  )
+}
+
+export default MyPage; 

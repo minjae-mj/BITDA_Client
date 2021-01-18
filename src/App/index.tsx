@@ -5,6 +5,7 @@ import Footer from './molecules/Footer';
 import Landing from './pages/Landing'
 import DrinkDetail from './pages/DrinkDetail';
 import Main from './pages/Main/Main';
+import MyPage from './pages/Mypage'; 
 
 function App() {
   const [isLogin, setIsLogin] = useState(true); 
@@ -31,7 +32,7 @@ function App() {
         <DrinkDetail />
       </Route>
       <Route exact path="/users/mypage">
-        마이 페이지
+        <MyPage />
       </Route>
      </Switch>
 
