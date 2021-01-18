@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import NavBar from './organisms/NavBar'; 
 import Footer from './molecules/Footer';
 import Landing from './pages/Landing'
-import DrinkDesc from './organisms/DrinkDesc';
+import DrinkDetail from './pages/DrinkDetail';
 
 function App() {
   const [isLogin, setIsLogin] = useState(true); 
@@ -27,9 +27,7 @@ function App() {
         메인 페이지
       </Route>
       <Route exact path="/drinks/detail/:drinkId">
-        개별 술 페이지
-        {/* for test purpose */}
-        <DrinkDesc />
+        <DrinkDetail />
       </Route>
       <Route exact path="/users/mypage">
         마이 페이지
