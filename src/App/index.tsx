@@ -4,6 +4,7 @@ import NavBar from './organisms/NavBar';
 import Footer from './molecules/Footer';
 import Landing from './pages/Landing'
 import DrinkDetail from './pages/DrinkDetail';
+import Main from './pages/Main/Main';
 
 function App() {
   const [isLogin, setIsLogin] = useState(true); 
@@ -24,7 +25,7 @@ function App() {
         회원가입 페이지
       </Route>
       <Route exact path="/drinks/list">
-        메인 페이지
+        <Main />
       </Route>
       <Route exact path="/drinks/detail/:drinkId">
         <DrinkDetail />
