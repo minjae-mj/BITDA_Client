@@ -1,18 +1,43 @@
-import React from 'react'; 
+import React, { useState } from 'react'; 
 
-const DrinkDescContainer = () => {
+interface Props {
+  drink: {
+    drinkName: string; 
+    type: string;
+    price: string;
+    taste: string;
+    ingredients: string; 
+    alcohol: string;
+    origin: string; 
+    desc: string;
+  }
+}
+
+const DrinkDescContainer = ({ drink }: Props) => {
+  const [tab,setTab] = useState('소개'); 
+
+  const handleClickTab= (e: any) => {
+    const text = e.target.innerText; 
+    setTab(text);
+    console.log(text);  
+  }
   
   return (
     <>
       <div>
-        <span>소개</span>
-        <span>이야기</span>
+        <span onClick={handleClickTab}>소개</span>
+        <span onClick={handleClickTab}>이야기</span>
       </div>
       <div>
-        <div>삼향춘 청주</div>
-        <p>‘경상도’에서 온 ‘청주’입니다.‘1~2만원대’의 ‘깔끔한 맛’을 찾으시는 분께 추천합니다!</p>
-        <div>도수: 12%</div>
-        <div>원재료: 쌀, 보리</div>
+        {tab === "소개" ?
+          <>
+         <div>{drink.drinkName}</div>
+         <p>‘{drink.origin}’에서 온 ‘{drink.type}’입니다.‘{drink.price}’의 '{drink.taste}’을 찾으시는 분께 추천합니다!</p>
+         <div>도수: {drink.alcohol}%</div>
+         <div>원재료: {drink.ingredients}</div>
+         </> :
+         <div>{drink.desc}</div> }
+       
       </div>  
     </>
   )
