@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import NavBar from './organisms/NavBar'; 
 import Footer from './molecules/Footer';
 import Landing from './pages/Landing'
-import DrinkDetail from './pages/DrinkDetail';
 import Main from './pages/Main/Main';
 import MyPage from './pages/Mypage'; 
 import DrinkDetail from './pages/DrinkDetail';
