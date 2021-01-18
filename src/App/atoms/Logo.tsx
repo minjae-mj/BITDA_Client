@@ -1,8 +1,13 @@
 import React from 'react'; 
+import { Link } from 'react-router-dom'; 
 
-const Logo = () => {
+const Logo = (): JSX.Element => {
   return (
-    <div>Logo</div>
+    <div>
+      <Link to="/">
+          Logo
+      </Link>
+    </div>
   )
 }
 

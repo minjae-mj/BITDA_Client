@@ -6,7 +6,7 @@ interface NavBtnProps {
   isLogin: boolean;
 }
 
-const NavBar = (props: NavBtnProps) => {
+const NavBar = (props: NavBtnProps): JSX.Element => {
 
   return (
     <nav>
