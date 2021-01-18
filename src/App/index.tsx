@@ -4,6 +4,8 @@ import NavBar from './organisms/NavBar';
 import Footer from './molecules/Footer';
 import Landing from './pages/Landing'
 import Main from './pages/Main/Main';
+import DrinkDesc from './organisms/DrinkDesc';
+
 
 function App() {
   const [isLogin, setIsLogin] = useState(true); 
@@ -28,6 +30,8 @@ function App() {
       </Route>
       <Route exact path="/drinks/detail/:drinkId">
         개별 술 페이지
+        {/* for test purpose */}
+        <DrinkDesc />
       </Route>
       <Route exact path="/users/mypage">
         마이 페이지
