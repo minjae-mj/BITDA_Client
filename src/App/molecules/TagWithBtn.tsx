@@ -1,34 +1,50 @@
-import React from 'react'; 
+import React ,{useEffect, useState} from 'react'; 
 import styled from 'styled-components'; 
 import MainSelectBtn from '../atoms/MainSelectBtn'
 
 type Props = {
   title: string;
-  category : string[];   
+  buttonList : string[];   
+  type : string;
 }
+const TagWithBtn = ({ title, buttonList, type }: Props ) : JSX.Element => {
+  // let initialPersonalTaste = {
+  //   type : '',
+  //   price : '',
+  //   taste : '',
+  //   alcohol : ''
+  // }
+  // const [isClicked, setIsClicked] = useState(false);
+  // const [personalTaste, setPersonalTaste] = useState(initialPersonalTaste);
 
-// const StyleLandingBtn = styled.button`
-//   color: #F6F5F5; 
-//   background-color: #ED6663; 
-//   border: 1px solid #ED6663; 
-//   border-radius: 5px; 
-//   font-size: 12px; 
-//   width: 100px; 
-//   height: 40px; 
-// ` 
+  // let submitHandler = (e : any) : void => {
+  //   let target = e.target.innerText;  // 1만원 이하... 등등
+  //   let type = e.target.dataset.type; // type, price, taste, alcohol
+  //   let Clicked = e.target.dataset.clicked; 
 
-const TagWithBtn = ({ title,category }: Props ) : JSX.Element => {
+  //   setIsClicked(!isClicked)
+  //   console.log(Clicked)
+  //   // setPersonalTaste({...initialPersonalTaste, [type] : target}); 
+  //   // 왜 이전 스테이트를 불러오지 못하니 ... ?
+  //   // setPersonalTaste(Object.assign({},personalTaste,{[type] : target}));
+  //   // 너도 왜 이전 스테이트를 불러오지 못하니 ... ?
+  // }
+  
+  // useEffect(() =>{
+  //   console.log(personalTaste)
+  // },[personalTaste])
 
   return (
     <div>
       <div>{title}</div>
-      <ul>
-        {category.map((item : string):JSX.Element => 
+      <MainSelectBtn type={type} buttonList={buttonList}/>
+      {/* <ul>
+        {buttonList.map((item : string):JSX.Element => 
         <li>
-          <MainSelectBtn text={item}/>
+          <MainSelectBtn type={type} buttonList={buttonList} text={item}  />
         </li>
         )}
-      </ul>
+      </ul> */}
     </div>
   )
 }
