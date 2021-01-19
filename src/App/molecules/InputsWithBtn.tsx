@@ -1,16 +1,17 @@
 import React from 'react'; 
-import Input from '../atoms/input'
+import Input from '../atoms/Input'
 import MainSubmitBtn from '../atoms/MainSubmitBtn';
 
 type Props = {
-  placeholderList : string[]
+  placeholderList : string[];
+  inputHandler?: (e: any) => void; 
 }
 
-const InputsWithBtn = ({placeholderList }: Props): JSX.Element => {
+const InputsWithBtn = ({placeholderList, inputHandler }: Props): JSX.Element => {
   return (
     <div>
       {placeholderList.map((placeholder): JSX.Element => (
-        <Input placeholder={placeholder} />
+        <Input placeholder={placeholder} inputHandler={inputHandler} />
       ))}
     </div>
   )

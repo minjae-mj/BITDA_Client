@@ -1,12 +1,9 @@
 import { combineReducers } from 'redux';
+import signinReducer from './signinReducer'
 import personalTypeReducer from './personalTypeReducer'
-// 우리 리듀서 만들어서 import.
-// import itemReducer from './itemReducer';
-// import notificationReducer from './notificationReducer';
-// userReducer,
-// drinkReducer
 
 const rootReducer = combineReducers({
+  signinReducer,
   personalTypeReducer
 });
 

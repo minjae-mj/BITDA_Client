@@ -16,7 +16,7 @@ enum Admin {
   true = 1
 }
 
-interface Auth {
+export interface Auth {
   type: string; 
   payload: {
     admin?: Admin;  
