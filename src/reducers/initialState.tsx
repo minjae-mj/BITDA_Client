@@ -12,19 +12,31 @@ interface Drink {
   drinkImage: string; 
 }
 
-interface InitialState {
+export interface InitialState {
   accessToken: string;
   isLogin: boolean;
   isAdmin: 0 | 1; 
   drinkList: Drink[]; 
   bookmarkList: Drink[]; 
+  types: {
+    category: string;
+    alcohol: string;
+    price: string;
+    taste: string;
+  }
 }
 
-export const initialState =
+export const initialState: InitialState =
 {
   accessToken: '',
   isLogin: false, 
   isAdmin: 0,
   drinkList: [],
-  bookmarkList: []
+  bookmarkList: [],
+  types: {
+    category: "",
+    price: "",
+    taste: "",
+    alcohol: "",
+  }
 }
