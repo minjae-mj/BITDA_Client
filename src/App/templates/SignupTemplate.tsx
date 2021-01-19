@@ -1,15 +1,15 @@
 import React from 'react'; 
-import Signin from '../organisms/Signin';
+import Signup from '../organisms/Signup';
 // import styled from 'styled-components'; 
 
 
-const SigninTemplate = (): JSX.Element => {
+const SignupTemplate = (): JSX.Element => {
 
   return (
     <div>
-      <Signin />
+      <Signup />
     </div>
   )
 }
 
-export default SigninTemplate; 
+export default SignupTemplate; 

@@ -1,12 +1,13 @@
 import React from 'react'; 
 
 type Props = {
-  placeholder : string
+  placeholder : string; 
+  inputHandler?: (e: any) => void; 
 }
 
-const Input = ({placeholder }: Props): JSX.Element => {
+const Input = ({placeholder, inputHandler }: Props): JSX.Element => {
   return (
-    <input placeholder={placeholder}></input>
+    <input placeholder={placeholder} onChange={inputHandler}></input>
   )
 }
 
