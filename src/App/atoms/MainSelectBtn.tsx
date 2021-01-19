@@ -1,4 +1,7 @@
-import React,{useState} from 'react'; 
+import React,{ useState } from 'react'; 
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '../../reducers'; 
+import { updateCategory, updateTaste, updatePrice, updateAlcohol } from '../../actions'
 import styled from 'styled-components'; 
 
 interface BtnProps {
@@ -23,7 +26,10 @@ const ActiveBtn = styled(StyledButton)`
     color: #F6F5F5; 
     background-color: #EE6F57;
 `;
-const MainSelectBtn = ({ type,buttonList}: BtnProps ): JSX.Element => {
+const MainSelectBtn = ({ type, buttonList }: BtnProps ): JSX.Element => {
+  const state = useSelector((state: RootState) => state.personalTypeReducer.types);
+  const dispatch = useDispatch();
+
   const [isClicked, setIsClicked] = useState('');
   
   let clickHandler = (e : any) : void => {
@@ -32,8 +38,18 @@ const MainSelectBtn = ({ type,buttonList}: BtnProps ): JSX.Element => {
     
     if(isClicked === target){
       setIsClicked('')
-    }else{
+    } else {
       setIsClicked(target)
+    }
+
+    if(type === 'category') {
+      dispatch(updateCategory(target))
+    } else if (type === 'price') {
+      dispatch(updatePrice(target))
+    } else if (type === 'taste') {
+      dispatch(updateTaste(target))
+    } else if (type === 'alcohol') {
+      dispatch(updateAlcohol(target))
     }
 
     console.log(type)
