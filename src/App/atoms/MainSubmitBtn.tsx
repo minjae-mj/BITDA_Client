@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 type Props = {
   text: string;
-  submitHandler? : ()=>void;    
+  submitHandler : ()=>void;    
 }
 
 const MainSubmitBtn = ({ text, submitHandler }: Props ): JSX.Element => {

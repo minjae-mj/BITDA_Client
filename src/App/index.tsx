@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'; 
 import NavBar from './organisms/NavBar'; 
 import Footer from './molecules/Footer';
@@ -8,45 +8,57 @@ import MyPage from './pages/Mypage';
 import DrinkDetail from './pages/DrinkDetail';
 import Signin from './pages/Sign/Signin';
 import Signup from './pages/Sign/Signup';
+import {withRouter} from 'react-router-dom'
+import { useSelector } from 'react-redux';
+import { RootState } from '../reducers'; 
 
 
 function App() {
-  const [isLogin, setIsLogin] = useState(false); 
+  const state = useSelector((state: RootState) => state.signinReducer);
+  // const {isLogin, acceesToken, admin} = state;
 
   return (
-  <Router>
-    <div>
-     <NavBar isLogin={isLogin} />
+    <Router>
+      <div>
+      <NavBar isLogin={state.isLogin} />
 
-     <Switch>
-      <Route exact path="/">
-        <Landing />
-      </Route>
-      <Route exact path="/users/signin">
-        <Signin />
-      </Route>
-      <Route exact path="/users/signup">
-        <Signup />
-      </Route>
-      <Route exact path="/drinks/list">
-        <Main />
-      </Route>
-      <Route exact path="/drinks/detail/:drinkId">
-        <DrinkDetail />
-      </Route>
-      <Route exact path="/users/mypage">
-        <MyPage />
-      </Route>
-     </Switch>
+      <Switch>
+        <Route exact path="/">
+          <Landing />
+        </Route>
+        {/* <Route exact path="/users/signin"> */}
+          {
+            !state.isLogin?
+            <Route exact path="/users/signin">
+              <Signin /> 
+            </Route>
+            : 
+            <Route exact path="/">
+              <Landing />
+            </Route>
+          }
+        {/* </Route> */}
+        <Route exact path="/users/signup">
+          <Signup />
+        </Route>
+        <Route exact path="/drinks/list">
+          <Main />
+        </Route>
+        <Route exact path="/drinks/detail/:drinkId">
+          <DrinkDetail />
+        </Route>
+        <Route exact path="/users/mypage">
+          <MyPage />
+        </Route>
+      </Switch>
 
-     <Footer />
-   </div>
-  </Router>
-  
+      <Footer />
+    </div>
+    </Router>
   );
 }
 
-export default App;
+export default withRouter(App);
 
 
 // ref

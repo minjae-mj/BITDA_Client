@@ -3,16 +3,15 @@ import Input from '../atoms/Input'
 import MainSubmitBtn from '../atoms/MainSubmitBtn';
 
 type Props = {
-  placeholderList : string[];
-  inputHandler?: (e: any) => void; 
+  inputInfo : {placeholder : string, type: string}[];
+  inputHandler: (e: any) => void; 
 }
 
-const InputsWithBtn = ({placeholderList, inputHandler }: Props): JSX.Element => {
+const InputsWithBtn = ({inputInfo, inputHandler }: Props): JSX.Element => {
+
   return (
     <div>
-      {placeholderList.map((placeholder): JSX.Element => (
-        <Input placeholder={placeholder} inputHandler={inputHandler} />
-      ))}
+        <Input inputInfo={inputInfo} inputHandler={inputHandler} />
     </div>
   )
 }
