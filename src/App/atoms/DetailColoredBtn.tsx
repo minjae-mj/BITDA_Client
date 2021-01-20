@@ -3,6 +3,8 @@ import styled from 'styled-components';
 
 type DetailColoredBtnProps = {
   text: string;    
+  handleSubmit?: (e: any) => void; 
+  handleClick?: (e: any) => void;
 }
 
 const StyleDetailColoredBtn = styled.button`
@@ -15,10 +17,10 @@ const StyleDetailColoredBtn = styled.button`
   height: 40px; 
 ` 
 
-const DetailColoredBtn = ({ text }: DetailColoredBtnProps ) => {
+const DetailColoredBtn = ({ text, handleClick, handleSubmit }: DetailColoredBtnProps ) => {
 
   return (
-    <StyleDetailColoredBtn>{text}</StyleDetailColoredBtn>
+    <StyleDetailColoredBtn onClick={handleClick || handleSubmit}>{text}</StyleDetailColoredBtn>
   )
 }
 

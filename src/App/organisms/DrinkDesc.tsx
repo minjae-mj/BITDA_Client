@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react'; 
 import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux"; 
 import DrinkDescContainer from "../molecules/DrinkDescContainer"; 
 import DetailTransparentBtn from '../atoms/DetailTransparentBtn';
 import DetailColoredBtn from "../atoms/DetailColoredBtn"
 import styled from "styled-components"; 
-// import axios from 'axios';
+import dummyDrinks from "./dummyDrinks"; 
+import axios from 'axios';
+import { RootState } from '../../reducers';
 
 interface Params {
   drinkId: string; 
@@ -30,53 +33,14 @@ const StyleDrinkDesc = styled.div`
   justify-content: space-around; 
 `
 
-const dummyDrinks = [{
-  "id": "1",
-  "drinkName": "청양 산딸기주",
-  "type": "과실주",
-  "price": "3~4만원",
-  "taste": "달콤함",
-  "ingredients": "산딸기, 설탕",
-  "alcohol": "14",
-  "origin": "강남도",
-  "url": "www.google.com",
-  "desc": "맑은 계곡 따라 쪼로록 핀 산딸기주, 디저트와 곁들여 보세요",
-  "drinkImage": "https://t1.daumcdn.net/cfile/blog/176CED3F4FCBB39C23",
-  "bookMark": "true" 
-}, {
-  "id": "2",
-  "drinkName": "공주 청포도주",
-  "type": "과실주",
-  "price": "1~2만원",
-  "taste": "탄산감",
-  "ingredients": "청포도, 설탕",
-  "alcohol": "11",
-  "origin": "강원도",
-  "url": "www.google.com",
-  "desc": "상쾌한 청포도맛",
-  "drinkImage": "https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F247DCB3A57D1720D2B",
-  "bookMark": "false" 
-}, {
-  "id": "3",
-  "drinkName": "종로 고구마주",
-  "type": "탁주/막걸리",
-  "price": "1만원 이하",
-  "taste": "고소함",
-  "ingredients": "고구마, 쌀, 누룩",
-  "alcohol": "19",
-  "origin": "경기도",
-  "url": "www.google.com",
-  "desc": "온국민이 사랑하는 고구마, 이렇게 즐겨보세요",
-  "drinkImage": "https://img.danawa.com/prod_img/500000/170/862/img/9862170_1.jpg?shrink=500:500&_v=20191107145502",
-  "bookMark": "true" 
-}]
-
 const DrinkDesc = (): JSX.Element => {
+  const state = useSelector((state: RootState )=> state.signinReducer)
+  const { isLogin } = state; 
   const { drinkId }: Params = useParams(); 
   const [drink, setDrink] = useState<DrinkInfo>(dummyDrinks[1]);  
 
   useEffect(() => {
-    // axios.get('', {
+    // axios.get('http://localhost:8080/drinks/detail/${drinkId}', {
     //  Authorization: `Bearer accessToken`
     // })
 
@@ -89,12 +53,40 @@ const DrinkDesc = (): JSX.Element => {
       "ingredients": "산딸기, 설탕",
       "alcohol": "14",
       "origin": "강남도",
-      "url": "www.google.com",
+      "url": "https://www.google.com",
       "desc": "맑은 계곡 따라 쪼로록 핀 산딸기주, 디저트와 곁들여 보세요",
       "drinkImage": "https://t1.daumcdn.net/cfile/blog/176CED3F4FCBB39C23",
       "bookMark": "true" 
     });
-  }, [drinkId])
+  }, [drinkId]); 
+
+  const handleAddBookmark = () => {
+    if(!isLogin) {
+      return alert('로그인 해 주세요.')
+    } 
+
+    // axios.get('http://localhost:8080/drinks/like', { 
+    //   headers: {
+    //     Authorization: `Bearer accessToken`
+    //   },
+    //   data: {
+    //     drinkId
+    //   }
+    // }); 
+    console.log("Bookmark added.")
+  }
+
+  const handleRemoveBookmark = () => {
+    // axios.get('http://localhost:8080/drinks/unlike', { 
+    //   headers: {
+    //     Authorization: `Bearer accessToken`
+    //   },
+    //   data: {
+    //     drinkId
+    //   }
+    // }); 
+    console.log("Bookmark removed.")
+  }
 
   return (
     <StyleDrinkDesc>
@@ -106,8 +98,10 @@ const DrinkDesc = (): JSX.Element => {
       <div>
         <DrinkDescContainer drink={drink} />
         <div>
-          <DetailTransparentBtn text="구매하러가기" />
-          <DetailColoredBtn text="내 취향으로 등록" />
+          <DetailTransparentBtn text="구매하러가기" href={drink.url} />
+          {!isLogin ? 
+            <DetailColoredBtn text="내 취향으로 등록" handleClick={handleAddBookmark} />
+            : <DetailColoredBtn text="내 취향에서 삭제" handleClick={handleRemoveBookmark} />}      
         </div>
       </div>
     </StyleDrinkDesc>
