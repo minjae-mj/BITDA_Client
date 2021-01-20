@@ -1,10 +1,10 @@
 import React, { useState } from 'react'; 
 import { useSelector } from 'react-redux';
 import { RootState } from '../../reducers'; 
-import DetailColoredBtn from '../atoms/DetailColoredBtn';
 import RatingIcon from '../molecules/RatingIcon'; 
 import styled from 'styled-components'; 
 import axios from 'axios'; 
+import BtnWithEvent from '../atoms/BtnWithEvent';
 
 interface Props {
   drinkId: string; 
@@ -75,7 +75,7 @@ const ReviewInput = ({ drinkId }: Props) => {
           width: "70%",
           height: "30vh",
         }} onChange={handleInput}></textarea>
-     <DetailColoredBtn text="나의 리뷰 등록" handleSubmit={handleSubmit} />
+     <BtnWithEvent text="나의 리뷰 등록" handleSubmit={handleSubmit} />
    </>
   )
 }

@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react'; 
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux"; 
-import DrinkDescContainer from "../molecules/DrinkDescContainer"; 
-import DetailTransparentBtn from '../atoms/DetailTransparentBtn';
-import DetailColoredBtn from "../atoms/DetailColoredBtn"
-import styled from "styled-components"; 
-import dummyDrinks from "./dummyDrinks"; 
-import axios from 'axios';
 import { RootState } from '../../reducers';
+import styled from "styled-components"; 
+import DrinkDescContainer from "../molecules/DrinkDescContainer"; 
+import BtnWithEvent from "../atoms/BtnWithEvent"
+import BtnPlain from "../atoms/BtnPlain"; 
+import axios from 'axios';
+import dummyDrinks from "./dummyDrinks"; 
+
 
 interface Params {
   drinkId: string; 
@@ -60,6 +61,10 @@ const DrinkDesc = (): JSX.Element => {
     });
   }, [drinkId]); 
 
+  const handleRedirect = () => {
+    window.open(drink.url, '_blank'); 
+  }
+
   const handleAddBookmark = () => {
     if(!isLogin) {
       return alert('로그인 해 주세요.')
@@ -90,18 +95,21 @@ const DrinkDesc = (): JSX.Element => {
 
   return (
     <StyleDrinkDesc>
-      <img style={{
-          backgroundColor: 'lightblue',
-          width: "35%",
-          height: "30vh",
-        }} src={drink.drinkImage}/>
       <div>
+        <img style={{
+            backgroundColor: 'lightblue',
+            width: "35%",
+            height: "30vh",
+          }} src={drink.drinkImage}/>
+        <div></div>
+      <div>
+      </div>
         <DrinkDescContainer drink={drink} />
         <div>
-          <DetailTransparentBtn text="구매하러가기" href={drink.url} />
-          {!isLogin ? 
-            <DetailColoredBtn text="내 취향으로 등록" handleClick={handleAddBookmark} />
-            : <DetailColoredBtn text="내 취향에서 삭제" handleClick={handleRemoveBookmark} />}      
+          <BtnPlain text="구매하러가기" handleClick={handleRedirect} />
+          {isLogin && drink.bookMark ? 
+            <BtnWithEvent text="내 취향에서 삭제" handleClick={handleRemoveBookmark} />
+            : <BtnWithEvent text="내 취향으로 등록" handleClick={handleAddBookmark} />}      
         </div>
       </div>
     </StyleDrinkDesc>
