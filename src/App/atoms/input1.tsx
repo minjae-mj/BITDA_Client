@@ -19,5 +19,5 @@ const Input = ({inputInfo, inputHandler }: Props): JSX.Element => {
     </>
   )
 }
-// 사용해야 할 파일
+// 지워야할 파일
 export default Input; 
