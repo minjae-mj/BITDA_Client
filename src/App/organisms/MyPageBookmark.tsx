@@ -1,6 +1,16 @@
-import React from 'react'; 
+import React, { useState, useEffect } from 'react'; 
+import { useSelector } from 'react-redux';
+import { RootState } from '../../reducers'; 
 import styled from 'styled-components'; 
-import BookmarkCard from '../molecules/BookmarkCard'
+import axios from 'axios'; 
+import BookmarkCard from '../molecules/BookmarkCard'; 
+import dummyBookmarks from './dummyBookmarks'; 
+
+interface BookmarkList {
+  id: number; 
+  drinkName: string; 
+  drinkImage: string; 
+}
 
 const StyleMyPageContent = styled.div`
   display: flex; 
@@ -8,17 +18,32 @@ const StyleMyPageContent = styled.div`
 `
 
 const MyPageContent = (): JSX.Element => {
+  const state = useSelector((state: RootState) => state.signinReducer); 
+  const { accessToken } = state; 
+
+  const [bookmarkList, setBookmarkList] = useState<BookmarkList[]>([]); 
+
+  useEffect(() => {
+    const getBookmarkList = async () => {
+      const bookmarks = await axios('http://localhost:8080/users/bookmark', {
+        headers: { 'Authorization': `Bearer ${accessToken}` },
+      });
+
+      const { data } = bookmarks; 
+      setBookmarkList(data); 
+    }
+
+    getBookmarkList();  
+    setBookmarkList(dummyBookmarks); 
+  })
   
   return (
     <StyleMyPageContent>
-      <BookmarkCard />
-      <BookmarkCard />
-      <BookmarkCard />
-      <BookmarkCard />
-      <BookmarkCard />
-      <BookmarkCard />
-      <BookmarkCard />
-      <BookmarkCard />
+      {!bookmarkList.length ? "북마크에 내 취향 전통주를 담아보세요." : 
+        bookmarkList.map(bookmark => {
+          return <BookmarkCard key={bookmark.id} bookmark={bookmark} />
+        })
+      }
     </StyleMyPageContent>
   )
 }
