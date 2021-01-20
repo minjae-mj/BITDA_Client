@@ -2,7 +2,8 @@ import React from 'react';
 import styled from 'styled-components'; 
 
 type DetailTransparentBtnProps = {
-  text: string;    
+  text: string; 
+  href?: string;   
 }
 
 const StyleDetailTransparentBtn = styled.button`
@@ -15,10 +16,12 @@ const StyleDetailTransparentBtn = styled.button`
   height: 40px; 
 ` 
 
-const DetailTransparentBtn = ({ text }: DetailTransparentBtnProps ) => {
+const DetailTransparentBtn = ({ text, href }: DetailTransparentBtnProps ) => {
 
   return (
-    <StyleDetailTransparentBtn>{text}</StyleDetailTransparentBtn>
+    <a href={href} target="_blank">
+       <StyleDetailTransparentBtn>{text}</StyleDetailTransparentBtn>
+    </a>
   )
 }
 
