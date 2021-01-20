@@ -1,6 +1,11 @@
 import React, { useState } from 'react'; 
+import { useSelector } from 'react-redux';
+import { RootState } from '../../reducers'; 
 import { Link } from 'react-router-dom'; 
 import styled from 'styled-components'; 
+import axios from 'axios'; 
+import { StyleBtnWithEvent } from '../atoms/BtnWithEvent'; 
+import BtnPlain from '../atoms/BtnPlain'; 
 
 interface Props {
   bookmark: {
@@ -34,6 +39,8 @@ const StyleHoverCard = styled.div`
 `
 
 const BookmarkCard = ({ bookmark }: Props): JSX.Element => {
+  const state = useSelector((state: RootState) => state.signinReducer); 
+  const { accessToken } = state; 
   const { id, drinkName, drinkImage } = bookmark; 
   const [hover, setHover] = useState(false); 
 
@@ -41,16 +48,18 @@ const BookmarkCard = ({ bookmark }: Props): JSX.Element => {
   const onMouseLeave = () => setHover(false); 
 
   const handleRemoveBookmark = () => {
-    // 현재 북마크 제거 라우터 없음. 
-    // 유저 검증 필요할까? user.id 보내야할까? 
-    // axios.delete('http://localhost:8080/users/bookmark/remove', {
-    //   headers: {'Authorization': `Bearer ${accessToken}` },
-    //   data: {
-    //     bookmarkId: id
-    //   }
-    // })
+    axios.get('http://localhost:8080/drinks/unlike', { 
+      headers: {
+        Authorization: `Bearer ${accessToken}`
+      },
+      data: {
+        drinkId: id
+      }
+    });
+
+    console.log('북마크삭제')
   }
-  
+
   return (
     <StyleBookmarkCard onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
       <div>
@@ -58,13 +67,11 @@ const BookmarkCard = ({ bookmark }: Props): JSX.Element => {
         <div>{drinkName}</div>
       </div>
       {!hover ? <></> : 
-        <StyleHoverCard>
-          <div>
+        <StyleHoverCard>     
+          <BtnPlain handleClick={handleRemoveBookmark} text="북마크 삭제" />
+          <StyleBtnWithEvent> 
             <Link to={`/drinks/detail/${id}`}>상세보기</Link>
-          </div>
-          <div>
-            북마크 삭제
-          </div>
+          </StyleBtnWithEvent>
         </StyleHoverCard>
       }
     </StyleBookmarkCard>
