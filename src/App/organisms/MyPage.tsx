@@ -12,10 +12,15 @@ const StyleMyPage = styled.div`
 
 const MyPage = (): JSX.Element => {
   const [page, setPage] = useState('bookmark'); 
+
+  const handleClick = (e: any) => {
+    const target = e.target.value; 
+    setPage(target); 
+  }
   
   return (
     <StyleMyPage>
-      <MyPageSidebar />
+      <MyPageSidebar handleClick={handleClick} />
       {page === 'bookmark' ? <MyPageBookmark /> : <MyPageProfile />}
     </StyleMyPage>
   )
