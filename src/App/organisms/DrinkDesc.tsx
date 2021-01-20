@@ -8,6 +8,7 @@ import BtnWithEvent from "../atoms/BtnWithEvent"
 import BtnPlain from "../atoms/BtnPlain"; 
 import axios from 'axios';
 import dummyDrinks from "./dummyDrinks"; 
+import LikeIcon from '../atoms/LikeIcon';
 
 
 interface Params {
@@ -101,7 +102,7 @@ const DrinkDesc = (): JSX.Element => {
             width: "35%",
             height: "30vh",
           }} src={drink.drinkImage}/>
-        <div></div>
+          <LikeIcon />
       <div>
       </div>
         <DrinkDescContainer drink={drink} />
