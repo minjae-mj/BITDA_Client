@@ -8,6 +8,7 @@ import BtnWithEvent from '../atoms/BtnWithEvent';
 
 interface Props {
   drinkId: string; 
+  updateReviews: (data: any) => void;
 }
 
 const StyleReviewLabel = styled.div`
@@ -21,7 +22,7 @@ const StyleRatingIcon = styled.div`
   margin-left: 1rem; 
 `
 
-const ReviewInput = ({ drinkId }: Props) => {
+const ReviewInput = ({ drinkId, updateReviews }: Props) => {
   const state = useSelector((state: RootState) => state.signinReducer); 
   const { accessToken } = state; 
 
@@ -38,17 +39,18 @@ const ReviewInput = ({ drinkId }: Props) => {
     setReviewText(value); 
   }
 
-  const handleSubmit = (e: any): void => {
-    axios.post('http://localhost:8080/reviews/add', {
-      headers: {'Authorization': `Bearer ${accessToken}` },
-      data: {
+  const handleSubmit = async (e: any) => {
+    const review = await axios.post('http://localhost:8080/reviews/add', {
         rating, 
         text: reviewText,
         drinkId
-      }
+      }, 
+      { headers: {'Authorization': `Bearer ${accessToken}` }
     }); 
-    
-    // 리뷰 등록 성공 후, 리뷰 리스트 다시 렌더링
+
+    const reviewList = await axios.get(`http://localhost:8080/reviews/list/${drinkId}`); 
+    const { data }: any = reviewList;  
+    updateReviews(data.reviews); 
   }
 
   return (

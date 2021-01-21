@@ -4,7 +4,6 @@ import ReviewCard from '../molecules/ReviewCard';
 import ReviewInput from '../molecules/ReviewInput'; 
 import styled from 'styled-components'; 
 import axios from 'axios'; 
-import dummyReviews from './dummyReviews'; 
 
 interface Params {
   drinkId: string; 
@@ -39,33 +38,32 @@ const Review = () => {
   const { drinkId }: Params = useParams(); 
   const [reviews, setReviews] = useState<Reviews[]>([]); 
 
-  const getReviewList = () => {
-    // const reviewList = axios.get('http://localhost:8080/reviews/list', { 
-    //   data: {
-    //     drinkId
-    //   }
-    // }); 
-    
-    // setReviews(reviewList); 
-    setReviews(dummyReviews); 
+  const getReviewList = async () => {
+    const reviewList = await axios.get(`http://localhost:8080/reviews/list/${drinkId}`); 
+    const { data }: any = reviewList; 
+
+    setReviews(data.reviews); 
   }
 
   useEffect(() => {
     getReviewList(); 
-  }, [reviews])
+  }, []); 
 
+  const updateReviews = (data: any) => {
+    setReviews(data);
+  }
 
   return (
     <StyleReview>
       <p>리뷰</p>
       <StyleReviewCard>
-        {!reviews ? <div style={{ width: "100%" }}>첫 리뷰를 작성해주세요.</div> : 
+        {!reviews.length ? <div style={{ width: "100%" }}>첫 리뷰를 작성해주세요.</div> : 
           reviews.map(review => {
-            return <ReviewCard key={review.id} review={review} />
+            return <ReviewCard key={review.id} review={review} updateReviews={updateReviews} drinkId={drinkId} />
           })
         }
       </StyleReviewCard>
-      <ReviewInput drinkId={drinkId} />
+      <ReviewInput drinkId={drinkId} updateReviews={updateReviews} />
     </StyleReview>
   )
 

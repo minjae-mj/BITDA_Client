@@ -15,7 +15,6 @@ import { RootState } from '../reducers';
 
 function App() {
   const state = useSelector((state: RootState) => state.signinReducer);
-  // const {isLogin, acceesToken, admin} = state;
 
   return (
     <Router>
@@ -26,18 +25,9 @@ function App() {
         <Route exact path="/">
           <Landing />
         </Route>
-        {/* <Route exact path="/users/signin"> */}
-          {
-            !state.isLogin?
-            <Route exact path="/users/signin">
-              <Signin /> 
-            </Route>
-            : 
-            <Route exact path="/">
-              <Landing />
-            </Route>
-          }
-        {/* </Route> */}
+        <Route exact path="/users/signin">
+           <Signin /> 
+        </Route>
         <Route exact path="/users/signup">
           <Signup />
         </Route>

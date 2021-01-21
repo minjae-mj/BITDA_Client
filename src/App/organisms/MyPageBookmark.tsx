@@ -24,18 +24,18 @@ const MyPageContent = (): JSX.Element => {
   const [bookmarkList, setBookmarkList] = useState<BookmarkList[]>([]); 
 
   useEffect(() => {
-    const getBookmarkList = async () => {
-      const bookmarks = await axios('http://localhost:8080/users/bookmark', {
-        headers: { 'Authorization': `Bearer ${accessToken}` },
-      });
+    // const getBookmarkList = async () => {
+    //   const bookmarks = await axios('http://localhost:8080/users/bookmark', {
+    //     headers: { 'Authorization': `Bearer ${accessToken}` },
+    //   });
 
-      const { data } = bookmarks; 
-      setBookmarkList(data); 
-    }
+    //   const { data } = bookmarks; 
+    //   setBookmarkList(data); 
+    // }
 
-    getBookmarkList();  
+    // getBookmarkList();  
     setBookmarkList(dummyBookmarks); 
-  })
+  }, []); 
   
   return (
     <StyleMyPageContent>
