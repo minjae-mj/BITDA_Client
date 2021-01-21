@@ -10,7 +10,6 @@ import axios from 'axios';
 import dummyDrinks from "./dummyDrinks"; 
 import LikeIcon from '../atoms/LikeIcon';
 
-
 interface Params {
   drinkId: string; 
 }
@@ -71,26 +70,26 @@ const DrinkDesc = (): JSX.Element => {
       return alert('로그인 해 주세요.')
     } 
 
-    // axios.get('http://localhost:8080/drinks/like', { 
-    //   headers: {
-    //     Authorization: `Bearer accessToken`
-    //   },
-    //   data: {
-    //     drinkId
-    //   }
-    // }); 
+    axios.get('http://localhost:8080/drinks/like', { 
+      headers: {
+        Authorization: `Bearer accessToken`
+      },
+      data: {
+        drinkId
+      }
+    }); 
     console.log("Bookmark added.")
   }
 
   const handleRemoveBookmark = () => {
-    // axios.get('http://localhost:8080/drinks/unlike', { 
-    //   headers: {
-    //     Authorization: `Bearer accessToken`
-    //   },
-    //   data: {
-    //     drinkId
-    //   }
-    // }); 
+    axios.get('http://localhost:8080/drinks/unlike', { 
+      headers: {
+        Authorization: `Bearer accessToken`
+      },
+      data: {
+        drinkId
+      }
+    }); 
     console.log("Bookmark removed.")
   }
 

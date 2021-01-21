@@ -16,6 +16,8 @@ import { RootState } from '../reducers';
 function App() {
   const state = useSelector((state: RootState) => state.signinReducer);
   // const {isLogin, acceesToken, admin} = state;
+  console.log('인덱스 최상위에서 리덕스')
+  console.log(state)
 
   return (
     <Router>
@@ -26,18 +28,9 @@ function App() {
         <Route exact path="/">
           <Landing />
         </Route>
-        {/* <Route exact path="/users/signin"> */}
-          {
-            !state.isLogin?
-            <Route exact path="/users/signin">
-              <Signin /> 
-            </Route>
-            : 
-            <Route exact path="/">
-              <Landing />
-            </Route>
-          }
-        {/* </Route> */}
+        <Route exact path="/users/signin">
+           <Signin /> 
+        </Route>
         <Route exact path="/users/signup">
           <Signup />
         </Route>

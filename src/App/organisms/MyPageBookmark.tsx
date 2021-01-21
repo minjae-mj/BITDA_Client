@@ -35,7 +35,7 @@ const MyPageContent = (): JSX.Element => {
 
     getBookmarkList();  
     setBookmarkList(dummyBookmarks); 
-  })
+  }, [bookmarkList]); 
   
   return (
     <StyleMyPageContent>

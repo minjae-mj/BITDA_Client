@@ -19,7 +19,7 @@ enum Admin {
 export interface Auth {
   type: string; 
   payload: {
-    admin?: Admin;  
+    isAdmin?: Admin;  
     isLogin?: boolean; 
     accessToken: string; 
   }
@@ -27,11 +27,11 @@ export interface Auth {
 
 // 변경할 로직 짜기 = action creators
 // Signin 관련
-export const signIn = (admin: Admin, accessToken: string): Auth => {
+export const signIn = (isAdmin: Admin, accessToken: string): Auth => {
   return {
     type: SIGN_IN,
     payload: {
-      admin,
+      isAdmin,
       isLogin: true,
       accessToken
     }
@@ -42,7 +42,7 @@ export const signOut = (): Auth => {
   return {
     type: SIGN_OUT,
     payload: {
-      admin: 0,
+      isAdmin: 0,
       isLogin: false,
       accessToken: ""
     }

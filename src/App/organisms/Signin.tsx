@@ -1,8 +1,8 @@
 import React, { useState,useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import { useDispatch } from 'react-redux';
-// import { useSelector, useDispatch } from 'react-redux';
-// import { RootState } from '../../reducers'; 
+import { Link, useHistory } from 'react-router-dom'
+// import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '../../reducers'; 
 import { signIn } from '../../actions'
 import MainSubmitBtn from '../atoms/MainSubmitBtn'
 import InputsWithBtn from '../molecules/InputsWithBtn'
@@ -10,6 +10,11 @@ import google from '../../images/google_oauth.png';
 import kakao from '../../images/kakao_oauth.png';
 import axios from 'axios'; 
 import { Redirect, withRouter } from "react-router-dom";
+
+interface Info {
+  email: string;
+  password: string;
+}
 
 interface LoginInfo {
   data: {
@@ -19,49 +24,44 @@ interface LoginInfo {
 }
 
 let Signin = () =>{
+  let history = useHistory();
   const [oauth, setOauth] = useState('')
-  // const [isRedirect, setIsRedirect] = useState(false)
-  const [info, setInfo] = useState({
+  const [info, setInfo] = useState<Info>({
     email: "",
     password: ""
   })
-
-  let inputInfo = [
-    {placeholder : '이메일', type: 'email'},
-    {placeholder : '비밀번호', type: 'password'}, 
-  ]
-
-  // const state = useSelector((state: RootState) => state.signinReducer);
+  const state = useSelector((state: RootState) => state.signinReducer);
   const dispatch = useDispatch();
 
-  let getAccessToken = (authorizationCode :string | null) =>{
-    if(oauth.length > 0){
-      axios.post(`http://localhost:8080/users/${oauth}`, {authorizationCode})
-        .then((res) => {
-          const {data} = res;
-          dispatch(signIn(data.admin, data.accessToken))
-        })
-        // .then(() => <Redirect to="/" />)
-        // .catch((err) => err)
-    }
-    // setIsRedirect(pre => !pre)
-  }
+  let inputInfo = [
+    { placeholder: '이메일', type: 'email' },
+    { placeholder: '비밀번호', type: 'password' }, 
+  ]
 
   const inputHandler = (e: any) => {
     let target = e.target.value;
     let type = e.target.dataset.type;
 
     setInfo({ ...info, [type]: target }); 
+    console.log(info);
   }
 
   const submitHandler = async () => {
-    let getLoginInfo = await axios.post('http://localhost:8080/users/signin', 
-    {data: info},
-    // { headers: { "Content-Type": "application/json" }, withCredentials: true }
-    )
+    try { 
+      let getLoginInfo = await axios.post('http://localhost:8080/users/signin', 
+       { ...info },
+       { headers: { "Content-Type": "application/json" }, 
+        withCredentials: true }
+      )
+      .then((res) => {
+        const { data } = res;
+        dispatch(signIn(data.admin, data.accessToken)); 
+      })
 
-    const { data }: LoginInfo = getLoginInfo; 
-    dispatch(signIn(data.admin, data.accessToken)); 
+    } catch (err) {
+      console.log('로그인 에러')
+      console.log(err); 
+    }
   }
 
   // Kakao Oauth 관련
@@ -82,12 +82,28 @@ let Signin = () =>{
     setOauth('google')
   }
 
-  useEffect(() : void=> {
+  useEffect(() : void => {
     const url = new URL(window.location.href);
     const authorizationCode = url.searchParams.get("code");
-    
-    getAccessToken(authorizationCode);
+
+    if(authorizationCode) { 
+      getAccessToken(authorizationCode);
+    }
   })
+
+  let getAccessToken = async (authorizationCode :string | null) =>{
+
+    try {
+      const res = await axios.post(`http://localhost:8080/users/kakao`, {authorizationCode})
+      const { data } = res;
+      dispatch(signIn(data.admin, data.accessToken))
+      history.push('/');
+
+      } catch (err) {
+        console.log('소셜로그인 에러')
+        console.log(err)
+      }
+    } 
 
   return (
     <div>

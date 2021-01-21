@@ -15,23 +15,15 @@ const MainSelectSection = (): JSX.Element => {
   let alcoholeButtonList = ['약한편','있는편',]
 
   let submitHandler = async () => {
-    // let submitAll = await axios.post('http://localhost:8080/drinks/list/type', {
-    //   data: state
-    // })
+    let submitAll = await axios.post('http://localhost:8080/drinks/list/type', {
+      data: state
+    })
     
     console.log('현재 리덕스에 있는 상태')
     console.log(state)
   }
   let selectAllHandler = async () => {
-    let all = {
-      type : '',
-      price : '',
-      taste : '',
-      alcohol : ''
-    }
-    // let submitAll = await axios.post('http://localhost:8080/drinks/list/type', {
-    //   data: all
-    // })
+    let submitAll = await axios.get('http://localhost:8080/drinks/list')
 
     console.log('dont worry, its clicked !!!!')
   }
