@@ -1,6 +1,10 @@
-import React from 'react'; 
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';  
 import styled from 'styled-components'; 
-import MyPageChangeBtn from '../atoms/MyPageChangeBtn'; 
+import Input from '../atoms/Inputs'
+import BtnWithEvent from '../atoms/BtnWithEvent';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../reducers'; 
 
 const StyleMyPageProfile = styled.div`
   width: 100%; 
@@ -26,32 +30,143 @@ const StyleProfileForm = styled.div`
   border: 1px solid red; 
 `
 
+const HiddenInput = styled.input`
+  display: none;
+`
+// label을 버튼 처럼 꾸미기
+
+interface Users {
+    id : number; 
+    userName : string;
+    email : string;
+    userImage : string; 
+    createdAt : string; 
+    provider : string;
+    admin : number;
+}
+
 const MyPageProfile = (): JSX.Element => {
+  let token = useSelector((state : RootState) => state.signinReducer.accessToken)
+  const [userInfo, setUserInfo] = useState<Users>({
+    id : 0,
+    userName : '',
+    email : '',
+    userImage : '', 
+    createdAt : '',
+    provider : '',
+    admin : 0,
+  });
+  const [nameModal, setNameModal ] = useState(false);
+  const [passwordModal, setPasswordModal ] = useState(false);
+  const [passwords, setPasswords ] = useState({
+    password : '',
+    newPassword : '',
+    confirmPassword : ''
+  });
   
+  let uploadingImg = async (e : any) =>{
+    let img : string = e.target.files[0].name
+
+    try{
+      let uploading = await axios.patch('http://localhost:8080/users/modifyuser',
+      {img}, 
+      {headers : {
+        Authorization : `Bearer ${token}`
+      }})
+  
+      alert('이미지가 변경되었습니다.')
+    }catch(err){ 
+      console.log(err)
+    }
+  }
+
+  let getUserInfo = async () =>{ 
+    try{
+      let user = await axios.get('http://localhost:8080/users/mypage')
+      const {data} = user
+      setUserInfo({userInfo, ...data})
+    } catch(err){
+      console.log(err)
+    }
+  }
+
+  const { id, userName, email, userImage, createdAt, provider, admin } = userInfo;
+  let inputInfo = [
+    {placeholder : '현재 비밀번호를 입력해주세요', type: 'password'},
+    {placeholder : '새 비밀번호를 입력해주세요', type: 'newPassword'},
+    {placeholder : '새 비밀번호를 한번 더 입력해주세요', type: 'confirmPassword'}
+  ]
+
+  const inputHandler = (e: any) => {
+    let target = e.target.value;
+    let type = e.target.dataset.type;
+
+    setPasswords({ ...passwords, [type]: target }); 
+    console.log(passwords)
+  }
+
+  let handleClick = async () => {
+    if(passwords.newPassword !== passwords.confirmPassword ||
+    passwords.newPassword === ''){
+      alert('새 비밀번호를 확인해주세요.')
+      return;
+    }
+    
+    try{
+      let isCurrentCorrect = await axios.post('http://localhost:8080/users/modifypassword',
+      {
+        password : passwords.password ,
+        newPassword : passwords.newPassword
+      },
+      {headers : {
+        Authorization : `Bearer ${token}`
+      }})      
+
+      alert('비밀번호가 변경되었습니다.')
+    } catch(err){
+      console.log(err)
+      alert('현재 비밀번호를 다시 확인해주세요.')
+    }
+  }
+
+
   return (
     <StyleMyPageProfile>
       <StyleProfileBox>
         <div>
-          <img src="userImage"/>
-          <MyPageChangeBtn text="이미지 변경" />
+          <img src={userImage} alt='userImage'/>
+          <label htmlFor="image_uploads">이미지 변경</label>
+          <HiddenInput type='file' accept="image/*,.pdf" id="image_uploads" name="image_uploads" onChange={uploadingImg}></HiddenInput>
         </div>
-        <div>닉네임</div>
       </StyleProfileBox>  
       <StyleProfileForm>
         <div>
-          <input type="email" placeholder="email" />
+          <span>Eamil : </span><span>{email}</span>
         </div>
+
         <div>
-        <input type="text" placeholder="username" />
-        <MyPageChangeBtn text="변경" />
+          <div>
+            <span>Username : </span> <span>{userName}</span>
+            {!nameModal ? null : <input placeholder='변경하고 싶은 유저네임을 넣어주세요.' />}
+          </div>
+          <button onClick={()=> setNameModal(pre => !pre)}>변경하기</button>
         </div>
+
         <div>
-          <span>가입일</span>
+          <span>가입일</span><span>{createdAt}</span>
         </div>
+
         <div>
           <div>비밀번호 관리</div>
-          <MyPageChangeBtn text="변경" />
+          <button onClick={()=> setPasswordModal(pre => !pre)}>비밀번호 변경하기</button>
+          {!passwordModal ? null : (
+            <>
+              <Input inputInfo={inputInfo} inputHandler={inputHandler} />
+              <BtnWithEvent text='변경하기' handleClick={handleClick}/>
+            </>
+          )}
         </div>
+        
       </StyleProfileForm>
     </StyleMyPageProfile>
   )
