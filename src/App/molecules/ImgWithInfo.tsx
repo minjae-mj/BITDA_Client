@@ -5,7 +5,7 @@ type Props = {
     id: number, 
     drinkName: string, 
     drinkImage: string, 
-    alcohole: number
+    alcohol: number
   }
 }
 
@@ -15,7 +15,7 @@ let ImgWithInfo=({info} : Props): JSX.Element => {
     <div>
       <img src={info.drinkImage} alt={info.drinkName}></img>
       <div>{info.drinkName}</div>
-      <div>{info.alcohole}%</div>
+      <div>{info.alcohol}%</div>
     </div>
   )
 }

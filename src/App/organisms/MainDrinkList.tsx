@@ -1,34 +1,20 @@
-import React, {useState, useEffect} from 'react'
+import React from 'react'
 import ImgWithInfo from '../molecules/ImgWithInfo'
-import axios from 'axios'
 
-let MainDrinkList =(): JSX.Element => {
-  const [drinkList, setDrinkList] = useState({})
-  let fakeDate = [
-    {id:1, drinkName: '참이슬', drinkImage:'', alcohole: 16},
-    {id:1, drinkName: '막걸리', drinkImage:'', alcohole: 12},
-    {id:1, drinkName: '과실주', drinkImage:'', alcohole: 11},
-  ];
+interface Props {
+  drinkList: {
+    id: number; 
+    drinkName: string; 
+    drinkImage: string;
+    alcohol: number;
+  }[]
+}
 
-  let getDrinkList = async () =>{
-    let drinkList = axios.get('http://localhost:8080/drinks/list')
-    setDrinkList(pre => ({...pre, drinkList}))
-  }
-
-  // useEffect(() =>{
-  //   getDrinkList()
-  // },[drinkList])
+let MainDrinkList =({ drinkList }: Props): JSX.Element => {
 
   return (
     <ul>
-      {/* {drinkList.map((drink): JSX.Element => (
-        <li key={drink.id} >
-          <ImgWithInfo info={drink}/>
-        </li>
-      ))} */}
-      
-      {/* 페이크 데이터 */}
-      {fakeDate.map((drink): JSX.Element => (
+      {drinkList.map((drink): JSX.Element => (
         <li key={drink.id} >
           <ImgWithInfo info={drink}/>
         </li>
@@ -36,4 +22,5 @@ let MainDrinkList =(): JSX.Element => {
     </ul>
   )
 }
-export default MainDrinkList
+
+export default MainDrinkList; 

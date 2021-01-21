@@ -6,6 +6,7 @@ import StarIcon from '../atoms/StarIcon';
 import axios from 'axios'; 
 
 interface Props {
+  drinkId: string; 
   review: {
     id: number;
     text: string;
@@ -15,7 +16,8 @@ interface Props {
       userName: string;
       userImage: string;
     }
-  }
+  },
+  updateReviews: (data: any) => void;
 }
 
 const StyleReviewCard = styled.div`
@@ -39,22 +41,24 @@ const StyleUser = styled.div`
   justify-content: space-between; 
 `
 
-const ReviewCard = ({ review }: Props) => {
+const ReviewCard = ({ drinkId, review, updateReviews }: Props) => {
   const state = useSelector((state: RootState) => state.signinReducer); 
   const { accessToken } = state; 
 
   const { id, text, rating, user } = review; 
   const { userName, userImage } = user; 
 
-  const handleRemoveReview = () => {
+  const handleRemoveReivew = async () => {
+    await axios({
+      url: `http://localhost:8080/reviews/remove`,
+      method: 'delete',
+      data: { reviewId : id },
+      headers: { Authorization: `bearer ${accessToken}` },
+    });
 
-    // 작성자만 삭제 가능하도록 검증 필요. user.id 보내야할까? 
-    axios.delete('http://localhost:8080/reviews/remove', {
-      headers: {'Authorization': `Bearer ${accessToken}` },
-      data: {
-        reviewId: id
-      }
-    })
+    const reviewList = await axios.get(`http://localhost:8080/reviews/list/${drinkId}`); 
+    const { data }: any = reviewList;  
+    updateReviews(data.reviews); 
   }
 
   return (
@@ -66,7 +70,7 @@ const ReviewCard = ({ review }: Props) => {
         <span>{userName}</span>
         <span><StarIcon fill="yellow" /></span>
         <span>{rating}</span>
-        <span onClick={handleRemoveReview}>{rating}</span>
+        <span onClick={handleRemoveReivew}>X</span>
       </StyleUser>
       <p>{text}</p>
     </StyleReviewCard>
