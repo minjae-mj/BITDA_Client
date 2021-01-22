@@ -57,52 +57,73 @@ const MyPageProfile = (): JSX.Element => {
     admin : 0,
   });
   const [nameModal, setNameModal ] = useState(false);
+  const [changedUsername, setChangedUsername ] = useState({userName : ''});
   const [passwordModal, setPasswordModal ] = useState(false);
   const [passwords, setPasswords ] = useState({
     password : '',
     newPassword : '',
     confirmPassword : ''
   });
-  
-  let uploadingImg = async (e : any) =>{
-    let img : string = e.target.files[0].name
 
+  let uploadingImg = async (e : any) =>{
+    let imageFile : string | Blob = e.target.files[0]
+    let imgName : string = e.target.files[0].name
+    const img = new FormData();
+    img.append('img' , imageFile , imgName);
+    // console.log(img)
+    // console.log(img.has('img'))
+    // console.log(img.get('img'))
     try{
       let uploading = await axios.patch('http://localhost:8080/users/modifyuser',
-      {img}, 
+      img, 
       {headers : {
-        Authorization : `Bearer ${token}`
+        Authorization : `Bearer ${token}`,
+        'content-type': 'multipart/form-data',
       }})
-  
+
       alert('이미지가 변경되었습니다.')
     }catch(err){ 
       console.log(err)
     }
   }
 
-  let getUserInfo = async () =>{ 
-    try{
-      let user = await axios.get('http://localhost:8080/users/mypage')
-      const {data} = user
-      setUserInfo({userInfo, ...data})
-    } catch(err){
-      console.log(err)
-    }
+  let inputUserInfo = [
+    {placeholder : '변경하실 닉네임을 입력해주세요', type: 'userName'},
+  ]
+
+  let inputUsernameHandler = (e: any) =>{
+    let target = e.target.value;
+    let type = e.target.dataset.type;
+
+    setChangedUsername({...changedUsername,[type]: target }); 
+    console.log(changedUsername)
   }
 
-  const { id, userName, email, userImage, createdAt, provider, admin } = userInfo;
-  let inputInfo = [
+  let inputPasswordInfo = [
     {placeholder : '현재 비밀번호를 입력해주세요', type: 'password'},
     {placeholder : '새 비밀번호를 입력해주세요', type: 'newPassword'},
     {placeholder : '새 비밀번호를 한번 더 입력해주세요', type: 'confirmPassword'}
   ]
 
-  const inputHandler = (e: any) => {
+  const inputPasswordHandler = (e: any) => {
     let target = e.target.value;
     let type = e.target.dataset.type;
 
     setPasswords({ ...passwords, [type]: target }); 
     console.log(passwords)
+  }
+
+  let submitUserName = async () =>{
+    try{
+      let changeUsername = await axios.patch('http://localhost:8080/users/modifyuser',{userName : changedUsername.userName}, 
+      {headers : {
+        Authorization : `Bearer ${token}`
+      }})
+
+      alert('닉네임이 변경되었습니다.')
+    }catch(err){
+      console.log(err)
+    }
   }
 
   let handleClick = async () => {
@@ -129,6 +150,25 @@ const MyPageProfile = (): JSX.Element => {
     }
   }
 
+  let getUserInfo = async () =>{ 
+    try{
+      let user = await axios.get('http://localhost:8080/users/mypage',
+      {headers : {
+        Authorization : `Bearer ${token}`}
+      })
+      const {data} = user
+      setUserInfo({userInfo, ...data})
+    } catch(err){
+      console.log(err)
+    }
+  }
+
+  const { id, userName, email, userImage, createdAt, provider, admin } = userInfo;
+
+  useEffect(() => {
+    getUserInfo();
+    console.log(userInfo)
+  },[])
 
   return (
     <StyleMyPageProfile>
@@ -147,7 +187,12 @@ const MyPageProfile = (): JSX.Element => {
         <div>
           <div>
             <span>Username : </span> <span>{userName}</span>
-            {!nameModal ? null : <input placeholder='변경하고 싶은 유저네임을 넣어주세요.' />}
+            {!nameModal ? null : 
+            <>
+              <Input inputInfo={inputUserInfo} inputHandler={inputUsernameHandler} />
+              <BtnWithEvent text='닉네임 변경하기' handleClick={submitUserName}/>
+            </>  
+            }
           </div>
           <button onClick={()=> setNameModal(pre => !pre)}>변경하기</button>
         </div>
@@ -161,8 +206,8 @@ const MyPageProfile = (): JSX.Element => {
           <button onClick={()=> setPasswordModal(pre => !pre)}>비밀번호 변경하기</button>
           {!passwordModal ? null : (
             <>
-              <Input inputInfo={inputInfo} inputHandler={inputHandler} />
-              <BtnWithEvent text='변경하기' handleClick={handleClick}/>
+              <Input inputInfo={inputPasswordInfo} inputHandler={inputPasswordHandler} />
+              <BtnWithEvent text='패스워드 변경하기' handleClick={handleClick}/>
             </>
           )}
         </div>
