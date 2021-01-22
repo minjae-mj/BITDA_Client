@@ -12,9 +12,12 @@ const Main = (): JSX.Element => {
 
   let submitHandler = async () => {
     // 유저 조합을 보냄
-    let submitAll = await axios.post('http://localhost:8080/drinks/list/type', {
+    let submitTaste = await axios.post('http://localhost:8080/drinks/list/type', {
       ...state.types
     })
+    let { data } = submitTaste; 
+
+    console.log(data); 
   }
   
   let selectAllHandler = async () => {
