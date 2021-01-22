@@ -2,7 +2,8 @@ import React from 'react';
 import styled from 'styled-components'; 
 
 type NavCatetoryBtnProps = {
-  text: string;    
+  text: string;   
+  handleClick?: () => void;  
 }
 
 const StyleNavCatetoryBtn = styled.button`
@@ -17,10 +18,10 @@ const StyleNavCatetoryBtn = styled.button`
   }
 ` 
 
-const NavCatetoryBtn = ({ text }: NavCatetoryBtnProps ) => {
+const NavCatetoryBtn = ({ text, handleClick }: NavCatetoryBtnProps ) => {
 
   return (
-    <StyleNavCatetoryBtn>{text}</StyleNavCatetoryBtn>
+    <StyleNavCatetoryBtn onClick={handleClick}>{text}</StyleNavCatetoryBtn>
   )
 }
 

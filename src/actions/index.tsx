@@ -1,7 +1,4 @@
-// 리덕스에 담을 상태값 정하기
-// token, isLogin, drinkList, bookmarkList
-// personalType = { category: string;  price: "", taste: "", alcohol : string;
-// 상태값 변경할 타입 정하기 = action types
+// ACTION TYPES
 export const SIGN_IN = "SIGN_IN";
 export const SIGN_OUT = "SIGN_OUT";
 export const UPDATE_TOKEN = "UPDATE_TOKEN"; 
@@ -25,8 +22,8 @@ export interface Auth {
   }
 }
 
-// 변경할 로직 짜기 = action creators
-// Signin 관련
+// ACTION CREATORS
+// signin reducers
 export const signIn = (isAdmin: Admin, accessToken: string): Auth => {
   return {
     type: SIGN_IN,
@@ -58,7 +55,7 @@ export const updateToken = (accessToken: string): Auth => {
   }
 }
 
-// 메인페이지 유저클릭 관련
+// personal type reducers
 export const updateCategory = (clickedItem: string) => {
   return {
     type: UPDATE_CATEGORY,
