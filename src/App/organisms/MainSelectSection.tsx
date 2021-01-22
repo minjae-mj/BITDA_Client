@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import MainSubmitBtn from '../atoms/MainSubmitBtn';
 import TagWithBtn from '../molecules/TagWithBtn';
 
@@ -16,10 +16,10 @@ const MainSelectSection = ({ submitHandler, selectAllHandler }: Props): JSX.Elem
   return (
     <div>
       <div>당신의 취향은?</div>
-      <TagWithBtn title={'종류'} buttonList={typeButtonList} type={'category'}/>
-      <TagWithBtn title={'가격'} buttonList={priceButtonList} type={'price'}/>
-      <TagWithBtn title={'맛'} buttonList={tasteButtonList} type={'taste'}/>
-      <TagWithBtn title={'도수'} buttonList={alcoholeButtonList} type={'alcohol'}/>
+      <TagWithBtn title={'종류'} buttonList={typeButtonList} type={'category'} />
+      <TagWithBtn title={'가격'} buttonList={priceButtonList} type={'price'} />
+      <TagWithBtn title={'맛'} buttonList={tasteButtonList} type={'taste'} />
+      <TagWithBtn title={'도수'} buttonList={alcoholeButtonList} type={'alcohol'} />
       <MainSubmitBtn text={'취향 빚기'} submitHandler={submitHandler} />
       <MainSubmitBtn text={'전체 보기'} submitHandler={selectAllHandler} />
     </div>

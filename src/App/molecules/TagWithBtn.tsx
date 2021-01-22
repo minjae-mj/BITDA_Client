@@ -1,5 +1,7 @@
-import React ,{useEffect, useState} from 'react'; 
-import styled from 'styled-components'; 
+import React, { useState} from 'react'; 
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../reducers'; 
+import { updateTypes } from '../../actions'
 import MainSelectBtn from '../atoms/MainSelectBtn'
 
 type Props = {
@@ -8,43 +10,38 @@ type Props = {
   type : string;
 }
 const TagWithBtn = ({ title, buttonList, type }: Props ) : JSX.Element => {
-  // let initialPersonalTaste = {
-  //   type : '',
-  //   price : '',
-  //   taste : '',
-  //   alcohol : ''
-  // }
-  // const [isClicked, setIsClicked] = useState(false);
-  // const [personalTaste, setPersonalTaste] = useState(initialPersonalTaste);
+  const state = useSelector((state: RootState) => state.personalTypeReducer)!;
+  const dispatch = useDispatch();
+  const [activeItem, setActiveItem] = useState(""); // isClicked
 
-  // let submitHandler = (e : any) : void => {
-  //   let target = e.target.innerText;  // 1만원 이하... 등등
-  //   let type = e.target.dataset.type; // type, price, taste, alcohol
-  //   let Clicked = e.target.dataset.clicked; 
+  let clickHandler = (e : any) : void => {
+    let target = e.target.innerText;  // 1만원 이하... 등등
+    setActiveItem(target); 
 
-  //   setIsClicked(!isClicked)
-  //   console.log(Clicked)
-  //   // setPersonalTaste({...initialPersonalTaste, [type] : target}); 
-  //   // 왜 이전 스테이트를 불러오지 못하니 ... ?
-  //   // setPersonalTaste(Object.assign({},personalTaste,{[type] : target}));
-  //   // 너도 왜 이전 스테이트를 불러오지 못하니 ... ?
-  // }
-  
-  // useEffect(() =>{
-  //   console.log(personalTaste)
-  // },[personalTaste])
+    if(activeItem === target){
+      setActiveItem("")
+      dispatch(updateTypes(type, ""))
+    } else {
+      setActiveItem(target)
+      dispatch(updateTypes(type, target))
+    }
+
+    // if(eventType === 'category') {
+    //   dispatch(updateCategory(active))
+    // } else if (eventType === 'price') {
+    //   dispatch(updatePrice(active))
+    // } else if (eventType === 'taste') {
+    //   dispatch(updateTaste(active))
+    // } else if (eventType === 'alcohol') {
+    //   dispatch(updateAlcohol(active))
+    // }
+  }
+
 
   return (
     <div>
       <div>{title}</div>
-      <MainSelectBtn type={type} buttonList={buttonList}/>
-      {/* <ul>
-        {buttonList.map((item : string):JSX.Element => 
-        <li>
-          <MainSelectBtn type={type} buttonList={buttonList} text={item}  />
-        </li>
-        )}
-      </ul> */}
+      <MainSelectBtn type={type} buttonList={buttonList} clickHandler={clickHandler} active={activeItem} />
     </div>
   )
 }
