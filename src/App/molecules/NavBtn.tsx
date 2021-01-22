@@ -1,52 +1,50 @@
 import React from 'react'; 
 import { Link } from 'react-router-dom'; 
 import NavCatetoryBtn from '../atoms/NavCategoryBtn'; 
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../reducers'; 
+import { signOut } from '../../actions'; 
+import axios from 'axios'; 
 
-interface NavBtnProps {
-  isLogin: boolean;
-}
+const NavBtn = (): JSX.Element => {
+  const state = useSelector((state: RootState) => state.signinReducer);
+  const dispatch = useDispatch(); 
+  const { isLogin, accessToken } = state; 
+  const signedIn = isLogin && accessToken; 
 
-const NavBtn = ({ isLogin }: NavBtnProps): JSX.Element => {
+  const handleClickLogout = async () => {
+    try {
+      await axios({
+        method: 'post',
+        url: 'http://localhost:8080/users/signout',
+        headers: { Authorization: `Bearer ${accessToken}` } 
+      });
+
+      dispatch(signOut());
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   return (
     <ul>
       <li>
-        <Link to={isLogin? "/users/mypage" : "/users/signin"}>
-          <NavCatetoryBtn text={isLogin? "마이 페이지" : "로그인"} />
+        <Link to={signedIn? "/users/mypage" : "/users/signin"}>
+          <NavCatetoryBtn text={signedIn? "마이 페이지" : "로그인"} />
         </Link>
       </li>
       <li>
-        <Link to={isLogin? "/users/signout" : "/users/signup"}>
-          <NavCatetoryBtn text={isLogin? "로그아웃" : "회원가입"} />
+        {signedIn? 
+        <NavCatetoryBtn text="로그아웃" handleClick={handleClickLogout} />
+        :
+        <Link to="/users/signup">
+          <NavCatetoryBtn text="회원가입" />
         </Link>
+        }
+        
       </li>
     </ul>
   )
 }
 
 export default NavBtn; 
-
-/*
-return (
-  <div>
-  {isLogin ? 
-    (<ul>
-      <li>
-        <Link to="/users/mypage"><button>마이 페이지</button></Link>
-      </li>
-      <li>
-        <Link to="/users/signout"><button>로그아웃</button></Link>
-      </li>
-    </ul>)
-    : (<ul>
-        <li>
-          <Link to="/users/signup"><button>회원가입</button></Link>
-        </li>
-        <li>
-          <Link to="/users/signin"><button>로그인</button></Link>
-        </li>
-      </ul>)
-  }
-  </div>
-)
-*/
