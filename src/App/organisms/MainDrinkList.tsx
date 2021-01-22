@@ -1,4 +1,6 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
+import styled from 'styled-components'
 import ImgWithInfo from '../molecules/ImgWithInfo'
 
 interface Props {
@@ -10,9 +12,16 @@ interface Props {
   }[]
 }
 
+const Test = styled.div`
+  height: 2000px;
+`;
+
 let MainDrinkList =({ drinkList }: Props): JSX.Element => {
 
   return (
+    <>
+    <Test></Test>
+    <div></div>
     <ul>
       {drinkList.map((drink): JSX.Element => (
         <li key={drink.id} >
@@ -20,6 +29,7 @@ let MainDrinkList =({ drinkList }: Props): JSX.Element => {
         </li>
       ))}
     </ul>
+    </>
   )
 }
 
