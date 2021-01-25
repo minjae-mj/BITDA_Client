@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { updateTypes } from '../../actions'; 
 import { RootState } from '../../reducers';
 import MainDrinkList from '../organisms/MainDrinkList';
 import MainSelectSection from '../organisms/MainSelectSection';
 import axios from 'axios';
-// import styled from 'styled-components';
+
 interface Props {
   id: number;
   drinkName: string;
@@ -13,6 +14,7 @@ interface Props {
 }
 const Main = (): JSX.Element => {
   const state = useSelector((state: RootState) => state.personalTypeReducer);
+  const dispatch = useDispatch();
   const [drinkList, setDrinkList] = useState<Props[]>([]);
   const [isFiltered, setIsFiltered] = useState(false);
 
@@ -26,16 +28,22 @@ const Main = (): JSX.Element => {
     let { data } = submitTaste;
     setDrinkList(data);
     setIsFiltered(true);
-    console.log(data);
   };
+
   let selectAllHandler = async () => {
     let submitAll = await axios.get(
       `http://localhost:8080/drinks/list/${drinkList.length}`
     );
     let { data } = submitAll;
     setDrinkList(data);
-    setIsFiltered(false);
+
+    dispatch(updateTypes("category", ""))
+    dispatch(updateTypes("price", ""))
+    dispatch(updateTypes("taste", ""))
+    dispatch(updateTypes("alcohol", ""))
+    console.log(state.types); 
   };
+
   window.onscroll = async (e: any) => {
     if (!isFiltered) {
       try {
@@ -66,9 +74,10 @@ const Main = (): JSX.Element => {
       } catch (error) {
         console.log('no more');
       }
-    }
+    }  
     // newFeed();
   };
+
   // let newFeed = async () =>{
   //   let infinityScroll = isFiltered? ( await axios.post(`http://localhost:8080/drinks/list/type`, {...state.types}) )
   //   :
@@ -95,8 +104,7 @@ const Main = (): JSX.Element => {
     <div>
       <MainSelectSection
         submitHandler={submitHandler}
-        selectAllHandler={selectAllHandler}
-      />
+        selectAllHandler={selectAllHandler} />
       <MainDrinkList drinkList={drinkList} />
     </div>
   );
