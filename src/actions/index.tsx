@@ -4,10 +4,7 @@ export const SIGN_OUT = "SIGN_OUT";
 export const UPDATE_TOKEN = "UPDATE_TOKEN"; 
 
 export const UPDATE_TYPES = "UPDATE_TYPES"
-// export const UPDATE_CATEGORY = "UPDATE_CATEGORY"
-// export const UPDATE_PRICE = "UPDATE_PRICE"
-// export const UPDATE_TASTE = "UPDATE_TASTE"
-// export const UPDATE_ALCOHOL = "UPDATE_ALCOHOL"
+export const UPDATE_RESET = "UPDATE_RESET"
 
 enum Admin {
   false = 0,
@@ -57,42 +54,6 @@ export const updateToken = (accessToken: string): Auth => {
 }
 
 // personal type reducers
-// export const updateCategory = (clickedItem: string) => {
-//   return {
-//     type: UPDATE_CATEGORY,
-//     payload: {
-//       category: clickedItem
-//     }
-//   }
-// }
-
-// export const updatePrice = (clickedItem: string) => {
-//   return {
-//     type: UPDATE_PRICE,
-//     payload: {
-//       price: clickedItem
-//     }
-//   }
-// }
-
-// export const updateTaste = (clickedItem: string) => {
-//   return {
-//     type: UPDATE_TASTE,
-//     payload: {
-//       taste: clickedItem
-//     }
-//   }
-// }
-
-// export const updateAlcohol = (clickedItem: string) => {
-//   return {
-//     type: UPDATE_ALCOHOL,
-//     payload: {
-//       alcohol: clickedItem
-//     }
-//   }
-// }
-
 export const updateTypes = (type: string, value: string) => {
   return {
     type: UPDATE_TYPES,
