@@ -24,7 +24,6 @@ interface LoginInfo {
 
 let Signin = () =>{
   let history = useHistory();
-  const [oauth, setOauth] = useState('')
   const [info, setInfo] = useState<Info>({
     email: "",
     password: ""
@@ -55,6 +54,8 @@ let Signin = () =>{
       .then((res) => {
         const { data } = res;
         dispatch(signIn(data.admin, data.accessToken)); 
+        localStorage.setItem('isLogin', 'true');
+        localStorage.setItem('accessToken', data.accessToken);
       })
 
     } catch (err) {
@@ -70,7 +71,7 @@ let Signin = () =>{
   
   const kakaoLoginHandler = ( ) : any => {
     window.location.assign(KAKAO_LOGIN_URL)
-    setOauth('kakao')
+    localStorage.setItem('oauth', 'kakao');
   } 
 
   // Google Oauth 관련
@@ -78,7 +79,7 @@ let Signin = () =>{
   const GOOGLE_LOGIN_URL: string = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${clientIDForGoogle}&redirect_uri=${redirectUrl}&response_type=code&scope=https://www.googleapis.com/auth/userinfo.email+https://www.googleapis.com/auth/userinfo.profile`
   const googleLoginHandler = ( ): any => {
     window.location.assign(GOOGLE_LOGIN_URL)
-    setOauth('google')
+    localStorage.setItem('oauth', 'google');
   }
 
   useEffect(() : void => {
@@ -92,9 +93,18 @@ let Signin = () =>{
 
   let getAccessToken = async (authorizationCode :string | null) =>{
     try {
-      const res = await server.post(`/users/kakao`, {authorizationCode})
+      const oauth = localStorage.getItem('oauth');
+      let res; 
+      if(oauth === 'kakao') {
+        res = await server.post(`/users/kakao`, {authorizationCode})
+      } else {
+        res = await server.post(`/users/google`, {authorizationCode})
+      }
       const { data } = res;
-      dispatch(signIn(data.admin, data.accessToken))
+      dispatch(signIn(data.admin, data.accessToken)); 
+      localStorage.setItem('isLogin', 'true');
+      localStorage.setItem('accessToken', data.accessToken);
+
       history.push('/');
 
       } catch (err) {

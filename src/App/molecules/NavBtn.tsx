@@ -21,6 +21,7 @@ const NavBtn = (): JSX.Element => {
       });
 
       dispatch(signOut());
+      localStorage.clear();
     } catch (err) {
       console.log(err);
     }
