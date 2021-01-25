@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../reducers'; 
 import RatingIcon from '../molecules/RatingIcon'; 
 import styled from 'styled-components'; 
-import axios from 'axios'; 
+import server from '../../apis/server'; 
 import BtnWithEvent from '../atoms/BtnWithEvent';
 
 interface Props {
@@ -40,7 +40,7 @@ const ReviewInput = ({ drinkId, updateReviews }: Props) => {
   }
 
   const handleSubmit = async (e: any) => {
-    const review = await axios.post('http://localhost:8080/reviews/add', {
+    const review = await server.post('/reviews/add', {
         rating, 
         text: reviewText,
         drinkId
@@ -48,7 +48,7 @@ const ReviewInput = ({ drinkId, updateReviews }: Props) => {
       { headers: {'Authorization': `Bearer ${accessToken}` }
     }); 
 
-    const reviewList = await axios.get(`http://localhost:8080/reviews/list/${drinkId}`); 
+    const reviewList = await server.get(`/reviews/list/${drinkId}`); 
     const { data }: any = reviewList;  
     updateReviews(data.reviews); 
   }

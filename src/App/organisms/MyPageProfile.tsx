@@ -1,10 +1,10 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';  
 import styled from 'styled-components'; 
 import Input from '../atoms/Inputs'
 import BtnWithEvent from '../atoms/BtnWithEvent';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../reducers'; 
+import server from '../../apis/server'; 
 
 const StyleMyPageProfile = styled.div`
   width: 100%; 
@@ -74,7 +74,7 @@ const MyPageProfile = (): JSX.Element => {
     // console.log(img.has('img'))
     // console.log(img.get('img'))
     try{
-      let uploading = await axios.patch('http://localhost:8080/users/modifyuser',
+      let uploading = await server.patch('/users/modifyuser',
       img, 
       {headers : {
         Authorization : `Bearer ${token}`,
@@ -115,7 +115,7 @@ const MyPageProfile = (): JSX.Element => {
 
   let submitUserName = async () =>{
     try{
-      let changeUsername = await axios.patch('http://localhost:8080/users/modifyuser',{userName : changedUsername.userName}, 
+      let changeUsername = await server.patch('/users/modifyuser',{userName : changedUsername.userName}, 
       {headers : {
         Authorization : `Bearer ${token}`
       }})
@@ -134,7 +134,7 @@ const MyPageProfile = (): JSX.Element => {
     }
     
     try{
-      let isCurrentCorrect = await axios.post('http://localhost:8080/users/modifypassword',
+      let isCurrentCorrect = await server.post('/users/modifypassword',
       {
         password : passwords.password ,
         newPassword : passwords.newPassword
@@ -152,7 +152,7 @@ const MyPageProfile = (): JSX.Element => {
 
   let getUserInfo = async () =>{ 
     try{
-      let user = await axios.get('http://localhost:8080/users/mypage',
+      let user = await server.get('/users/mypage',
       {headers : {
         Authorization : `Bearer ${token}`}
       })

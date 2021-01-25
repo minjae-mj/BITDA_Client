@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import MainSubmitBtn from '../atoms/MainSubmitBtn'
 import InputsWithBtn from '../molecules/InputsWithBtn'
-import axios from 'axios'
+import server from '../../apis/server'
 
 let Signup = () =>{
   const [userInfo, setUserInfo] = useState({
@@ -35,7 +35,7 @@ let Signup = () =>{
       alert('작성하진 이메일이 형식에 맞지 않습니다..')
     }else{
       try { 
-        let sendUserInfo = await axios.post('http://localhost:8080/users/signup',
+        let sendUserInfo = await server.post('/users/signup',
         { userName,email,password },
         // { headers: { "Content-Type": "application/json" }, withCredentials: true }
         )

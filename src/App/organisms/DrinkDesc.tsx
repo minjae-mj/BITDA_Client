@@ -6,7 +6,7 @@ import styled from "styled-components";
 import DrinkDescContainer from "../molecules/DrinkDescContainer"; 
 import BtnWithEvent from "../atoms/BtnWithEvent"
 import BtnPlain from "../atoms/BtnPlain"; 
-import axios from 'axios';
+import server from '../../apis/server';
 import dummyDrinks from "./dummyDrinks"; 
 import LikeIcon from '../atoms/LikeIcon';
 
@@ -41,7 +41,7 @@ const DrinkDesc = (): JSX.Element => {
   const [drink, setDrink] = useState<DrinkInfo>(dummyDrinks[1]);  
 
   useEffect(() => {
-    // axios.get('http://localhost:8080/drinks/detail/${drinkId}', {
+    // server.get('/drinks/detail/${drinkId}', {
     //  Authorization: `Bearer accessToken`
     // })
 
@@ -70,7 +70,7 @@ const DrinkDesc = (): JSX.Element => {
       return alert('로그인 해 주세요.')
     } 
 
-    axios.get('http://localhost:8080/drinks/like', { 
+    server.get('/drinks/like', { 
       headers: {
         Authorization: `Bearer accessToken`
       },
@@ -82,7 +82,7 @@ const DrinkDesc = (): JSX.Element => {
   }
 
   const handleRemoveBookmark = () => {
-    axios.get('http://localhost:8080/drinks/unlike', { 
+    server.get('/drinks/unlike', { 
       headers: {
         Authorization: `Bearer accessToken`
       },

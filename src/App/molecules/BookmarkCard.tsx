@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../reducers'; 
 import { Link } from 'react-router-dom'; 
 import styled from 'styled-components'; 
-import axios from 'axios'; 
+import server from '../../apis/server'; 
 import { StyleBtnWithEvent } from '../atoms/BtnWithEvent'; 
 import BtnPlain from '../atoms/BtnPlain'; 
 
@@ -48,7 +48,7 @@ const BookmarkCard = ({ bookmark }: Props): JSX.Element => {
   const onMouseLeave = () => setHover(false); 
 
   const handleRemoveBookmark = () => {
-    axios.get('http://localhost:8080/drinks/unlike', { 
+    server.get('/drinks/unlike', { 
       headers: {
         Authorization: `Bearer ${accessToken}`
       },

@@ -4,7 +4,7 @@ import NavCatetoryBtn from '../atoms/NavCategoryBtn';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../reducers'; 
 import { signOut } from '../../actions'; 
-import axios from 'axios'; 
+import server from '../../apis/server'; 
 
 const NavBtn = (): JSX.Element => {
   const state = useSelector((state: RootState) => state.signinReducer);
@@ -14,9 +14,9 @@ const NavBtn = (): JSX.Element => {
 
   const handleClickLogout = async () => {
     try {
-      await axios({
+      await server({
         method: 'post',
-        url: 'http://localhost:8080/users/signout',
+        url: '/users/signout',
         headers: { Authorization: `Bearer ${accessToken}` } 
       });
 

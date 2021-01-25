@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../reducers'; 
 import styled from 'styled-components'; 
 import StarIcon from '../atoms/StarIcon'; 
-import axios from 'axios'; 
+import server from '../../apis/server'; 
 
 interface Props {
   drinkId: string; 
@@ -49,14 +49,14 @@ const ReviewCard = ({ drinkId, review, updateReviews }: Props) => {
   const { userName, userImage } = user; 
 
   const handleRemoveReivew = async () => {
-    await axios({
-      url: `http://localhost:8080/reviews/remove`,
+    await server({
+      url: `/reviews/remove`,
       method: 'delete',
       data: { reviewId : id },
       headers: { Authorization: `bearer ${accessToken}` },
     });
 
-    const reviewList = await axios.get(`http://localhost:8080/reviews/list/${drinkId}`); 
+    const reviewList = await server.get(`/reviews/list/${drinkId}`); 
     const { data }: any = reviewList;  
     updateReviews(data.reviews); 
   }
