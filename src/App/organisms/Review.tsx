@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import ReviewCard from '../molecules/ReviewCard';
 import ReviewInput from '../molecules/ReviewInput'; 
 import styled from 'styled-components'; 
-import axios from 'axios'; 
+import server from '../../apis/server'; 
 
 interface Params {
   drinkId: string; 
@@ -39,7 +39,7 @@ const Review = () => {
   const [reviews, setReviews] = useState<Reviews[]>([]); 
 
   const getReviewList = async () => {
-    const reviewList = await axios.get(`http://localhost:8080/reviews/list/${drinkId}`); 
+    const reviewList = await server.get(`/reviews/list/${drinkId}`); 
     const { data }: any = reviewList; 
 
     setReviews(data.reviews); 

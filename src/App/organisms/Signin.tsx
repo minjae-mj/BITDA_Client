@@ -8,8 +8,7 @@ import MainSubmitBtn from '../atoms/MainSubmitBtn'
 import InputsWithBtn from '../molecules/InputsWithBtn'
 import google from '../../images/google_oauth.png'; 
 import kakao from '../../images/kakao_oauth.png';
-import axios from 'axios'; 
-import { Redirect, withRouter } from "react-router-dom";
+import server, { clientURL } from '../../apis/server'; 
 
 interface Info {
   email: string;
@@ -48,7 +47,7 @@ let Signin = () =>{
 
   const submitHandler = async () => {
     try { 
-      let getLoginInfo = await axios.post('http://localhost:8080/users/signin', 
+      let getLoginInfo = await server.post('/users/signin', 
        { ...info },
        { headers: { "Content-Type": "application/json" }, 
         withCredentials: true }
@@ -65,8 +64,8 @@ let Signin = () =>{
   }
 
   // Kakao Oauth 관련
-  const redirectUrl:string = 'http://localhost:3000/users/signin'
-  const clientIDForKakao:string = 'a58db4c46f3113c111f06599a69d529b'
+  const redirectUrl: string = `${clientURL}/users/signin`
+  const clientIDForKakao: string = 'a58db4c46f3113c111f06599a69d529b'
   const KAKAO_LOGIN_URL : string = `https://kauth.kakao.com/oauth/authorize?client_id=${clientIDForKakao}&redirect_uri=${redirectUrl}&response_type=code`
   
   const kakaoLoginHandler = ( ) : any => {
@@ -75,9 +74,9 @@ let Signin = () =>{
   } 
 
   // Google Oauth 관련
-  const clientIDForGoogle : string = '161712089232-v1udttltgin8n37iou92c03qrckdrvkv.apps.googleusercontent.com'
-  const GOOGLE_LOGIN_URL : string = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${clientIDForGoogle}&redirect_uri=${redirectUrl}&response_type=code&scope=https://www.googleapis.com/auth/userinfo.email+https://www.googleapis.com/auth/userinfo.profile`
-  const googleLoginHandler = ( ) : any => {
+  const clientIDForGoogle: string = '161712089232-v1udttltgin8n37iou92c03qrckdrvkv.apps.googleusercontent.com'
+  const GOOGLE_LOGIN_URL: string = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${clientIDForGoogle}&redirect_uri=${redirectUrl}&response_type=code&scope=https://www.googleapis.com/auth/userinfo.email+https://www.googleapis.com/auth/userinfo.profile`
+  const googleLoginHandler = ( ): any => {
     window.location.assign(GOOGLE_LOGIN_URL)
     setOauth('google')
   }
@@ -92,9 +91,8 @@ let Signin = () =>{
   })
 
   let getAccessToken = async (authorizationCode :string | null) =>{
-
     try {
-      const res = await axios.post(`http://localhost:8080/users/kakao`, {authorizationCode})
+      const res = await server.post(`/users/kakao`, {authorizationCode})
       const { data } = res;
       dispatch(signIn(data.admin, data.accessToken))
       history.push('/');
@@ -107,7 +105,6 @@ let Signin = () =>{
 
   return (
     <div>
-      {/* {!isRedirect ? (<div> */}
       <InputsWithBtn inputInfo={inputInfo} inputHandler={inputHandler} />
       <div onClick={kakaoLoginHandler} >
         <img src={kakao} alt='Kakao Oauth'/>
@@ -121,16 +118,7 @@ let Signin = () =>{
         {/* <MainSubmitBtn text={'회원가입'}/> */}
         <div>회원가입 하러가기</div>
       </Link>
-      {/* </div>): <Redirect to='/' /> } */}
     </div>
   )
 }
-export default withRouter(Signin) ;
-
-
-
-// 구글 클라이언트 아이디
-// 161712089232-v1udttltgin8n37iou92c03qrckdrvkv.apps.googleusercontent.com
-
-// 카카오 클라이언트 아이디
-// a58db4c46f3113c111f06599a69d529b
+export default Signin ;

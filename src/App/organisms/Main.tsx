@@ -4,7 +4,7 @@ import { updateTypes } from '../../actions';
 import { RootState } from '../../reducers';
 import MainDrinkList from '../organisms/MainDrinkList';
 import MainSelectSection from '../organisms/MainSelectSection';
-import axios from 'axios';
+import server from '../../apis/server';
 
 interface Props {
   id: number;
@@ -19,8 +19,8 @@ const Main = (): JSX.Element => {
   const [isFiltered, setIsFiltered] = useState(false);
 
   let submitHandler = async () => {
-    let submitTaste = await axios.post(
-      `http://localhost:8080/drinks/list/type/${drinkList.length}`,
+    let submitTaste = await server.post(
+      `/drinks/list/type/${drinkList.length}`,
       {
         ...state.types,
       }
@@ -31,8 +31,8 @@ const Main = (): JSX.Element => {
   };
 
   let selectAllHandler = async () => {
-    let submitAll = await axios.get(
-      `http://localhost:8080/drinks/list/${drinkList.length}`
+    let submitAll = await server.get(
+      `/drinks/list/${drinkList.length}`
     );
     let { data } = submitAll;
     setDrinkList(data);
@@ -48,8 +48,8 @@ const Main = (): JSX.Element => {
     if (!isFiltered) {
       try {
         if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
-          let infinityScroll = await axios.get(
-            `http://localhost:8080/drinks/list/${drinkList.length}`
+          let infinityScroll = await server.get(
+            `/drinks/list/${drinkList.length}`
           );
           let { data } = infinityScroll;
           console.log(data);
@@ -61,8 +61,8 @@ const Main = (): JSX.Element => {
     } else {
       try {
         if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
-          let infinityScroll = await axios.post(
-            `http://localhost:8080/drinks/list/type/${drinkList.length}`,
+          let infinityScroll = await server.post(
+            `/drinks/list/type/${drinkList.length}`,
             {
               ...state.types,
             }
@@ -79,9 +79,9 @@ const Main = (): JSX.Element => {
   };
 
   // let newFeed = async () =>{
-  //   let infinityScroll = isFiltered? ( await axios.post(`http://localhost:8080/drinks/list/type`, {...state.types}) )
+  //   let infinityScroll = isFiltered? ( await server.post(`/drinks/list/type`, {...state.types}) )
   //   :
-  //   ( await axios.get(`http://localhost:8080/drinks/list`) )
+  //   ( await server.get(`/drinks/list`) )
   //   try {
   //     if((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
   //       let { data } = infinityScroll;

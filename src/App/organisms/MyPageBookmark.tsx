@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../reducers'; 
 import styled from 'styled-components'; 
-import axios from 'axios'; 
+import server from '../../apis/server'; 
 import BookmarkCard from '../molecules/BookmarkCard'; 
 import dummyBookmarks from './dummyBookmarks'; 
 
@@ -25,7 +25,7 @@ const MyPageContent = (): JSX.Element => {
 
   useEffect(() => {
     // const getBookmarkList = async () => {
-    //   const bookmarks = await axios('http://localhost:8080/users/bookmark', {
+    //   const bookmarks = await server.get('/users/bookmark', {
     //     headers: { 'Authorization': `Bearer ${accessToken}` },
     //   });
 
