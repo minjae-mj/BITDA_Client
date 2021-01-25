@@ -1,14 +1,15 @@
 import React, { useState } from 'react'; 
-import { useSelector } from 'react-redux';
 import { RootState } from '../../reducers'; 
 import RatingIcon from '../molecules/RatingIcon'; 
 import styled from 'styled-components'; 
 import server from '../../apis/server'; 
 import BtnWithEvent from '../atoms/BtnWithEvent';
+import { useSelector, useDispatch } from 'react-redux';
+import { updateReviews } from '../../actions'; 
 
 interface Props {
   drinkId: string; 
-  updateReviews: (data: any) => void;
+  updateReviews?: (data: any) => void;
 }
 
 const StyleReviewLabel = styled.div`
@@ -22,9 +23,11 @@ const StyleRatingIcon = styled.div`
   margin-left: 1rem; 
 `
 
-const ReviewInput = ({ drinkId, updateReviews }: Props) => {
+const ReviewInput = ({ drinkId }: Props) => {
   const state = useSelector((state: RootState) => state.signinReducer); 
   const { accessToken } = state; 
+  const dispatch = useDispatch();
+  
 
   const [reviewText, setReviewText] = useState("");
   const [rating, setRating] = useState(0); 
@@ -50,7 +53,11 @@ const ReviewInput = ({ drinkId, updateReviews }: Props) => {
 
     const reviewList = await server.get(`/reviews/list/${drinkId}`); 
     const { data }: any = reviewList;  
-    updateReviews(data.reviews); 
+    dispatch(updateReviews(data.reviews));
+
+    setRating(0);
+    let inputForReview  : any = document.querySelector('#textArea');
+    inputForReview.value = '';
   }
 
   return (
@@ -73,7 +80,7 @@ const ReviewInput = ({ drinkId, updateReviews }: Props) => {
         }
       </StyleRatingIcon>
      </StyleReviewLabel>
-     <textarea style={{
+     <textarea id='textArea' style={{
           width: "70%",
           height: "30vh",
         }} onChange={handleInput}></textarea>

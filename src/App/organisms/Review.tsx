@@ -4,20 +4,12 @@ import ReviewCard from '../molecules/ReviewCard';
 import ReviewInput from '../molecules/ReviewInput'; 
 import styled from 'styled-components'; 
 import server from '../../apis/server'; 
+import { RootState } from '../../reducers';
+import { useSelector, useDispatch } from 'react-redux';
+import { updateReviews } from '../../actions'; 
 
 interface Params {
   drinkId: string; 
-}
-
-interface Reviews {
-  id: number;
-  text: string;
-  rating: number;
-  user: {
-      id: number;
-      userName: string;
-      userImage: string;
-  }
 }
 
 const StyleReview = styled.div`
@@ -36,33 +28,50 @@ const StyleReviewCard = styled.div`
 
 const Review = () => {
   const { drinkId }: Params = useParams(); 
-  const [reviews, setReviews] = useState<Reviews[]>([]); 
+  const [idx , setIdx] = useState(0);
+
+  let state = useSelector((state :RootState ) => state.reviewListReducer.reviewList);
+  const dispatch = useDispatch();
+
 
   const getReviewList = async () => {
     const reviewList = await server.get(`/reviews/list/${drinkId}`); 
     const { data }: any = reviewList; 
-
-    setReviews(data.reviews); 
+    dispatch(updateReviews(data.reviews));
   }
 
   useEffect(() => {
     getReviewList(); 
   }, []); 
 
-  const updateReviews = (data: any) => {
-    setReviews(data);
+  let fourReviews = state.slice(idx, idx+4);
+  let nextReviewsHandler = () => {
+    if(idx + 4  < state.length ){
+      setIdx(pre => pre + 4)
+    }else{
+      return;
+    }
+  }
+  let preReviewsHandler = () => {
+    if(idx - 4  >= 0 ){
+      setIdx(pre => pre - 4)
+    }else{
+      return;
+    }
   }
 
   return (
     <StyleReview>
       <p>리뷰</p>
+      <button onClick={preReviewsHandler}>이전 리뷰 보기</button>
       <StyleReviewCard>
-        {!reviews.length ? <div style={{ width: "100%" }}>첫 리뷰를 작성해주세요.</div> : 
-          reviews.map(review => {
+        {!state.length ? <div style={{ width: "100%" }}>첫 리뷰를 작성해주세요.</div> : 
+          fourReviews.map(review => {
             return <ReviewCard key={review.id} review={review} updateReviews={updateReviews} drinkId={drinkId} />
           })
         }
       </StyleReviewCard>
+      <button onClick={nextReviewsHandler}>다음 리뷰 보기</button>
       <ReviewInput drinkId={drinkId} updateReviews={updateReviews} />
     </StyleReview>
   )

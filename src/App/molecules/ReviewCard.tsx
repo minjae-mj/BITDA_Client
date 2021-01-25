@@ -1,9 +1,10 @@
 import React from 'react'; 
-import { useSelector } from 'react-redux';
 import { RootState } from '../../reducers'; 
 import styled from 'styled-components'; 
 import StarIcon from '../atoms/StarIcon'; 
 import server from '../../apis/server'; 
+import { useSelector, useDispatch } from 'react-redux';
+import { updateReviews } from '../../actions'; 
 
 interface Props {
   drinkId: string; 
@@ -17,7 +18,6 @@ interface Props {
       userImage: string;
     }
   },
-  updateReviews: (data: any) => void;
 }
 
 const StyleReviewCard = styled.div`
@@ -41,8 +41,9 @@ const StyleUser = styled.div`
   justify-content: space-between; 
 `
 
-const ReviewCard = ({ drinkId, review, updateReviews }: Props) => {
+const ReviewCard = ({ drinkId, review }: Props) => {
   const state = useSelector((state: RootState) => state.signinReducer); 
+  const dispatch = useDispatch();
   const { accessToken } = state; 
 
   const { id, text, rating, user } = review; 
@@ -58,14 +59,14 @@ const ReviewCard = ({ drinkId, review, updateReviews }: Props) => {
 
     const reviewList = await server.get(`/reviews/list/${drinkId}`); 
     const { data }: any = reviewList;  
-    updateReviews(data.reviews); 
+    dispatch(updateReviews(data.reviews));
   }
 
   return (
     <StyleReviewCard>
       <StyleUser>
         <StyleUserImage>
-          <img src={userImage} width="100px" height="100px" />
+          <img src={userImage} width="100px" height="100px" alt='' />
         </StyleUserImage>
         <span>{userName}</span>
         <span><StarIcon fill="yellow" /></span>
