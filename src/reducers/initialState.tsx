@@ -12,12 +12,24 @@ interface Drink {
   drinkImage: string; 
 }
 
+interface Reviews {
+  id: number;
+  text: string;
+  rating: number;
+  user: {
+      id: number;
+      userName: string;
+      userImage: string;
+  }
+}
+
 export interface InitialState {
   accessToken: string;
   isLogin: boolean;
   isAdmin: 0 | 1; 
   drinkList: Drink[]; 
   bookmarkList: Drink[]; 
+  reviewList : Reviews[];
   types: {
     category: string;
     alcohol: string;
@@ -33,6 +45,7 @@ export const initialState: InitialState =
   isAdmin: 0,
   drinkList: [],
   bookmarkList: [],
+  reviewList : [],
   types: {
     category: "",
     price: "",

@@ -4,7 +4,10 @@ export const SIGN_OUT = "SIGN_OUT";
 export const UPDATE_TOKEN = "UPDATE_TOKEN"; 
 
 export const UPDATE_TYPES = "UPDATE_TYPES"
-export const UPDATE_RESET = "UPDATE_RESET"
+
+export const UPDATE_REVIEW_LIST = "UPDATE_REVIEW_LIST"
+// export const ADD_REVIEW = "ADD_REVIEW"
+// export const DELETE_REVIEW = "DELETE_REVIEW"
 
 enum Admin {
   false = 0,
@@ -17,6 +20,17 @@ export interface Auth {
     isAdmin?: Admin;  
     isLogin?: boolean; 
     accessToken: string; 
+  }
+}
+
+export interface Reviews {
+  id: number;
+  text: string;
+  rating: number;
+  user: {
+      id: number;
+      userName: string;
+      userImage: string;
   }
 }
 
@@ -62,3 +76,28 @@ export const updateTypes = (type: string, value: string) => {
     }
   }
 }
+
+export const updateReviews = (value: Reviews[])  => {
+  return {
+    type: UPDATE_REVIEW_LIST,
+    payload: {
+      reviewList: [...value]
+    }
+  }
+}
+// export const addReview = ( value: Reviews) => {
+//   return {
+//     type: ADD_REVIEW,
+//     payload: {
+//       newReview : value
+//     }
+//   }
+// }
+// export const deleteeview = (value: Reviews) => {
+//   return {
+//     type: DELETE_REVIEW,
+//     payload: {
+//       [type]: value
+//     }
+//   }
+// }
