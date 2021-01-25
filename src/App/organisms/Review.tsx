@@ -67,12 +67,12 @@ const Review = () => {
       <StyleReviewCard>
         {!state.length ? <div style={{ width: "100%" }}>첫 리뷰를 작성해주세요.</div> : 
           fourReviews.map(review => {
-            return <ReviewCard key={review.id} review={review} updateReviews={updateReviews} drinkId={drinkId} />
+            return <ReviewCard key={review.id} review={review} drinkId={drinkId} />
           })
         }
       </StyleReviewCard>
       <button onClick={nextReviewsHandler}>다음 리뷰 보기</button>
-      <ReviewInput drinkId={drinkId} updateReviews={updateReviews} />
+      <ReviewInput drinkId={drinkId} />
     </StyleReview>
   )
 
