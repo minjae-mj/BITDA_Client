@@ -5,13 +5,14 @@ import MainSubmitBtn from '../atoms/MainSubmitBtn';
 type Props = {
   inputInfo : {placeholder : string, type: string}[];
   inputHandler: (e: any) => void; 
+  errMsg? : string
 }
 
-const InputsWithBtn = ({inputInfo, inputHandler }: Props): JSX.Element => {
+const InputsWithBtn = ({inputInfo, inputHandler, errMsg }: Props): JSX.Element => {
 
   return (
     <div>
-        <Input inputInfo={inputInfo} inputHandler={inputHandler} />
+      <Input inputInfo={inputInfo} inputHandler={inputHandler} /*errMsg={errMsg}*//>
     </div>
   )
 }
