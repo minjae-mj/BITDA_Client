@@ -1,16 +1,14 @@
 import React from 'react'; 
 import { Link } from 'react-router-dom'; 
 import NavCatetoryBtn from '../atoms/NavCategoryBtn'; 
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../reducers'; 
+import { useDispatch } from 'react-redux';
 import { signOut } from '../../actions'; 
 import server from '../../apis/server'; 
 
 const NavBtn = (): JSX.Element => {
-  const state = useSelector((state: RootState) => state.signinReducer);
   const dispatch = useDispatch(); 
-  const { isLogin, accessToken } = state; 
-  const signedIn = isLogin && accessToken; 
+  const accessToken = localStorage.getItem('accessToken'); 
+  const isLogin = localStorage.getItem('isLogin'); 
 
   const handleClickLogout = async () => {
     try {
@@ -21,7 +19,7 @@ const NavBtn = (): JSX.Element => {
       });
 
       dispatch(signOut());
-      localStorage.clear();
+      localStorage.setItem('isLogin', 'false'); 
     } catch (err) {
       console.log(err);
     }
@@ -30,12 +28,12 @@ const NavBtn = (): JSX.Element => {
   return (
     <ul>
       <li>
-        <Link to={signedIn? "/users/mypage" : "/users/signin"}>
-          <NavCatetoryBtn text={signedIn? "마이 페이지" : "로그인"} />
+        <Link to={isLogin === "true" ? "/users/mypage" : "/users/signin"}>
+          <NavCatetoryBtn text={isLogin === "true" ? "마이 페이지" : "로그인"} />
         </Link>
       </li>
       <li>
-        {signedIn? 
+        {isLogin === "true" ? 
         <NavCatetoryBtn text="로그아웃" handleClick={handleClickLogout} />
         :
         <Link to="/users/signup">
