@@ -5,6 +5,16 @@ import { useDispatch } from 'react-redux';
 import { signOut } from '../../actions';
 import server from '../../apis/server';
 import { useHistory } from 'react-router-dom';
+import styled from 'styled-components';
+
+const StyledUl = styled.ul`
+list-style: none;
+display: flex;
+padding : 0px;
+`;
+const StyledLi = styled.li`
+  padding: 0px 8px;
+`;
 
 const NavBtn = (): JSX.Element => {
   const dispatch = useDispatch();
@@ -31,15 +41,15 @@ const NavBtn = (): JSX.Element => {
   };
 
   return (
-    <ul>
-      <li>
+    <StyledUl>
+      <StyledLi>
         <Link to={isLogin === 'true' ? '/users/mypage' : '/users/signin'}>
           <NavCatetoryBtn
             text={isLogin === 'true' ? '마이 페이지' : '로그인'}
           />
         </Link>
-      </li>
-      <li>
+      </StyledLi>
+      <StyledLi>
         {isLogin === 'true' ? (
           <NavCatetoryBtn text="로그아웃" handleClick={handleClickLogout} />
         ) : (
@@ -47,8 +57,8 @@ const NavBtn = (): JSX.Element => {
             <NavCatetoryBtn text="회원가입" />
           </Link>
         )}
-      </li>
-    </ul>
+      </StyledLi>
+    </StyledUl>
   );
 };
 
