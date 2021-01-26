@@ -3,6 +3,23 @@ import MainSubmitBtn from '../atoms/MainSubmitBtn'
 import InputsWithBtn from '../molecules/InputsWithBtn'
 import server from '../../apis/server'
 import { useHistory } from 'react-router-dom'
+import styled from 'styled-components'
+
+const StyleDiv = styled.div`
+  flex-basis : 40%;
+  border : 1px solid var(--color-primary);
+  border-radius : 0px 8px 8px 0px;
+  height : 70%;
+  text-align: center;
+  background : var(--color-white);
+`;
+
+const TitleDiv = styled.div`
+  font-size : 1.6rem;
+  color : var(--color-primary);
+  margin : 3.2rem 0rem 2.4rem 0rem;
+
+`;
 
 let Signup = () =>{
   let history = useHistory();
@@ -44,8 +61,6 @@ let Signup = () =>{
         )
         localStorage.setItem('oauth', 'local');
         alert('정상적으로 회원가입 되었습니다.')
-
-        // redirect 하기
         history.push('/users/signin');
       } catch (err) {
         alert('이미 존재하는 이메일입니다.')
@@ -54,10 +69,11 @@ let Signup = () =>{
   }
 
   return (
-    <div>
-      <InputsWithBtn inputInfo={inputInfo} inputHandler={inputHandler} /* errMsg={'hi'}*//>
+    <StyleDiv>
+      <TitleDiv>빚다 설마 처음 ?</TitleDiv>
+      <InputsWithBtn inputInfo={inputInfo} inputHandler={inputHandler} />
       <MainSubmitBtn text={'회원가입'} submitHandler={submitHandler}/>
-    </div>
+    </StyleDiv>
   )
 }
 
