@@ -42,9 +42,10 @@ const StyleUser = styled.div`
 `
 
 const ReviewCard = ({ drinkId, review }: Props) => {
-  const state = useSelector((state: RootState) => state.signinReducer); 
+  // const state = useSelector((state: RootState) => state.signinReducer); 
+  // const { accessToken } = state; 
   const dispatch = useDispatch();
-  const { accessToken } = state; 
+  const accessToken = localStorage.getItem('accessToken');
 
   const { id, text, rating, user } = review; 
   const { userName, userImage } = user; 

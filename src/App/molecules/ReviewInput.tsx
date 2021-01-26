@@ -24,10 +24,10 @@ const StyleRatingIcon = styled.div`
 `
 
 const ReviewInput = ({ drinkId }: Props) => {
-  const state = useSelector((state: RootState) => state.signinReducer); 
-  const { accessToken } = state; 
+  // const state = useSelector((state: RootState) => state.signinReducer); 
+  // const { accessToken } = state; 
   const dispatch = useDispatch();
-  
+  const accessToken = localStorage.getItem('accessToken')
 
   const [reviewText, setReviewText] = useState("");
   const [rating, setRating] = useState(0); 
@@ -41,6 +41,7 @@ const ReviewInput = ({ drinkId }: Props) => {
     const value = e.target.value; 
     setReviewText(value); 
   }
+
 
   const handleSubmit = async (e: any) => {
     const review = await server.post('/reviews/add', {
