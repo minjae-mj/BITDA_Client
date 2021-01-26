@@ -1,0 +1,83 @@
+import React from 'react'; 
+import { RootState } from '../../reducers'; 
+import styled from 'styled-components'; 
+import StarIcon from '../atoms/StarIcon'; 
+import server from '../../apis/server'; 
+import { useSelector, useDispatch } from 'react-redux';
+import { updateReviews } from '../../actions'; 
+
+interface Props {
+  drinkId: string; 
+  review: {
+    id: number;
+    text: string;
+    rating: number;
+    user: {
+      id: number;
+      userName: string;
+      userImage: string;
+    }
+  },
+}
+
+const StyleReviewCard = styled.div`
+  display: flex; 
+  flex-direction: column; 
+  width: 20%; 
+  height: 15rem; 
+  padding: .5rem 1rem; 
+
+  border: none; 
+  box-shadow: 2px 3px 3px #FBC99D;
+`
+
+const StyleUserImage = styled.div`
+  border-radius: 50%; 
+`
+
+const StyleUser = styled.div`
+  display: flex; 
+  width: 100%;  
+  justify-content: space-between; 
+`
+
+const ReviewCard = ({ drinkId, review }: Props) => {
+  const { id, text, rating, user } = review; 
+  const { userName, userImage } = user; 
+  const state = useSelector((state: RootState) => state.signinReducer); 
+  const dispatch = useDispatch();
+  const accessToken = localStorage.getItem('accessToken');
+
+  const handleRemoveReivew = async () => {
+    await server({
+      url: `/reviews/remove`,
+      method: 'delete',
+      data: { reviewId : id },
+      headers: { Authorization: `bearer ${accessToken}` },
+    });
+
+    const reviewList = await server.get(`/reviews/list/${drinkId}`); 
+    const { data } = reviewList;  
+    dispatch(updateReviews(data.reviews));
+  }
+
+  return (
+    <StyleReviewCard>
+      <StyleUser>
+        <StyleUserImage>
+          <img src={userImage} width="100px" height="100px" alt='' />
+        </StyleUserImage>
+        <span>{userName}</span>
+        <span><StarIcon fill="yellow" /></span>
+        <span>{rating}</span>
+        {state.user.id === user.id ? <span onClick={handleRemoveReivew}>X</span> : ""}
+      </StyleUser>
+      <p>{text}</p>
+    </StyleReviewCard>
+  ); 
+}
+
+export default ReviewCard; 
+
+
+
