@@ -15,30 +15,30 @@ function App() {
   return (
     <Router>
       <div>
-      <NavBar />
+        <NavBar />
 
-      <Switch>
-        <Route exact path="/">
-          <Landing />
-        </Route>
-        <Route exact path="/users/signin">
-          <Signin /> 
-        </Route>
-        <Route exact path="/users/signup">
-          <Signup />
-        </Route>
-        <Route exact path="/drinks/list">
-          <Main />
-        </Route>
-        <Route exact path="/drinks/detail/:drinkId">
-          <DrinkDetail />
-        </Route>
-        <Route exact path="/users/mypage">
-          <MyPage />
-        </Route>
-      </Switch>
+        <Switch>
+          <Route exact path="/">
+            <Landing />
+          </Route>
+          <Route exact path="/users/signin">
+            <Signin /> 
+          </Route>
+          <Route exact path="/users/signup">
+            <Signup />
+          </Route>
+          <Route exact path="/drinks/list">
+            <Main />
+          </Route>
+          <Route exact path="/drinks/detail/:drinkId">
+            <DrinkDetail />
+          </Route>
+          <Route exact path="/users/mypage">
+            <MyPage />
+          </Route>
+        </Switch>
 
-      <Footer />
+        <Footer />
     </div>
     </Router>
   );

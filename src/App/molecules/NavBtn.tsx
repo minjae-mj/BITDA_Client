@@ -13,7 +13,7 @@ display: flex;
 padding : 0px;
 `;
 const StyledLi = styled.li`
-  padding: 0px 8px;
+  padding-left: 3.2rem;
 `;
 
 const NavBtn = (): JSX.Element => {
