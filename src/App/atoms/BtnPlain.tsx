@@ -7,13 +7,14 @@ type BtnPlainProps = {
 }
 
 const StyleBtnPlain = styled.button`
-  color: #ED6663; 
-  background-color: transparent; 
-  border: 1px solid #ED6663; 
+  color: var(--color-primary);  
+  background-color: #fafafa; 
+  border: 1px solid var(--color-primary); 
   border-radius: 5px; 
-  font-size: 12px; 
-  width: 100px; 
-  height: 40px; 
+  font-size: 1.5rem; 
+  width: 45%; 
+  height: 4.8rem; 
+  margin: 3px auto; 
 ` 
 
 const BtnPlain = ({ text, handleClick }: BtnPlainProps ) => {
