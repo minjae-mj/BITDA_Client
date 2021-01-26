@@ -30,12 +30,21 @@ export interface InitialState {
   drinkList: Drink[]; 
   bookmarkList: Drink[]; 
   reviewList : Reviews[];
+  user: {
+    id: number | null ; 
+    userName: string;
+    email: string;
+    userImage: string;
+    createdAt: string;
+    provider: string;
+    admin: number; 
+  }; 
   types: {
     category: string;
     alcohol: string;
     price: string;
     taste: string;
-  }
+  }; 
 }
 
 export const initialState: InitialState =
@@ -46,6 +55,15 @@ export const initialState: InitialState =
   drinkList: [],
   bookmarkList: [],
   reviewList : [],
+  user: {
+    id: null, 
+    userName: "",
+    email: "",
+    userImage: "",
+    createdAt: "",
+    provider: "",
+    admin: 0
+  },
   types: {
     category: "",
     price: "",

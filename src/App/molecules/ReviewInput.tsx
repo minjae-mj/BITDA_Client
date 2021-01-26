@@ -1,10 +1,9 @@
 import React, { useState } from 'react'; 
-import { RootState } from '../../reducers'; 
 import RatingIcon from '../molecules/RatingIcon'; 
 import styled from 'styled-components'; 
 import server from '../../apis/server'; 
 import BtnWithEvent from '../atoms/BtnWithEvent';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { updateReviews } from '../../actions'; 
 
 interface Props {
@@ -24,8 +23,6 @@ const StyleRatingIcon = styled.div`
 `
 
 const ReviewInput = ({ drinkId }: Props) => {
-  // const state = useSelector((state: RootState) => state.signinReducer); 
-  // const { accessToken } = state; 
   const dispatch = useDispatch();
   const accessToken = localStorage.getItem('accessToken')
 
@@ -41,7 +38,6 @@ const ReviewInput = ({ drinkId }: Props) => {
     const value = e.target.value; 
     setReviewText(value); 
   }
-
 
   const handleSubmit = async (e: any) => {
     const review = await server.post('/reviews/add', {

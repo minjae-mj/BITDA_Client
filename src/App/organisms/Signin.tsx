@@ -2,7 +2,6 @@ import React, { useState,useEffect } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../reducers'; 
-import { signIn } from '../../actions'
 import MainSubmitBtn from '../atoms/MainSubmitBtn'
 import InputsWithBtn from '../molecules/InputsWithBtn'
 import google from '../../images/google_oauth.png'; 
@@ -53,8 +52,8 @@ let Signin = () =>{
       )
       .then((res) => {
         const { data } = res;
-        dispatch(signIn(data.admin, data.accessToken)); 
-        localStorage.setItem('isLogin', 'true');
+        // dispatch(signIn(data.admin, data.accessToken)); 
+        localStorage.setItem('isLogin', JSON.stringify(true));
         localStorage.setItem('accessToken', data.accessToken);
         localStorage.setItem('oauth', 'local');
         history.push('/')
@@ -104,8 +103,8 @@ let Signin = () =>{
         res = await server.post(`/users/google`, {authorizationCode})
       }
       const { data } = res;
-      dispatch(signIn(data.admin, data.accessToken)); 
-      localStorage.setItem('isLogin', 'true');
+      // dispatch(signIn(data.admin, data.accessToken)); 
+      localStorage.setItem('isLogin', JSON.stringify(true));
       localStorage.setItem('accessToken', data.accessToken);
       history.push('/');
       window.location.reload();
