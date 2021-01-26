@@ -21,7 +21,7 @@ function App() {
           <Landing />
         </Route>
         <Route exact path="/users/signin">
-           <Signin /> 
+          <Signin /> 
         </Route>
         <Route exact path="/users/signup">
           <Signup />
