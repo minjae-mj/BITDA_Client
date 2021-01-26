@@ -6,6 +6,7 @@ import styled from 'styled-components';
 const StyleDrinkDetailTemplate = styled.div`
   max-width: 100%;
   margin: 1rem auto; 
+  margin-top: 10.2rem; 
   
   background-color: #fafafa; 
 `
