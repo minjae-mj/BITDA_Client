@@ -8,6 +8,7 @@ import MyPage from './pages/Mypage';
 import DrinkDetail from './pages/DrinkDetail';
 import Signin from './pages/Sign/Signin';
 import Signup from './pages/Sign/Signup';
+import './App.css'; 
 
 function App() {
 
