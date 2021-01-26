@@ -1,4 +1,5 @@
 import React from 'react'; 
+import styled from 'styled-components';
 import Input from '../atoms/Inputs'
 
 type Props = {
@@ -7,12 +8,23 @@ type Props = {
   errMsg? : string
 }
 
+// const RowFlexBoxDiv = styled.div`
+//   display : flex;
+// `;
+const ColumnFlexBoxDiv = styled.div`
+  display : flex;
+  flex-direction: column;
+  align-items : center;
+`;
+
 const InputsWithBtn = ({inputInfo, inputHandler, errMsg }: Props): JSX.Element => {
 
   return (
-    <div>
-      <Input inputInfo={inputInfo} inputHandler={inputHandler} /*errMsg={errMsg}*//>
-    </div>
+    // <RowFlexBoxDiv id='adf'>
+      <ColumnFlexBoxDiv>
+        <Input inputInfo={inputInfo} inputHandler={inputHandler} /*errMsg={errMsg}*//>
+      </ColumnFlexBoxDiv>
+    // </RowFlexBoxDiv>
   )
 }
 

@@ -30,14 +30,14 @@ const Second = styled.div`
   padding : 40px 0px 64px 0px;
 // border: 2px solid lightblue;
 `
-const Container = styled.div`
+const LandingContainer = styled.div`
   padding-top : 7.2rem;
 `;
 
 const LandingTemplate = (): JSX.Element => {
   
   return (
-    <Container>
+    <LandingContainer>
       <First>
         <LandingFirst />
       </First>
@@ -47,7 +47,7 @@ const LandingTemplate = (): JSX.Element => {
       <Third>
         <LandingThird />
       </Third>
-    </Container>
+    </LandingContainer>
   )
 }
 
