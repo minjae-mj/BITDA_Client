@@ -7,6 +7,8 @@ import server from '../../apis/server';
 import { RootState } from '../../reducers';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateReviews } from '../../actions'; 
+import LeftArrow from '../atoms/LeftArrow';
+import RightArrow from '../atoms/RightArrow';
 
 interface Params {
   drinkId: string; 
@@ -63,7 +65,7 @@ const Review = () => {
   return (
     <StyleReview>
       <p>리뷰</p>
-      <button onClick={preReviewsHandler}>이전 리뷰 보기</button>
+      <LeftArrow handleClick={preReviewsHandler} fill="#ED6663" />
       <StyleReviewCard>
         {!state.length ? <div style={{ width: "100%" }}>첫 리뷰를 작성해주세요.</div> : 
           fourReviews.map(review => {
@@ -71,7 +73,7 @@ const Review = () => {
           })
         }
       </StyleReviewCard>
-      <button onClick={nextReviewsHandler}>다음 리뷰 보기</button>
+      <RightArrow handleClick={preReviewsHandler} fill="#ED6663" />
       <ReviewInput drinkId={drinkId} />
     </StyleReview>
   )
