@@ -1,6 +1,4 @@
 import React, { useState } from 'react'; 
-import { useSelector } from 'react-redux';
-import { RootState } from '../../reducers'; 
 import { Link } from 'react-router-dom'; 
 import styled from 'styled-components'; 
 import server from '../../apis/server'; 
@@ -9,9 +7,12 @@ import BtnPlain from '../atoms/BtnPlain';
 
 interface Props {
   bookmark: {
-    id: number; 
-    drinkName: string; 
-    drinkImage: string; 
+    id: number; // 북마크 아이디
+    drink: {
+      id: number; 
+      drinkName: string; 
+      drinkImage: string; 
+    }
   }
 }
 
@@ -39,25 +40,17 @@ const StyleHoverCard = styled.div`
 `
 
 const BookmarkCard = ({ bookmark }: Props): JSX.Element => {
-  const state = useSelector((state: RootState) => state.signinReducer); 
-  const { accessToken } = state; 
-  const { id, drinkName, drinkImage } = bookmark; 
+  const { drink } = bookmark; 
+  const { drinkName, drinkImage } = bookmark.drink; 
+  const accessToken = localStorage.getItem('accessToken');  
   const [hover, setHover] = useState(false); 
 
   const onMouseEnter = () => setHover(true); 
   const onMouseLeave = () => setHover(false); 
 
   const handleRemoveBookmark = () => {
-    server.get('/drinks/unlike', { 
-      headers: {
-        Authorization: `Bearer ${accessToken}`
-      },
-      data: {
-        drinkId: id
-      }
-    });
-
-    console.log('북마크삭제')
+    server.post('/drinks/unlike',{ drinkId: drink.id }, { headers: { Authorization: `Bearer ${accessToken}`}}); 
+    window.location.reload();
   }
 
   return (
@@ -70,7 +63,7 @@ const BookmarkCard = ({ bookmark }: Props): JSX.Element => {
         <StyleHoverCard>     
           <BtnPlain handleClick={handleRemoveBookmark} text="북마크 삭제" />
           <StyleBtnWithEvent> 
-            <Link to={`/drinks/detail/${id}`}>상세보기</Link>
+            <Link to={`/drinks/detail/${drink.id}`}>상세보기</Link>
           </StyleBtnWithEvent>
         </StyleHoverCard>
       }
