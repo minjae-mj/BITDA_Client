@@ -1,20 +1,42 @@
 import React from 'react'; 
+import styled from 'styled-components';
 import FooterStamp from '../atoms/FooterStamp'
+
+const FlexBoxDiv = styled.div`
+  display : flex;
+  justify-content : space-between;
+  height : 20vh;
+  align-items : center;
+
+`;
+const StyledDiv = styled.div`
+  color : var(--color-primary);
+  margin : 16px;
+  text-align : center;
+`;
+
+const InvisibleDiv = styled.div`
+  opacity : 0;
+`;
+
 
 const Footer = (): JSX.Element => {
 
   return (
-    <footer>
+    <FlexBoxDiv>
+      <InvisibleDiv>
+        지우지마세요 ~
+      </InvisibleDiv>
       <div>
-        <div>
+        <StyledDiv>
           Drop the bit. 
-        </div>
-        <div>
+        </StyledDiv>
+        <StyledDiv>
           © All rights reserved 2021
-        </div>
+        </StyledDiv>
       </div>
       <FooterStamp />
-    </footer>
+    </FlexBoxDiv>
   )
 }
 
