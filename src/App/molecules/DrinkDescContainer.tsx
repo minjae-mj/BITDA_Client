@@ -19,17 +19,19 @@ const DrinkDescContainer = ({ drink }: Props) => {
 
   const handleClickTab= (e: any) => {
     const text = e.target.innerText; 
-    setTab(text);
-    console.log(text);  
+    setTab(text); 
   }
   
   return (
     <StyleDrinkDescContainer>
       <StyleTabContainer>
-  
-            <StyleTabActive onClick={handleClickTab}>소개</StyleTabActive>
-            <StyleTab onClick={handleClickTab}>이야기</StyleTab>
-  
+        {["소개", "이야기"].map((text) => {
+          if(tab === text){
+            return <StyleTabActive onClick={handleClickTab}>{text}</StyleTabActive>
+          } else {
+            return <StyleTab onClick={handleClickTab}>{text}</StyleTab>
+          }
+        })}
       </StyleTabContainer>
       <StyleContent>
         {tab === "소개" ?
