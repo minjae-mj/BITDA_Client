@@ -39,12 +39,9 @@ let Signup = () =>{
         { userName,email,password },
         // { headers: { "Content-Type": "application/json" }, withCredentials: true }
         )
-
-        console.log('정상적으로 회원가입 되었습니다.')
-        console.log(sendUserInfo); 
+        alert('정상적으로 회원가입 되었습니다.')
       } catch (err) {
-        console.log('회원가입 에러')
-        console.log(err)
+        alert('이미 존재하는 이메일입니다.')
       }
     }
   }
