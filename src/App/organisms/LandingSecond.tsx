@@ -1,4 +1,5 @@
 import React from 'react'; 
+import styled from 'styled-components';
 import ImageWithText from '../molecules/ImageWithText'; 
 
 interface Info {
@@ -11,6 +12,26 @@ interface Info {
     imgUrl: string; 
   }
 }
+
+const StyledH2 = styled.h2`
+  color : #43658B;
+  text-align : center;
+  margin-bottom : 64px;
+  // &::after {
+  //   width: 100%
+  //   height: 2px
+  //   border-bottom : 1px solid #43658B;
+  // }
+`;
+
+const FlexBoxDiv = styled.div`
+  display : flex;
+
+`;
+const ReversedFlexBoxDiv = styled.div`
+  display : flex;
+  flex-direction: row-reverse;
+`;
 
 const LandingSecond = (): JSX.Element => {
 
@@ -30,13 +51,13 @@ const LandingSecond = (): JSX.Element => {
 
   return (
     <div>
-      <h2>전통주가 도대체 무엇인가요?</h2>
-      <div>
+      <StyledH2>전통주가 도대체 무엇인가요?</StyledH2>
+      <FlexBoxDiv>
         <ImageWithText info={info.first} />
-      </div>
-      <div>
+      </FlexBoxDiv>
+      <ReversedFlexBoxDiv>
         <ImageWithText info={info.second} />
-      </div>
+      </ReversedFlexBoxDiv>
     </div>
   )
 }
