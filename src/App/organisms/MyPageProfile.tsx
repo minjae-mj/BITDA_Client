@@ -36,7 +36,7 @@ const HiddenInput = styled.input`
 // label을 버튼 처럼 꾸미기
 
 interface Users {
-    id : number; 
+    id : number | null; 
     userName : string;
     email : string;
     userImage : string; 
@@ -46,7 +46,7 @@ interface Users {
 }
 
 const MyPageProfile = (): JSX.Element => {
-  // let token = useSelector((state : RootState) => state.signinReducer.accessToken)
+  const state = useSelector((state : RootState) => state.signinReducer)
   const accessToken = localStorage.getItem('accessToken');
   const [userInfo, setUserInfo] = useState<Users>({
     id : 0,
@@ -65,6 +65,25 @@ const MyPageProfile = (): JSX.Element => {
     newPassword : '',
     confirmPassword : ''
   });
+
+  let getUserInfo = async () =>{ 
+    const userInfo = state.user
+    setUserInfo(userInfo); 
+    // try{
+    //   let user = await server.get('/users/mypage',
+    //   {headers : {
+    //     Authorization : `Bearer ${accessToken}`}
+    //   })
+    //   const {data} = user
+    //   setUserInfo({userInfo, ...data})
+    // } catch(err){
+    //   console.log(err)
+    // }
+  }
+
+  useEffect(() => {
+    getUserInfo();
+  },[])
 
   let uploadingImg = async (e : any) =>{
     let imageFile : string | Blob = e.target.files[0]
@@ -143,7 +162,6 @@ const MyPageProfile = (): JSX.Element => {
       {headers : {
         Authorization : `Bearer ${accessToken}`
       }})      
-
       alert('비밀번호가 변경되었습니다.')
     } catch(err){
       console.log(err)
@@ -151,25 +169,7 @@ const MyPageProfile = (): JSX.Element => {
     }
   }
 
-  let getUserInfo = async () =>{ 
-    try{
-      let user = await server.get('/users/mypage',
-      {headers : {
-        Authorization : `Bearer ${accessToken}`}
-      })
-      const {data} = user
-      setUserInfo({userInfo, ...data})
-    } catch(err){
-      console.log(err)
-    }
-  }
-
-  const { id, userName, email, userImage, createdAt, provider, admin } = userInfo;
-
-  useEffect(() => {
-    getUserInfo();
-    console.log(userInfo)
-  },[])
+  const { userName, email, userImage, createdAt } = userInfo; 
 
   return (
     <StyleMyPageProfile>

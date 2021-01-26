@@ -74,15 +74,6 @@ export const signOut = (): Auth => {
   }
 }
 
-// export const updateToken = (accessToken: string): Auth => {
-//   return {
-//     type: UPDATE_TOKEN,
-//     payload: {
-//       accessToken
-//     }
-//   }
-// }
-
 // personal type reducers
 export const updateTypes = (type: string, value: string) => {
   return {
