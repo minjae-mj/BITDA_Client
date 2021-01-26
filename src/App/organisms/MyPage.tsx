@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import MyPageSidebar from '../molecules/MyPageSidebar'; 
 import MyPageBookmark from './MyPageBookmark'; 
 import MyPageProfile from './MyPageProfile'; 
+import MyPageAddDrink from './MyPageAddDrink'; 
 import styled from 'styled-components'; 
 
 const StyleMyPage = styled.div`
@@ -21,7 +22,9 @@ const MyPage = (): JSX.Element => {
   return (
     <StyleMyPage>
       <MyPageSidebar handleClick={handleClick} />
-      {page === 'bookmark' ? <MyPageBookmark /> : <MyPageProfile />}
+      {page === 'bookmark' && <MyPageBookmark /> }
+      {page === 'myProfile' && <MyPageProfile /> }
+      {page === 'addDrink' && <MyPageAddDrink /> }
     </StyleMyPage>
   )
 }
