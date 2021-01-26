@@ -15,25 +15,32 @@ const SignupContainer = styled.div`
 
 const LeftRedDiv = styled.div`
   flex-basis : 40%;
+  display : flex;
+  justify-content : space-evenly;
+  align-items : flex-end;
+
   border : 2px solid var(--color-primary);
   border-radius : 8px 0px 0px 8px;
   background : var(--color-primary);
   height : 70%;
   color : var(--color-white);
   font-size : 3.2rem;
-  display : flex;
-  justify-content : space-evenly;
-  // align-items : flex-end;
-  align-items : center;
+  // align-items : center;
   position: relative;
 `;
 
 const Minjae = styled.img`
   width : 40%;
   height : 90%;
-  position: relative;
-  top : 1.9rem;
+  align-items : flex-end;
+  // position: relative;
+  // top : 1.9rem;
   // margin-top : 3.8rem;
+`;
+
+const WelcomeDiv = styled.div`
+  margin-top : 11rem;
+  margin-bottom : 16rem;
 `;
 
 const SignupTemplate = (): JSX.Element => {
@@ -42,9 +49,9 @@ const SignupTemplate = (): JSX.Element => {
     <SignupContainer>
       <LeftRedDiv>
         <Minjae src={minjae} alt='minjae-mj'></Minjae>
-        <div>
+        <WelcomeDiv>
           WELCOME <br/>to BITDA!
-        </div>
+        </WelcomeDiv>
       </LeftRedDiv>
       <Signup />
     </SignupContainer>
