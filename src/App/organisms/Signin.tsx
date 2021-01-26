@@ -58,9 +58,16 @@ let Signin = () =>{
         localStorage.setItem('accessToken', data.accessToken);
       })
 
+    // let getLoginInfo = await server.post('/users/signin', 
+    //   { ...info },
+    //   { headers: { "Content-Type": "application/json" }, withCredentials: true }
+    // )
+    
+    
     } catch (err) {
       console.log('로그인 에러')
       console.log(err); 
+      alert('비밀번호가 일치 하지않습니다.')
     }
   }
 
