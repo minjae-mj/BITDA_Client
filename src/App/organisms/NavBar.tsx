@@ -9,9 +9,15 @@ import styled from 'styled-components';
 let StyledNav = styled.nav`
   display : flex;
   justify-content: space-between;
-  padding : 1.2rem 2.5rem;
+  padding : 1.2rem 4rem;
   align-items: center;
-  box-shadow: 0 2px 7px #d3d3d3; 
+  box-shadow: 0 2px 7px #d3d3d3;
+  background : var(--color-white);
+  position : fixed;
+  top:0px;
+  left:0px;
+  z-index: 1;
+  width : 100%;
 `;
 
 const NavBar = (): JSX.Element => {

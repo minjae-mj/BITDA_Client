@@ -6,8 +6,9 @@ import LandingThird from '../organisms/LandingThird'
 
 
 const First = styled.div`
-  height: 50vh; 
+  height: 48rem; 
   border: 2px solid palevioletred;
+  background : var(--color-primary);
 `
 const Second = styled.div`
   display: flex; 
@@ -29,11 +30,14 @@ const Second = styled.div`
   padding : 40px 0px 64px 0px;
 // border: 2px solid lightblue;
 `
+const Container = styled.div`
+  padding-top : 7.2rem;
+`;
 
 const LandingTemplate = (): JSX.Element => {
   
   return (
-    <div>
+    <Container>
       <First>
         <LandingFirst />
       </First>
@@ -43,7 +47,7 @@ const LandingTemplate = (): JSX.Element => {
       <Third>
         <LandingThird />
       </Third>
-    </div>
+    </Container>
   )
 }
 

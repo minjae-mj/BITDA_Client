@@ -10,8 +10,8 @@ const StyledH1 = styled.h1`
 `;
 
 const StyledDiv = styled.div`
-  padding-top : 88px;
-  padding-left : 76px;
+  padding-top : 24rem;
+  padding-left : 10rem;
 `;
 
 const LandingFirstInfo = (): JSX.Element => {
