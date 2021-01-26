@@ -22,7 +22,7 @@ const NavBtn = (): JSX.Element => {
       localStorage.clear();
 
       dispatch(signOut());
-      localStorage.setItem('isLogin', 'false');
+      localStorage.setItem('isLogin', JSON.stringify(false));
       history.push('/');
       window.location.reload();
     } catch (err) {

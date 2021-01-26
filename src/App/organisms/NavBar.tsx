@@ -1,32 +1,34 @@
 import React, { useEffect } from 'react';
+import { signIn } from '../../actions'; 
+import { useDispatch } from 'react-redux'; 
 import Logo from '../atoms/Logo';
 import NavBtn from '../molecules/NavBtn';
-import server, { clientURL } from '../../apis/server';
+import server from '../../apis/server';
 
 const NavBar = (): JSX.Element => {
-  // let isLogin = localStorage.getItem('isLogin')
   const accessToken = localStorage.getItem('accessToken');
-  useEffect(() => {
-    if (accessToken) {
-      getUserInfo();
-    }
-  }, []);
+  const dispatch = useDispatch(); 
 
-  let getUserInfo = async () => {
+  const getUserInfo = async () => {
     try {
-      console.log('정보 요청d');
-      let user = await server.get('/users/mypage', {
+      const user = await server.get('/users/mypage', {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
       });
       const { data } = user;
-      console.log(data);
-      //setUserInfo({ userInfo, ...data });
+      dispatch(signIn(data)); 
+      
     } catch (err) {
       console.log(err);
     }
   };
+
+  useEffect(() => {
+    if (accessToken) {
+      getUserInfo();
+    }
+  }, []);
 
   return (
     <nav>

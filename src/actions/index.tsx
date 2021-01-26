@@ -2,12 +2,8 @@
 export const SIGN_IN = "SIGN_IN";
 export const SIGN_OUT = "SIGN_OUT";
 export const UPDATE_TOKEN = "UPDATE_TOKEN"; 
-
 export const UPDATE_TYPES = "UPDATE_TYPES"
-
 export const UPDATE_REVIEW_LIST = "UPDATE_REVIEW_LIST"
-// export const ADD_REVIEW = "ADD_REVIEW"
-// export const DELETE_REVIEW = "DELETE_REVIEW"
 
 enum Admin {
   false = 0,
@@ -17,13 +13,19 @@ enum Admin {
 export interface Auth {
   type: string; 
   payload: {
-    isAdmin?: Admin;  
-    isLogin?: boolean; 
-    accessToken: string; 
+    user: {
+      id: number | null ; 
+      userName: string;
+      email: string;
+      userImage: string;
+      createdAt: string;
+      provider: string;
+      admin: number; 
+    }; 
   }
 }
 
-export interface Reviews {
+interface Reviews {
   id: number;
   text: string;
   rating: number;
@@ -34,15 +36,23 @@ export interface Reviews {
   }
 }
 
+interface User {
+  id: number | null ; 
+  userName: string;
+  email: string;
+  userImage: string;
+  createdAt: string;
+  provider: string;
+  admin: number; 
+}
+
 // ACTION CREATORS
 // signin reducers
-export const signIn = (isAdmin: Admin, accessToken: string): Auth => {
+export const signIn = (user: User): Auth => {
   return {
     type: SIGN_IN,
     payload: {
-      isAdmin,
-      isLogin: true,
-      accessToken
+      user
     }
   }
 }
@@ -51,21 +61,27 @@ export const signOut = (): Auth => {
   return {
     type: SIGN_OUT,
     payload: {
-      isAdmin: 0,
-      isLogin: false,
-      accessToken: ""
+      user: {
+        id: null, 
+        userName: "",
+        email: "",
+        userImage: "",
+        createdAt: "",
+        provider: "",
+        admin: 0
+      },
     }
   }
 }
 
-export const updateToken = (accessToken: string): Auth => {
-  return {
-    type: UPDATE_TOKEN,
-    payload: {
-      accessToken
-    }
-  }
-}
+// export const updateToken = (accessToken: string): Auth => {
+//   return {
+//     type: UPDATE_TOKEN,
+//     payload: {
+//       accessToken
+//     }
+//   }
+// }
 
 // personal type reducers
 export const updateTypes = (type: string, value: string) => {

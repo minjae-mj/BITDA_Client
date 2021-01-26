@@ -42,13 +42,11 @@ const StyleUser = styled.div`
 `
 
 const ReviewCard = ({ drinkId, review }: Props) => {
-  // const state = useSelector((state: RootState) => state.signinReducer); 
-  // const { accessToken } = state; 
-  const dispatch = useDispatch();
-  const accessToken = localStorage.getItem('accessToken');
-
   const { id, text, rating, user } = review; 
   const { userName, userImage } = user; 
+  const state = useSelector((state: RootState) => state.signinReducer); 
+  const dispatch = useDispatch();
+  const accessToken = localStorage.getItem('accessToken');
 
   const handleRemoveReivew = async () => {
     await server({
@@ -59,7 +57,7 @@ const ReviewCard = ({ drinkId, review }: Props) => {
     });
 
     const reviewList = await server.get(`/reviews/list/${drinkId}`); 
-    const { data }: any = reviewList;  
+    const { data } = reviewList;  
     dispatch(updateReviews(data.reviews));
   }
 
@@ -72,7 +70,7 @@ const ReviewCard = ({ drinkId, review }: Props) => {
         <span>{userName}</span>
         <span><StarIcon fill="yellow" /></span>
         <span>{rating}</span>
-        <span onClick={handleRemoveReivew}>X</span>
+        {state.user.id === user.id ? <span onClick={handleRemoveReivew}>X</span> : ""}
       </StyleUser>
       <p>{text}</p>
     </StyleReviewCard>
