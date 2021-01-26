@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import ImgWithInfo from '../molecules/ImgWithInfo'
+import { Link } from 'react-router-dom';
 
 interface Props {
   drinkList: {
@@ -11,20 +12,15 @@ interface Props {
   }[]
 }
 
-const Test = styled.div`
-  height: 2000px;
-`;
-
 let MainDrinkList =({ drinkList }: Props): JSX.Element => {
-
   return (
     <>
-    <Test></Test>
-    <div></div>
     <ul>
       {drinkList.map((drink): JSX.Element => (
         <li key={drink.id} >
-          <ImgWithInfo info={drink}/>
+          <Link to={`/drinks/detail/${drink.id}`}>
+            <ImgWithInfo info={drink} />
+          </Link>
         </li>
       ))}
     </ul>

@@ -4,6 +4,15 @@ import { useDispatch } from 'react-redux';
 import Logo from '../atoms/Logo';
 import NavBtn from '../molecules/NavBtn';
 import server from '../../apis/server';
+import styled from 'styled-components';
+
+let StyledNav = styled.nav`
+  display : flex;
+  justify-content: space-between;
+  padding : 8px 24px;
+  background : #F6F5F5;
+  align-items: center;
+`;
 
 const NavBar = (): JSX.Element => {
   const accessToken = localStorage.getItem('accessToken');
@@ -31,10 +40,10 @@ const NavBar = (): JSX.Element => {
   }, []);
 
   return (
-    <nav>
+    <StyledNav>
       <Logo />
       <NavBtn />
-    </nav>
+    </StyledNav>
   );
 };
 
