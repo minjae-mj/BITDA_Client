@@ -4,11 +4,13 @@ import NavCatetoryBtn from '../atoms/NavCategoryBtn';
 import { useDispatch } from 'react-redux';
 import { signOut } from '../../actions'; 
 import server from '../../apis/server'; 
+import { useHistory } from 'react-router-dom'
 
 const NavBtn = (): JSX.Element => {
   const dispatch = useDispatch(); 
   const accessToken = localStorage.getItem('accessToken'); 
   const isLogin = localStorage.getItem('isLogin'); 
+  let history = useHistory();
 
   const handleClickLogout = async () => {
     try {
@@ -20,6 +22,9 @@ const NavBtn = (): JSX.Element => {
 
       dispatch(signOut());
       localStorage.setItem('isLogin', 'false'); 
+      history.push('/')
+      window.location.reload();
+
     } catch (err) {
       console.log(err);
     }

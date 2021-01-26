@@ -2,8 +2,11 @@ import React, { useState } from 'react'
 import MainSubmitBtn from '../atoms/MainSubmitBtn'
 import InputsWithBtn from '../molecules/InputsWithBtn'
 import server from '../../apis/server'
+import { useHistory } from 'react-router-dom'
 
 let Signup = () =>{
+  let history = useHistory();
+
   const [userInfo, setUserInfo] = useState({
     userName:'',
     email:'',
@@ -39,7 +42,11 @@ let Signup = () =>{
         { userName,email,password },
         // { headers: { "Content-Type": "application/json" }, withCredentials: true }
         )
+        localStorage.setItem('oauth', 'local');
         alert('정상적으로 회원가입 되었습니다.')
+
+        // redirect 하기
+        history.push('/users/signin');
       } catch (err) {
         alert('이미 존재하는 이메일입니다.')
       }
