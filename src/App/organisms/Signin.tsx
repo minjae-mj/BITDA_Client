@@ -1,6 +1,5 @@
 import React, { useState,useEffect } from 'react'
 import { Link, useHistory } from 'react-router-dom'
-// import { useDispatch } from 'react-redux';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../reducers'; 
 import { signIn } from '../../actions'
@@ -24,6 +23,7 @@ interface LoginInfo {
 
 let Signin = () =>{
   let history = useHistory();
+  
   const [info, setInfo] = useState<Info>({
     email: "",
     password: ""
@@ -56,18 +56,14 @@ let Signin = () =>{
         dispatch(signIn(data.admin, data.accessToken)); 
         localStorage.setItem('isLogin', 'true');
         localStorage.setItem('accessToken', data.accessToken);
+        localStorage.setItem('oauth', 'local');
+        history.push('/')
+        window.location.reload();
       })
 
-    // let getLoginInfo = await server.post('/users/signin', 
-    //   { ...info },
-    //   { headers: { "Content-Type": "application/json" }, withCredentials: true }
-    // )
-    
-    
     } catch (err) {
       console.log('로그인 에러')
       console.log(err); 
-      alert('비밀번호가 일치 하지않습니다.')
     }
   }
 
@@ -111,9 +107,8 @@ let Signin = () =>{
       dispatch(signIn(data.admin, data.accessToken)); 
       localStorage.setItem('isLogin', 'true');
       localStorage.setItem('accessToken', data.accessToken);
-
       history.push('/');
-
+      window.location.reload();
       } catch (err) {
         console.log('소셜로그인 에러')
         console.log(err)
