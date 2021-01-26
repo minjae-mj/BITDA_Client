@@ -26,11 +26,6 @@ interface DrinkInfo {
   bookmark: boolean | null;
 }
 
-const StyleDrinkDesc = styled.div`
-  display: flex;
-  justify-content: space-around; 
-`
-
 const DrinkDesc = (): JSX.Element => {
   const isLogin = localStorage.getItem('isLogin') 
   const accessToken = localStorage.getItem('accessToken') 
@@ -76,25 +71,64 @@ const DrinkDesc = (): JSX.Element => {
 
   return (
     <StyleDrinkDesc>
-      <div>
+      <StyleImageBox> 
         <img style={{
             backgroundColor: 'lightblue',
-            width: "35%",
-            height: "30vh",
+            width: "38rem",
+            height: "inherit"
           }} src={drink.drinkImage}/>
-          <LikeIcon />
-      <div>
-      </div>
-        <DrinkDescContainer drink={drink} />
-        <div>
-          <BtnPlain text="구매하러가기" handleClick={handleRedirect} />
           {isLogin && drink.bookmark ? 
-            <BtnWithEvent text="내 취향에서 삭제" handleClick={handleRemoveBookmark} />
-            : <BtnWithEvent text="내 취향으로 등록" handleClick={handleAddBookmark} />}      
-        </div>
-      </div>
+          <StyleLikeIcon>
+            <LikeIcon />
+          </StyleLikeIcon> : ""}
+      </StyleImageBox>
+      <StyleDrinkDescBox>
+          <DrinkDescContainer drink={drink} />
+          <StyleButtonContainer>
+            <BtnPlain text="구매하러가기" handleClick={handleRedirect} />
+            {isLogin && drink.bookmark ? 
+              <BtnWithEvent text="내 취향에서 삭제" handleClick={handleRemoveBookmark} />
+              : <BtnWithEvent text="내 취향으로 등록" handleClick={handleAddBookmark} />}      
+          </StyleButtonContainer>
+      </StyleDrinkDescBox>
     </StyleDrinkDesc>
   ); 
 }
 
 export default DrinkDesc; 
+
+const StyleDrinkDesc = styled.div` 
+  display: flex;
+  width: 80%;
+  margin: 2rem auto; 
+
+  // border: 1px solid black;
+`
+const StyleImageBox = styled.div`
+  position: relative;
+  width: 45%; 
+  height: 50vh; 
+  flex-basis: 40%;
+  text-align: center; 
+
+  // border: 1px solid green;
+`
+const StyleLikeIcon = styled.div`
+  position: absolute; 
+  top: 1.7rem; 
+  left: 5.8rem; 
+`
+const StyleDrinkDescBox = styled.div`
+  flex-basis: 60%;
+  display: flex; 
+  flex-direction: column; 
+
+  // border: 1px solid red;
+`
+const StyleButtonContainer = styled.div`
+  text-align: center;
+  display: flex; 
+  justify-content: space-evenly; 
+
+  // background-color: pink; 
+`
