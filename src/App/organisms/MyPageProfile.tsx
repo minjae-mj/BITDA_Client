@@ -46,7 +46,8 @@ interface Users {
 }
 
 const MyPageProfile = (): JSX.Element => {
-  let token = useSelector((state : RootState) => state.signinReducer.accessToken)
+  // let token = useSelector((state : RootState) => state.signinReducer.accessToken)
+  const accessToken = localStorage.getItem('accessToken');
   const [userInfo, setUserInfo] = useState<Users>({
     id : 0,
     userName : '',
@@ -77,7 +78,7 @@ const MyPageProfile = (): JSX.Element => {
       let uploading = await server.patch('/users/modifyuser',
       img, 
       {headers : {
-        Authorization : `Bearer ${token}`,
+        Authorization : `Bearer ${accessToken}`,
         'content-type': 'multipart/form-data',
       }})
 
@@ -117,7 +118,7 @@ const MyPageProfile = (): JSX.Element => {
     try{
       let changeUsername = await server.patch('/users/modifyuser',{userName : changedUsername.userName}, 
       {headers : {
-        Authorization : `Bearer ${token}`
+        Authorization : `Bearer ${accessToken}`
       }})
 
       alert('닉네임이 변경되었습니다.')
@@ -140,7 +141,7 @@ const MyPageProfile = (): JSX.Element => {
         newPassword : passwords.newPassword
       },
       {headers : {
-        Authorization : `Bearer ${token}`
+        Authorization : `Bearer ${accessToken}`
       }})      
 
       alert('비밀번호가 변경되었습니다.')
@@ -154,7 +155,7 @@ const MyPageProfile = (): JSX.Element => {
     try{
       let user = await server.get('/users/mypage',
       {headers : {
-        Authorization : `Bearer ${token}`}
+        Authorization : `Bearer ${accessToken}`}
       })
       const {data} = user
       setUserInfo({userInfo, ...data})
