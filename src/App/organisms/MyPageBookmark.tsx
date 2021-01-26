@@ -6,10 +6,17 @@ import server from '../../apis/server';
 import BookmarkCard from '../molecules/BookmarkCard'; 
 import dummyBookmarks from './dummyBookmarks'; 
 
-interface BookmarkList {
-  id: number; 
-  drinkName: string; 
-  drinkImage: string; 
+// interface BookmarkList {
+//   drinks: Bookmark[]
+// }
+
+interface Bookmark {
+  id: number; // 북마크 아이디
+  drink: {
+    id: number; 
+    drinkName: string; 
+    drinkImage: string; 
+  }
 }
 
 const StyleMyPageContent = styled.div`
@@ -18,23 +25,20 @@ const StyleMyPageContent = styled.div`
 `
 
 const MyPageContent = (): JSX.Element => {
-  const state = useSelector((state: RootState) => state.signinReducer); 
-  const { accessToken } = state; 
-
-  const [bookmarkList, setBookmarkList] = useState<BookmarkList[]>([]); 
+  const accessToken = localStorage.getItem('accessToken'); 
+  const [bookmarkList, setBookmarkList] = useState<Bookmark[]>([]); 
 
   useEffect(() => {
-    // const getBookmarkList = async () => {
-    //   const bookmarks = await server.get('/users/bookmark', {
-    //     headers: { 'Authorization': `Bearer ${accessToken}` },
-    //   });
+    const getBookmarkList = async () => {
+      const bookmarks = await server.get('/users/bookmark', {
+        headers: { 'Authorization': `Bearer ${accessToken}` },
+      });
 
-    //   const { data } = bookmarks; 
-    //   setBookmarkList(data); 
-    // }
+      const { data } = bookmarks; 
+      setBookmarkList(data.drinks); 
+    }
 
-    // getBookmarkList();  
-    setBookmarkList(dummyBookmarks); 
+    getBookmarkList();  
   }, []); 
   
   return (

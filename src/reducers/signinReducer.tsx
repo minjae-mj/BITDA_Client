@@ -1,4 +1,4 @@
-import { SIGN_IN, SIGN_OUT, UPDATE_TOKEN, Auth } from "../actions";
+import { SIGN_IN, SIGN_OUT, Auth } from "../actions";
 import { initialState } from "./initialState";
 
 const signinReducer = (state = initialState, action: Auth) => {
@@ -8,9 +8,6 @@ const signinReducer = (state = initialState, action: Auth) => {
       return {...state, ...action.payload }
     
     case SIGN_OUT:
-      return {...state, ...action.payload }
-    
-    case UPDATE_TOKEN:
       return {...state, ...action.payload }
 
     default:
