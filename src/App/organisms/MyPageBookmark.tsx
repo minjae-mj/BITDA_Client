@@ -1,14 +1,7 @@
 import React, { useState, useEffect } from 'react'; 
-import { useSelector } from 'react-redux';
-import { RootState } from '../../reducers'; 
 import styled from 'styled-components'; 
 import server from '../../apis/server'; 
 import BookmarkCard from '../molecules/BookmarkCard'; 
-import dummyBookmarks from './dummyBookmarks'; 
-
-// interface BookmarkList {
-//   drinks: Bookmark[]
-// }
 
 interface Bookmark {
   id: number; // 북마크 아이디
@@ -19,12 +12,12 @@ interface Bookmark {
   }
 }
 
-const StyleMyPageContent = styled.div`
+const StyleMyPageBookmark = styled.div`
   display: flex; 
   flex-wrap: wrap;
 `
 
-const MyPageContent = (): JSX.Element => {
+const MyPageBookmark = (): JSX.Element => {
   const accessToken = localStorage.getItem('accessToken'); 
   const [bookmarkList, setBookmarkList] = useState<Bookmark[]>([]); 
 
@@ -42,14 +35,14 @@ const MyPageContent = (): JSX.Element => {
   }, []); 
   
   return (
-    <StyleMyPageContent>
+    <StyleMyPageBookmark>
       {!bookmarkList.length ? "북마크에 내 취향 전통주를 담아보세요." : 
         bookmarkList.map(bookmark => {
           return <BookmarkCard key={bookmark.id} bookmark={bookmark} />
         })
       }
-    </StyleMyPageContent>
+    </StyleMyPageBookmark>
   )
 }
 
-export default MyPageContent; 
+export default MyPageBookmark; 
