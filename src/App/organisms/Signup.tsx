@@ -7,17 +7,24 @@ import styled from 'styled-components'
 
 const StyleDiv = styled.div`
   flex-basis : 40%;
+  display : flex;
+  flex-direction : column;
+  justify-content : center;
+  align-items : center;
   border : 1px solid var(--color-primary);
   border-radius : 0px 8px 8px 0px;
   height : 70%;
-  text-align: center;
   background : var(--color-white);
 `;
 
 const TitleDiv = styled.div`
   font-size : 1.6rem;
   color : var(--color-primary);
-  margin : 3.2rem 0rem 2.4rem 0rem;
+  // margin : 3.2rem 0rem 2.4rem 0rem;
+  positon : relative;
+  top : 3rem;
+  left:0rem;
+
 
 `;
 
