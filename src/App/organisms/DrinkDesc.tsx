@@ -44,12 +44,20 @@ const DrinkDesc = (): JSX.Element => {
     bookmark: null });  
 
   useEffect(() => {
-    server({
-      method: 'get',
-      url: `/drinks/detail/${drinkId}`,
-      headers: { Authorization: `Bearer ${accessToken}` }
-    })
-    .then(res => setDrink(res.data)); 
+    if(accessToken) {
+      server({
+        method: 'get',
+        url: `/drinks/detail/${drinkId}`,
+        headers: { Authorization: `Bearer ${accessToken}` }
+      })
+      .then(res => setDrink(res.data)); 
+    } else {
+      server({
+        method: 'get',
+        url: `/drinks/detail/${drinkId}`
+      })
+      .then(res => setDrink(res.data)); 
+    } 
   }, []); 
 
   const handleRedirect = () => {
