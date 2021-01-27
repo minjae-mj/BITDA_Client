@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import RatingIcon from '../molecules/RatingIcon'; 
 import styled from 'styled-components'; 
 import server from '../../apis/server'; 
-import BtnWithEvent from '../atoms/BtnWithEvent';
 import { useDispatch } from 'react-redux';
 import { updateReviews } from '../../actions'; 
+import BtnWithEvent from '../atoms/BtnWithEvent';
 
 interface Props {
   drinkId: string; 
@@ -66,11 +66,12 @@ const ReviewInput = ({ drinkId }: Props) => {
           }
         </StyleRatingIcon>
      </StyleReviewLabel>
-     <StyleTextarea id='textArea' style={{
-          width: "70%",
-          height: "30vh",
-        }} onChange={handleInput} />
-     <BtnWithEvent text="나의 리뷰 등록" handleSubmit={handleSubmit} />
+     <StyleReviewInput>
+      <StyleTextarea id='textArea' onChange={handleInput} />
+      <StyleReviewRegister>
+        <BtnWithEvent text="나의 리뷰 등록" handleSubmit={handleSubmit} />
+      </StyleReviewRegister>
+     </StyleReviewInput>
    </>
   )
 }
@@ -82,20 +83,33 @@ const StyleReviewLabel = styled.div`
   align-items: center; 
   margin-top: 4rem;  
 `
-
 const StyleRatingIcon = styled.div`
   display: flex; 
   align-items: center; 
   margin-left: 1rem; 
 `
-
 const StyleText = styled.p`
   font-size: 2rem; 
   color: var(--color-primary);
 `
-
+const StyleReviewInput = styled.div`
+  display: flex; 
+  flex-direction: column;  
+`
 const StyleTextarea = styled.textarea`
   border: 1px solid var(--color-primary); 
   border-radius: 5px; 
   margin: 1rem auto; 
+  padding: 2rem 2rem; 
+  background-color: transparent; 
+  width: 100%; 
+  height: 20vh; 
+
+  &:focus{
+    outline :none;
+  }
+`
+const StyleReviewRegister = styled.div`
+  width: 100%; 
+  justify-self: end;
 `

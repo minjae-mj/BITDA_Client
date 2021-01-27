@@ -16,11 +16,11 @@ const RatingIcon = (props: Props) => {
 
   const fill = useMemo(() => {
     if (hoverRating >= index) {
-      return "yellow"; 
+      return "#ffdb58"; 
     } else if (!hoverRating && rating >= index) {
-      return "yellow";
+      return "#ffdb58";
     }
-    return "#C0C0C0";
+    return "#dcdcdc";
   }, [rating, hoverRating, index]); 
 
   return (

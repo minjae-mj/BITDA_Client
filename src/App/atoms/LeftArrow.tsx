@@ -10,7 +10,7 @@ const LeftArrow = ({ fill = "#ED6663", handleClick }: Props) => {
 
   return (
    <>
-     <LeftArrowSvg onClick={handleClick} fill={fill} />
+     <LeftArrowSvg style={{ marginRight: '8px' }} onClick={handleClick} fill={fill} />
    </>
   )
 }
