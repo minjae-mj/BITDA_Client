@@ -12,7 +12,7 @@ const StyleMyPage = styled.div`
 `
 const StyleMyPageContent = styled.div`
   width: 100%; 
-  padding: 8rem 10rem; 
+  padding: 5rem 9rem; 
 
   // background-image: url(${backgroundImg});
   // background-size: cover;
