@@ -66,25 +66,32 @@ const StyleTabContainer = styled.div`
 const StyleTab = styled.span` 
   outline: none;
   padding: 1rem 1.8rem; 
-  border: 1px solid #EE6F57; 
-  // border-top-left-radius: 5px; 
-  // border-top-right-radius: 5px; 
+  color: #808080; 
+  border: 1px solid var(--color-primary); 
+  border-bottom: none; 
+  border-top-left-radius: 5px; 
+  border-top-right-radius: 5px; 
 
   &:hover {
-    background-color: #EE6F57;  
+    background-color: var(--color-primary); 
+    color: var(--color-white);  
   }
 `
 const StyleTabActive = styled(StyleTab)`
-  background-color: #EE6F57;  
+  background-color: var(--color-primary); 
   color: var(--color-white); 
 `
 const StyleContent = styled.div`
   height: 31rem; 
   font-size: 2.2rem; 
+  color: #808080; 
   padding: 1rem 1.8rem; 
-  border: 1px solid #EE6F57; 
-  // border-top-right-radius: 5px; 
-  margin: 1rem 0; 
+  border: 1px solid #EE6F57;  
+  border-top-right-radius: 5px; 
+  border-bottom-right-radius: 5px; 
+  border-bottom-left-radius: 5px; 
+
+  margin-bottom: 5px; 
 
   display: flex; 
   align-items: center; 

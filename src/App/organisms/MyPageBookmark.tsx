@@ -51,9 +51,6 @@ const StyleMyPageBookmark = styled.div`
   
   // border: 1px solid blue; 
 `
-const StyleBackground = styled.div`
-  // 여기만 백그라운드 적용? 
-`
 const StyleText = styled.p`
   font-size: 1.7rem; 
   font-weight: bold; 

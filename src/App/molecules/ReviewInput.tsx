@@ -12,6 +12,7 @@ interface Props {
 }
 
 const ReviewInput = ({ drinkId }: Props) => {
+  const isLogin = localStorage.getItem('isLogin');
   const dispatch = useDispatch();
   const accessToken = localStorage.getItem('accessToken')
 
@@ -29,6 +30,10 @@ const ReviewInput = ({ drinkId }: Props) => {
   }
 
   const handleSubmit = async (e: any) => {
+    if (!isLogin) {
+      return alert('로그인 해 주세요.');
+    }
+
     const review = await server.post('/reviews/add', {
         rating, 
         text: reviewText,
@@ -67,7 +72,7 @@ const ReviewInput = ({ drinkId }: Props) => {
         </StyleRatingIcon>
      </StyleReviewLabel>
      <StyleReviewInput>
-      <StyleTextarea id='textArea' onChange={handleInput} />
+      <StyleTextarea id='textArea' maxLength={100} onChange={handleInput} placeholder="리뷰를 100자 이내로 남겨주세요." />
       <StyleReviewRegister>
         <BtnWithEvent text="나의 리뷰 등록" handleSubmit={handleSubmit} />
       </StyleReviewRegister>
@@ -81,7 +86,7 @@ export default ReviewInput;
 const StyleReviewLabel = styled.div`
   display: flex; 
   align-items: center; 
-  margin-top: 4rem;  
+  margin-top: 6rem;  
 `
 const StyleRatingIcon = styled.div`
   display: flex; 
@@ -100,10 +105,17 @@ const StyleTextarea = styled.textarea`
   border: 1px solid var(--color-primary); 
   border-radius: 5px; 
   margin: 1rem auto; 
-  padding: 2rem 2rem; 
+  padding: 1.8rem 1.8rem; 
   background-color: transparent; 
+  font-size: 1.8rem; 
   width: 100%; 
-  height: 20vh; 
+  height: 16vh; 
+  resize: none; 
+
+  &::placeholder {
+    font-size: 1.8rem; 
+    line-height: 1.6; 
+  }
 
   &:focus{
     outline :none;
@@ -111,5 +123,5 @@ const StyleTextarea = styled.textarea`
 `
 const StyleReviewRegister = styled.div`
   width: 100%; 
-  justify-self: end;
+  align-self: self-end;
 `

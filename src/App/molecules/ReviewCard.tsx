@@ -45,18 +45,17 @@ const ReviewCard = ({ drinkId, review }: Props) => {
       <StyleUser>
         <StyleUserImage>
           <div>
-            <img style={{ borderRadius: '80%', marginRight: '8px' }} src={userImage} width="100px" height="100px" alt='' />
+            <img style={{ borderRadius: '80%', marginRight: '1.2rem' }} src={userImage} width="65px" height="65px" alt="user image" />
           </div>
           <span>{userName}</span>
         </StyleUserImage>
         <StyleRating>
           <span style={{ marginRight: '3px' }}><StarIcon fill="#ffdb58" /></span>
           <span>{rating}</span>
-          
         </StyleRating>
       </StyleUser>
       <StyleText>{text}</StyleText>
-      {state.user.id === user.id ? <StyleRemoveBtn onClick={handleRemoveReivew}>X</StyleRemoveBtn> : ""}
+      {state.user.id === user.id ? <StyleRemoveBtn onClick={handleRemoveReivew}><StyleBin className="fas fa-trash-alt" /></StyleRemoveBtn> : ""}
     </StyleReviewCard>
   ); 
 }
@@ -67,6 +66,7 @@ export default ReviewCard;
 const StyleReviewCard = styled.div`
   position: relative; 
   width: 25%; 
+  height: 30rem; 
   padding: 1.8rem 1.5rem; 
   margin: 1rem .5rem; 
   border-radius: 5px; 
@@ -80,7 +80,8 @@ const StyleUser = styled.div`
   width: 100%;  
   align-items: center; 
   font-size: 1.4rem; 
-  margin-top: .8rem; 
+  margin-top: 2rem; 
+  margin-bottom: 2.5rem; 
 
   // border: 1px solid green; 
 `
@@ -96,7 +97,7 @@ const StyleUserImage = styled.div`
 `
 const StyleRating = styled.div`
   position: absolute; 
-  top: 3px; 
+  top: 1px; 
   right: 7px; 
   display: flex; 
   align-items: center; 
@@ -112,4 +113,9 @@ const StyleRemoveBtn = styled.span`
   color: var(--color-secondary) 
   border-radius: 50%; 
 `
-
+const StyleBin = styled.i`
+  color: #c4c3d0; 
+  font-size: 1.5rem; 
+  margin: 8px 8px; 
+  cursor: pointer; 
+`

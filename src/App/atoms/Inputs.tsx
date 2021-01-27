@@ -23,6 +23,16 @@ const StyledInput = styled.input`
   }
 `;
 
+export const StyledInputProfile = styled(StyledInput)`
+  height: 2rem; 
+  width: 20rem; 
+
+  &::placeholder {
+    font-size: 1.4rem; 
+    line-height: 1.6; 
+  }
+`
+
 const Input = ({inputInfo, inputHandler }: Props): JSX.Element => {
 
   return (

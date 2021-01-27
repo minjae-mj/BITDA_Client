@@ -59,7 +59,7 @@ const Review = () => {
           <LeftArrow handleClick={preReviewsHandler} fill={leftHover? "#ED6663": "#C4C4C4"} />
         </div>
         <StyleReviewCard>
-          {!state.length ? <div style={{ width: "100%" }}>첫 리뷰를 작성해주세요.</div> : 
+          {!state.length ? <StyleNoReivew>첫 리뷰를 작성해주세요.</StyleNoReivew> : 
             fourReviews.map(review => {
               return <ReviewCard key={review.id} review={review} drinkId={drinkId} />
             })
@@ -97,13 +97,19 @@ const StyleReviewList = styled.div`
   justify-content: space-around; 
   align-items: center; 
   height: 28rem; 
-
-  // border: 1px solid red; 
+  margin-top: 2rem; 
 `
 const StyleReviewCard = styled.div`
   display: flex; 
   width: 100%; 
   height: inherit; 
+  align-items: center; 
+`
+const StyleNoReivew = styled.div`
+  width: 100%; 
+  font-size: 1.8rem; 
+  color: var(--color-primary); 
+  text-align: center;
 
-  // background-color: orange;  
+  // border: 1px solid black; 
 `

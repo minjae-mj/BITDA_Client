@@ -9,14 +9,18 @@ type BtnWithEventProps = {
 }
 
 export const StyleBtnWithEvent = styled.button`
-  color: #F6F5F5; 
+  color: #fafafa; 
   background-color: var(--color-primary); 
   border: 1px solid var(--color-primary); 
   border-radius: 5px; 
   font-size: 1.5rem; 
-  width: 45%; 
+  width: 48%; 
   height: 4.8rem;
-  margin: 3px auto; 
+  transition: all 0.1s;
+
+  &:active {
+    transform: translateY(3px);
+  }
 ` 
 
 const BtnWithEvent = ({ text, value = "", handleClick, handleSubmit }: BtnWithEventProps ) => {
