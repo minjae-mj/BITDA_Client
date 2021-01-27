@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom'; 
 import styled from 'styled-components'; 
 import server from '../../apis/server'; 
-import { StyleBtnWithEvent } from '../atoms/BtnWithEvent'; 
-import BtnPlain from '../atoms/BtnPlain'; 
+import BtnBookmark, { StyleBtnBookmarkReverse } from '../atoms/BtnBookmark'; 
 
 interface Props {
   bookmark: {
@@ -32,16 +31,16 @@ const BookmarkCard = ({ bookmark }: Props): JSX.Element => {
 
   return (
     <StyleBookmarkCard onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
-      <div>
-        <img src={drinkImage} alt="Drink Image" width="100%" />
-        <div>{drinkName}</div>
-      </div>
+      <StyleContent>
+        <StyleImage src={drinkImage} alt="Drink Image" />
+        <StyleText>{drinkName}</StyleText>
+      </StyleContent>
       {!hover ? <></> : 
         <StyleHoverCard>     
-          <BtnPlain handleClick={handleRemoveBookmark} text="북마크 삭제" />
-          <StyleBtnWithEvent> 
-            <Link to={`/drinks/detail/${drink.id}`}>상세보기</Link>
-          </StyleBtnWithEvent>
+          <BtnBookmark handleClick={handleRemoveBookmark} text="북마크 삭제" />
+          <StyleBtnBookmarkReverse> 상세보기
+            <Link to={`/drinks/detail/${drink.id}`} />
+          </StyleBtnBookmarkReverse>
         </StyleHoverCard>
       }
     </StyleBookmarkCard>
@@ -50,14 +49,19 @@ const BookmarkCard = ({ bookmark }: Props): JSX.Element => {
 
 export default BookmarkCard; 
 
-const StyleBookmarkCard = styled.div`
+const StyleBookmarkCard = styled.div` // flex-item;
   position: relative; 
-  flex-basis: 20%; 
-  padding: 2rem; 
+  flex-basis: 22%; 
+  padding: 1rem; 
   margin: 1rem;
   height: 25rem; 
 
-  background-color: gold;  
+  box-shadow: 3px 2px 7px #d3d3d3;
+`
+const StyleContent = styled.div`
+  display: flex; 
+  flex-direction: column;   
+  align-items: center;  
 `
 const StyleHoverCard = styled.div`
   position: absolute; 
@@ -67,9 +71,19 @@ const StyleHoverCard = styled.div`
   height: 100%; 
   color: white;
   font-weight: bold; 
-  background-color:rgba(0, 0, 0, 0.6);
+  background-color:rgba(244, 244, 244, 0.6);
 
   display: flex; 
   justify-content: center;
   align-items: center; 
+`
+const StyleImage = styled.img`
+  width: 20rem; 
+  height: 20rem; 
+  margin-bottom: 8px; 
+  border: 1px solid gold; 
+`
+const StyleText = styled.p`
+  font-size: 1.4rem; 
+  text-align: center; 
 `
