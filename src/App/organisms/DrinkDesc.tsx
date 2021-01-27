@@ -17,7 +17,7 @@ interface DrinkInfo {
   type: string;
   price: string;
   taste: string;
-  ingredients: string; 
+  ingredient: string; 
   alcohol: string;
   origin: string;
   url: string;
@@ -35,7 +35,7 @@ const DrinkDesc = (): JSX.Element => {
     type: "",
     price: "",
     taste: "",
-    ingredients: "", 
+    ingredient: "", 
     alcohol: "",
     origin: "",
     url: "",
