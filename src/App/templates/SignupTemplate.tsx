@@ -36,23 +36,36 @@ const Minjae = styled.img`
   // position: relative;
   // top : 1.9rem;
   // margin-top : 3.8rem;
+  @media screen and (max-width: 700px){
+    width : 30%;
+    height : 80%;
+    transition : all 500ms ease-in-out;
+  }
 `;
 
 const WelcomeDiv = styled.div`
   margin-top : 11rem;
   margin-bottom : 16rem;
+  @media screen and (max-width: 700px){
+    margin-top : 18rem;
+    margin-bottom : 12rem;
+    font-size : 2.4rem;
+    transition : all 500ms ease-in-out;
+  }
 `;
 
 const SignupTemplate = (): JSX.Element => {
 
   return (
     <SignupContainer>
+      
       <LeftRedDiv>
         <Minjae src={minjae} alt='minjae-mj'></Minjae>
         <WelcomeDiv>
           WELCOME <br/>to BITDA!
         </WelcomeDiv>
       </LeftRedDiv>
+
       <Signup />
     </SignupContainer>
   )

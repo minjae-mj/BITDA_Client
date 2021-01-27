@@ -14,6 +14,9 @@ const StyledBtn = styled.button`
   width : 80%;
   height : 3.2rem;
   margin-top : 1.6rem;
+  &:hover {
+    background : #4E89AE;
+  }
 `;
 
 const MainSubmitBtn = ({ text, submitHandler }: Props ): JSX.Element => {
