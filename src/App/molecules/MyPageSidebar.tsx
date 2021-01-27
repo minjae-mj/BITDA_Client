@@ -10,6 +10,7 @@ const StyleMyPageSidebar = styled.div`
   display: flex; 
   flex-direction: column; 
   width: 18rem; 
+  padding-top: 3rem; 
 
   background-color: var(--color-secondary);  
 `

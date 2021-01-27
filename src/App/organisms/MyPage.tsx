@@ -4,10 +4,18 @@ import MyPageBookmark from './MyPageBookmark';
 import MyPageProfile from './MyPageProfile'; 
 import MyPageAddDrink from './MyPageAddDrink'; 
 import styled from 'styled-components'; 
+import backgroundImg from '../../images/background.png'
 
 const StyleMyPage = styled.div`
   height: 100vh; 
   display: flex; 
+`
+const StyleMyPageContent = styled.div`
+  width: 100%; 
+  padding: 8rem 10rem; 
+
+  // background-image: url(${backgroundImg});
+  // background-size: cover;
 `
 
 const MyPage = (): JSX.Element => {
@@ -21,9 +29,11 @@ const MyPage = (): JSX.Element => {
   return (
     <StyleMyPage>
       <MyPageSidebar handleClick={handleClick} />
-      {page === 'bookmark' && <MyPageBookmark /> }
-      {page === 'myProfile' && <MyPageProfile /> }
-      {page === 'addDrink' && <MyPageAddDrink /> }
+      <StyleMyPageContent>
+        {page === 'bookmark' && <MyPageBookmark /> }
+        {page === 'myProfile' && <MyPageProfile /> }
+        {page === 'addDrink' && <MyPageAddDrink /> }
+      </StyleMyPageContent>
     </StyleMyPage>
   )
 }
