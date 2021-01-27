@@ -6,35 +6,6 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../reducers'; 
 import server from '../../apis/server'; 
 
-const StyleMyPageProfile = styled.div`
-  width: 100%; 
-
-  background-color: gold; 
-`
-
-const StyleProfileBox = styled.div`
-  height: 20vh;   
-  display: flex; 
-  padding: 1rem 1.5rem; 
-
-  border: 1px solid green; 
-`
-
-const StyleProfileForm = styled.div`
-  height: 50vh; 
-  display: flex; 
-  flex-direction: column; 
-  justify-content: space-around; 
-  padding: 1rem 1.5rem; 
-
-  border: 1px solid red; 
-`
-
-const HiddenInput = styled.input`
-  display: none;
-`
-// label을 버튼 처럼 꾸미기
-
 interface Users {
     id : number | null; 
     userName : string;
@@ -172,13 +143,11 @@ const MyPageProfile = (): JSX.Element => {
   const { userName, email, userImage, createdAt } = userInfo; 
 
   return (
-    <StyleMyPageProfile>
+    <div>
       <StyleProfileBox>
-        <div>
-          <img src={userImage} alt='userImage'/>
-          <label htmlFor="image_uploads">이미지 변경</label>
-          <HiddenInput type='file' accept="image/*,.pdf" id="image_uploads" name="image_uploads" onChange={uploadingImg}></HiddenInput>
-        </div>
+        <StyleImage src={userImage} alt='userImage'/>
+        <StyleLabelClick htmlFor="image_uploads">이미지 변경</StyleLabelClick>
+        <HiddenInput type='file' accept="image/*,.pdf" id="image_uploads" name="image_uploads" onChange={uploadingImg} />
       </StyleProfileBox>  
       <StyleProfileForm>
         <div>
@@ -214,8 +183,51 @@ const MyPageProfile = (): JSX.Element => {
         </div>
         
       </StyleProfileForm>
-    </StyleMyPageProfile>
+    </div>
   )
 }
 
 export default MyPageProfile; 
+
+const StyleMyPageProfile = styled.div`
+ 
+`
+const StyleProfileBox = styled.div`
+  height: 20vh;   
+  display: flex; 
+  flex-direction: column; 
+  justify-content: center; 
+  padding: 2.3rem 5rem; 
+  font-size: 1.2rem; 
+
+  // border: 1px solid green; 
+`
+const StyleImage = styled.img`
+  width: 10rem; 
+  height: 10rem;
+  border-radius: 50%; 
+
+  background-color: var(--color-primary); 
+`
+const StyleLabelClick = styled.label`
+  cursor: pointer;
+  color: #4E89AE; 
+  margin-top: 3px; 
+  margin-left: 2.2rem;  
+`
+
+const StyleProfileForm = styled.div`
+  height: 50vh; 
+  display: flex; 
+  flex-direction: column; 
+  justify-content: space-around; 
+  font-size: 1.6rem; 
+  padding: 2.3rem 5rem; 
+
+  // border: 1px solid red; 
+`
+
+const HiddenInput = styled.input`
+  display: none;
+`
+// label을 버튼 처럼 꾸미기

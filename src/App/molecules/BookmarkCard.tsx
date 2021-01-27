@@ -56,7 +56,7 @@ const StyleBookmarkCard = styled.div` // flex-item;
   margin: 1rem;
   height: 25rem; 
 
-  border: 1px solid pink;
+  box-shadow: 3px 2px 7px #d3d3d3;
 `
 const StyleContent = styled.div`
   display: flex; 
