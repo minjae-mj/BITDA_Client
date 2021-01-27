@@ -16,29 +16,6 @@ interface Props {
   }
 }
 
-const StyleBookmarkCard = styled.div`
-  position: relative; 
-  flex-basis: 20%; 
-  padding: 2rem; 
-  margin: 1rem;
-
-  background-color: gold;  
-`
-const StyleHoverCard = styled.div`
-  position: absolute; 
-  top: 0; 
-  left: 0; 
-  width: 100%; 
-  height: 100%; 
-  color: white;
-  font-weight: bold; 
-  background-color:rgba(0, 0, 0, 0.6);
-
-  display: flex; 
-  justify-content: center;
-  align-items: center; 
-`
-
 const BookmarkCard = ({ bookmark }: Props): JSX.Element => {
   const { drink } = bookmark; 
   const { drinkName, drinkImage } = bookmark.drink; 
@@ -72,3 +49,27 @@ const BookmarkCard = ({ bookmark }: Props): JSX.Element => {
 }
 
 export default BookmarkCard; 
+
+const StyleBookmarkCard = styled.div`
+  position: relative; 
+  flex-basis: 20%; 
+  padding: 2rem; 
+  margin: 1rem;
+  height: 25rem; 
+
+  background-color: gold;  
+`
+const StyleHoverCard = styled.div`
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  height: 100%; 
+  color: white;
+  font-weight: bold; 
+  background-color:rgba(0, 0, 0, 0.6);
+
+  display: flex; 
+  justify-content: center;
+  align-items: center; 
+`

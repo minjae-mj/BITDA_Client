@@ -42,7 +42,8 @@ const ReviewInput = ({ drinkId }: Props) => {
     dispatch(updateReviews(data.reviews));
 
     setRating(0);
-    document.querySelector('#textArea')!.innerHTML = ""! 
+    const textArea: any = document.querySelector('#textArea')
+    textArea.value = ""; 
   }
 
   return (
