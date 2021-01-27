@@ -56,7 +56,7 @@ const Review = () => {
       <StyleText>리뷰</StyleText>
       <StyleReviewList>
         <div onMouseEnter={() => setLeftHover(true)} onMouseLeave={() => setLeftHover(false)}>
-          <LeftArrow handleClick={preReviewsHandler} fill={leftHover? "#ED6663": "#FFA372"} />
+          <LeftArrow handleClick={preReviewsHandler} fill={leftHover? "#ED6663": "#C4C4C4"} />
         </div>
         <StyleReviewCard>
           {!state.length ? <div style={{ width: "100%" }}>첫 리뷰를 작성해주세요.</div> : 
@@ -66,7 +66,7 @@ const Review = () => {
           }
         </StyleReviewCard>
         <div onMouseEnter={() => setRightHover(true)} onMouseLeave={() => setRightHover(false)}>
-          <RightArrow handleClick={preReviewsHandler} fill={rightHover? "#ED6663": "#FFA372"} />
+          <RightArrow handleClick={nextReviewsHandler} fill={rightHover? "#ED6663": "#C4C4C4"} />
         </div>
       </StyleReviewList> 
       <div>

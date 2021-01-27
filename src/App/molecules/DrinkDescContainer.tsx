@@ -7,7 +7,7 @@ interface Props {
     type: string;
     price: string;
     taste: string;
-    ingredients: string; 
+    ingredient: string; 
     alcohol: string;
     origin: string; 
     desc: string;
@@ -39,7 +39,7 @@ const DrinkDescContainer = ({ drink }: Props) => {
           <div>{drink.drinkName}</div>
           <p>‘{drink.origin}’에서 온 ‘{drink.type}’입니다.‘{drink.price}’의 '{drink.taste}’을 찾으시는 분께 추천합니다!</p>
           <div>도수: {drink.alcohol}%</div>
-          <div>원재료: {drink.ingredients}</div>
+          <div>원재료: {drink.ingredient}</div>
          </StyleIntro> :
          <div>{drink.desc}</div> }
       </StyleContent>  
@@ -52,14 +52,13 @@ export default DrinkDescContainer;
 const StyleDrinkDescContainer = styled.div`
   flex-basis: 88%; 
   padding: 0 1.5rem; 
-  
 
   // background-color: yellow; 
 `
 const StyleTabContainer = styled.div`
   display: flex;
   height: 4rem; 
-  font-size: 1.8rem; 
+  font-size: 1.6rem; 
   cursor: pointer; 
 
   // background-color: lightblue; 
@@ -67,23 +66,25 @@ const StyleTabContainer = styled.div`
 const StyleTab = styled.span` 
   outline: none;
   padding: 1rem 1.8rem; 
-  background-color: #BADCF6;  
-  border-top-left-radius: 5px; 
-  border-top-right-radius: 5px; 
+  border: 1px solid #EE6F57; 
+  // border-top-left-radius: 5px; 
+  // border-top-right-radius: 5px; 
 
   &:hover {
-    background-color: #A4CAED;  
+    background-color: #EE6F57;  
   }
 `
 const StyleTabActive = styled(StyleTab)`
-  background-color: #A4CAED;  
+  background-color: #EE6F57;  
+  color: var(--color-white); 
 `
 const StyleContent = styled.div`
   height: 31rem; 
   font-size: 2.2rem; 
   padding: 1rem 1.8rem; 
-  background-color: #A4CAED; 
-  border-top-right-radius: 5px; 
+  border: 1px solid #EE6F57; 
+  // border-top-right-radius: 5px; 
+  margin: 1rem 0; 
 
   display: flex; 
   align-items: center; 

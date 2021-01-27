@@ -50,12 +50,13 @@ const ReviewCard = ({ drinkId, review }: Props) => {
           <span>{userName}</span>
         </StyleUserImage>
         <StyleRating>
-          <span style={{ marginRight: '8px' }}><StarIcon fill="yellow" /></span>
+          <span style={{ marginRight: '3px' }}><StarIcon fill="#ffdb58" /></span>
           <span>{rating}</span>
-          {state.user.id === user.id ? <span onClick={handleRemoveReivew}>X</span> : ""}
+          
         </StyleRating>
       </StyleUser>
       <StyleText>{text}</StyleText>
+      {state.user.id === user.id ? <StyleRemoveBtn onClick={handleRemoveReivew}>X</StyleRemoveBtn> : ""}
     </StyleReviewCard>
   ); 
 }
@@ -64,40 +65,51 @@ export default ReviewCard;
 
 
 const StyleReviewCard = styled.div`
+  position: relative; 
   width: 25%; 
   padding: 1.8rem 1.5rem; 
   margin: 1rem .5rem; 
   border-radius: 5px; 
 
-  box-shadow: 1px 3px 5px #ddadaf;
-  //border: 1px solid var(--color-primary); 
+  box-shadow: var(--box-shadow); 
 `
 
 const StyleUser = styled.div`
+  position: relative; 
   display: flex; 
   width: 100%;  
-  justify-content: space-around; 
   align-items: center; 
   font-size: 1.4rem; 
+  margin-top: .8rem; 
+
+  // border: 1px solid green; 
 `
 const StyleText = styled.p`
   margin-top: 2rem; 
   font-size: 1.8rem; 
 `
-
 const StyleUserImage = styled.div`
   display: flex; 
   align-items: center; 
 
   // border: 1px solid green; 
 `
-
 const StyleRating = styled.div`
+  position: absolute; 
+  top: 3px; 
+  right: 7px; 
   display: flex; 
   align-items: center; 
   justify-content: space-between; 
 
   // border: 1px solid blue; 
 `
-
+const StyleRemoveBtn = styled.span`
+  position: absolute; 
+  top: 3px; 
+  right: 3px; 
+  font-size: 1.2rem; 
+  color: var(--color-secondary) 
+  border-radius: 50%; 
+`
 

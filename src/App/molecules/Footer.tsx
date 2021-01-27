@@ -5,7 +5,7 @@ import FooterStamp from '../atoms/FooterStamp'
 const FlexBoxDiv = styled.div`
   display : flex;
   justify-content : space-between;
-  height : 20vh;
+  height : 10rem;
   align-items : center;
 
 `;

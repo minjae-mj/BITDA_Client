@@ -5,7 +5,7 @@ import backgroundPic from '../../images/background.png'
 import minjae from '../../images/minjae.png'
 
 const SignupContainer = styled.div`
-  height : 80vh;
+  height : 86vh;
   padding-top : 7.2rem;
   display: flex;
   justify-content : center;

@@ -12,11 +12,6 @@ interface Bookmark {
   }
 }
 
-const StyleMyPageBookmark = styled.div`
-  display: flex; 
-  flex-wrap: wrap;
-`
-
 const MyPageBookmark = (): JSX.Element => {
   const accessToken = localStorage.getItem('accessToken'); 
   const [bookmarkList, setBookmarkList] = useState<Bookmark[]>([]); 
@@ -29,20 +24,40 @@ const MyPageBookmark = (): JSX.Element => {
 
       const { data } = bookmarks; 
       setBookmarkList(data.drinks); 
+      console.log(bookmarkList); 
     }
 
     getBookmarkList();  
+    console.log(bookmarkList); 
   }, []); 
   
   return (
     <StyleMyPageBookmark>
-      {!bookmarkList.length ? "북마크에 내 취향 전통주를 담아보세요." : 
-        bookmarkList.map(bookmark => {
-          return <BookmarkCard key={bookmark.id} bookmark={bookmark} />
-        })
-      }
+      {!bookmarkList.length ? 
+        <StyleText>북마크에 내 취향 전통주를 담아보세요.</StyleText>
+        :bookmarkList.map(bookmark => {
+          return <BookmarkCard key={bookmark.id} bookmark={bookmark} /> })}
     </StyleMyPageBookmark>
   )
 }
 
-export default MyPageBookmark; 
+export default MyPageBookmark;
+
+const StyleMyPageBookmark = styled.div`
+  display: flex; 
+  flex-wrap: wrap; 
+  justify-content: flex-start; 
+  align-items: center;
+  
+  // border: 1px solid blue; 
+`
+const StyleBackground = styled.div`
+  // 여기만 백그라운드 적용? 
+`
+const StyleText = styled.p`
+  font-size: 1.7rem; 
+  font-weight: bold; 
+  margin-top: 25%; 
+  
+  color: var(--color-primary); 
+`

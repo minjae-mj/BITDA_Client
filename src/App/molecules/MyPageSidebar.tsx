@@ -1,6 +1,6 @@
 import React from 'react'; 
 import styled from 'styled-components'; 
-import BtnWithEvent from '../atoms/BtnWithEvent';
+import BtnWithEventBlue from '../atoms/BtnWithEventBlue';
 
 interface Props {
   handleClick: (e: any) => void; 
@@ -9,18 +9,19 @@ interface Props {
 const StyleMyPageSidebar = styled.div`
   display: flex; 
   flex-direction: column; 
-  width: 25%;
+  width: 18rem; 
+  padding-top: 3rem; 
 
-  background-color: lightyellow; 
+  background-color: var(--color-secondary);  
 `
 
 const MyPageSidebar = ({ handleClick }: Props): JSX.Element => {
 
   return (
     <StyleMyPageSidebar>
-      <BtnWithEvent value="bookmark" handleClick={handleClick} text="내 취향 전통주" />
-      <BtnWithEvent value="myProfile" handleClick={handleClick} text="프로필 수정" />
-      <BtnWithEvent value="addDrink" handleClick={handleClick} text="전통주 등록" />
+      <BtnWithEventBlue value="bookmark" handleClick={handleClick} text="내 취향 전통주" />
+      <BtnWithEventBlue value="myProfile" handleClick={handleClick} text="프로필 수정" />
+      <BtnWithEventBlue value="addDrink" handleClick={handleClick} text="전통주 등록" />
     </StyleMyPageSidebar>
   )
 }

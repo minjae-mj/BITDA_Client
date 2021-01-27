@@ -17,7 +17,7 @@ interface DrinkInfo {
   type: string;
   price: string;
   taste: string;
-  ingredients: string;
+  ingredient: string; 
   alcohol: string;
   origin: string;
   url: string;
@@ -27,38 +27,38 @@ interface DrinkInfo {
 }
 
 const DrinkDesc = (): JSX.Element => {
-  const isLogin = localStorage.getItem('isLogin');
-  const accessToken = localStorage.getItem('accessToken');
-  const { drinkId }: Params = useParams();
-  const [drink, setDrink] = useState<DrinkInfo>({
-    id: '',
-    drinkName: '',
-    type: '',
-    price: '',
-    taste: '',
-    ingredients: '',
-    alcohol: '',
-    origin: '',
-    url: '',
-    desc: '',
-    drinkImage: '',
-    bookmark: null,
-  });
+  const isLogin = localStorage.getItem('isLogin') 
+  const accessToken = localStorage.getItem('accessToken') 
+  const { drinkId }: Params = useParams(); 
+  const [drink, setDrink] = useState<DrinkInfo>({ id: "", 
+    drinkName: "", 
+    type: "",
+    price: "",
+    taste: "",
+    ingredient: "", 
+    alcohol: "",
+    origin: "",
+    url: "",
+    desc: "",
+    drinkImage: "",
+    bookmark: null });  
 
   useEffect(() => {
-    if (accessToken) {
+    if(accessToken) {
       server({
         method: 'get',
         url: `/drinks/detail/${drinkId}`,
-        headers: { Authorization: `Bearer ${accessToken}` },
-      }).then((res) => setDrink(res.data));
+        headers: { Authorization: `Bearer ${accessToken}` }
+      })
+      .then(res => setDrink(res.data)); 
     } else {
       server({
         method: 'get',
-        url: `/drinks/detail/${drinkId}`,
-      }).then((res) => setDrink(res.data));
-    }
-  }, []);
+        url: `/drinks/detail/${drinkId}`
+      })
+      .then(res => setDrink(res.data)); 
+    } 
+  }, []); 
 
   const handleRedirect = () => {
     window.open(drink.url, '_blank');
@@ -87,16 +87,11 @@ const DrinkDesc = (): JSX.Element => {
 
   return (
     <StyleDrinkDesc>
-      <StyleImageBox>
-        <img
-          style={{
-            backgroundColor: 'lightblue',
-            width: '38rem',
-            height: 'inherit',
-          }}
-          src={drink.drinkImage}
-        />
-        {isLogin && drink.bookmark ? (
+
+
+      <StyleImageBox> 
+        <StyleImage src={drink.drinkImage}/>
+          {isLogin && drink.bookmark ? 
           <StyleLikeIcon>
             <LikeIcon />
           </StyleLikeIcon>
@@ -141,8 +136,14 @@ const StyleImageBox = styled.div`
   flex-basis: 40%;
   text-align: center;
 
-  // border: 1px solid green;
-`;
+
+  border: 1px solid var(--color-secondary)
+`
+const StyleImage = styled.img`
+  box-shadow: var(--box-shadow),
+  width: 38rem,
+  height: inherit
+`
 const StyleLikeIcon = styled.div`
   position: absolute;
   top: 1.7rem;
