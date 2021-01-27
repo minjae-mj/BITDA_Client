@@ -44,12 +44,20 @@ const DrinkDesc = (): JSX.Element => {
     bookmark: null });  
 
   useEffect(() => {
-    server({
-      method: 'get',
-      url: `/drinks/detail/${drinkId}`,
-      headers: { Authorization: `Bearer ${accessToken}` }
-    })
-    .then(res => setDrink(res.data)); 
+    if(accessToken) {
+      server({
+        method: 'get',
+        url: `/drinks/detail/${drinkId}`,
+        headers: { Authorization: `Bearer ${accessToken}` }
+      })
+      .then(res => setDrink(res.data)); 
+    } else {
+      server({
+        method: 'get',
+        url: `/drinks/detail/${drinkId}`
+      })
+      .then(res => setDrink(res.data)); 
+    } 
   }, []); 
 
   const handleRedirect = () => {
@@ -72,11 +80,7 @@ const DrinkDesc = (): JSX.Element => {
   return (
     <StyleDrinkDesc>
       <StyleImageBox> 
-        <img style={{
-            backgroundColor: 'lightblue',
-            width: "38rem",
-            height: "inherit"
-          }} src={drink.drinkImage}/>
+        <StyleImage src={drink.drinkImage}/>
           {isLogin && drink.bookmark ? 
           <StyleLikeIcon>
             <LikeIcon />
@@ -111,7 +115,12 @@ const StyleImageBox = styled.div`
   flex-basis: 40%;
   text-align: center; 
 
-  // border: 1px solid green;
+  border: 1px solid var(--color-secondary)
+`
+const StyleImage = styled.img`
+  box-shadow: var(--box-shadow),
+  width: 38rem,
+  height: inherit
 `
 const StyleLikeIcon = styled.div`
   position: absolute; 

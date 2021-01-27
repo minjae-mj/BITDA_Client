@@ -5,11 +5,11 @@ interface Props {
   fill: string
 }
 
-const StarIcon = ({ fill = "#C0C0C0" }: Props) => {
+const StarIcon = ({ fill = "#dcdcdc" }: Props) => {
 
   return (
    <div>
-     <StarSvg fill={fill} />
+     <StarSvg style={{ marginRight: '3px' }}fill={fill} />
    </div>
   )
 }
