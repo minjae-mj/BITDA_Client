@@ -27,9 +27,18 @@ export const StyleBtnBookmark = styled.button`
     color: #43658B
   }
 ` 
+export const StyleBtnBookmarkSml = styled(StyleBtnBookmark)`
+  width: 10rem; 
+  height: 2.8rem; 
+  margin: 1rem; 
+  font-size: 1.4rem; 
+  transition: all 0.1s;
 
+  &:active {
+    transform: translateY(3px);
+  }
+`
 export const StyleBtnBookmarkReverse = styled(StyleBtnBookmark)`
-  color: var(--color-white); 
   background-color: var(--color-secondary);
   border: 1px solid var(--color-secondary); 
 ` 

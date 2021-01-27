@@ -38,8 +38,8 @@ const BookmarkCard = ({ bookmark }: Props): JSX.Element => {
       {!hover ? <></> : 
         <StyleHoverCard>     
           <BtnBookmark handleClick={handleRemoveBookmark} text="북마크 삭제" />
-          <StyleBtnBookmarkReverse> 상세보기
-            <Link to={`/drinks/detail/${drink.id}`} />
+          <StyleBtnBookmarkReverse> 
+            <Link to={`/drinks/detail/${drink.id}`}><p style={{color: "white"}}>상세보기</p></Link>
           </StyleBtnBookmarkReverse>
         </StyleHoverCard>
       }
@@ -54,7 +54,8 @@ const StyleBookmarkCard = styled.div` // flex-item;
   flex-basis: 22%; 
   padding: 1rem; 
   margin: 1rem;
-  height: 25rem; 
+  height: 29rem; 
+  border-radius: 5px; 
 
   box-shadow: 3px 2px 7px #d3d3d3;
 `
@@ -81,9 +82,10 @@ const StyleImage = styled.img`
   width: 20rem; 
   height: 20rem; 
   margin-bottom: 8px; 
-  border: 1px solid gold; 
 `
 const StyleText = styled.p`
   font-size: 1.4rem; 
   text-align: center; 
 `
+
+

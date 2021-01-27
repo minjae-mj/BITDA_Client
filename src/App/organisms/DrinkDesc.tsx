@@ -134,9 +134,10 @@ const StyleImageBox = styled.div`
   flex-basis: 40%;
   text-align: center;
 
-  border: 1px solid var(--color-secondary);
+  // border: 1px solid var(--color-secondary);
 `;
 const StyleImage = styled.img`
+  border: none; 
   box-shadow: var(--box-shadow);
   width: 38rem;
   height: inherit;
@@ -154,9 +155,10 @@ const StyleDrinkDescBox = styled.div`
   // border: 1px solid red;
 `;
 const StyleButtonContainer = styled.div`
-  text-align: center;
   display: flex;
-  justify-content: space-evenly;
+  align-items: center; 
+  justify-content: space-between;
+  padding: 0 1.5rem; 
 
-  // background-color: pink;
+  // border: 1px solid green;
 `;

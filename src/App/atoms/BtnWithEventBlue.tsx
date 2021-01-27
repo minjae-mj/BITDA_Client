@@ -25,6 +25,20 @@ export const StyleBtnWithEventBlue = styled.button`
     color: #4E89AE
   }
 ` 
+export const StyleBtnWithEventBlueSml = styled(StyleBtnWithEventBlue)`
+  height: 3rem; 
+  padding: 5px 1rem; 
+  margin: 1rem; 
+  transition: all 0.1s;
+
+  &:active {
+    transform: translateY(3px);
+  }
+
+  &:focus {
+    color: #F6F5F5;
+  }
+`
 
 const BtnWithEventBlue = ({ text, value = "", handleClick, handleSubmit }: BtnWithEventBlueProps ) => {
 
