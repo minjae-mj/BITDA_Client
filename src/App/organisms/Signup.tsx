@@ -52,12 +52,21 @@ let Signup = () =>{
 
   let submitHandler = async () => {
     const { userName, email, password,confirmPassword} = userInfo;
-    if( confirmPassword !== password){
+    if( userName.length === 0 || 
+        email.length === 0 ||  
+        password.length === 0 || 
+        confirmPassword.length === 0 ){
+      alert('빈칸을 다 채워 주세요!')
+    }else if( confirmPassword !== password){
       alert('비밀번호가 일치하지 않습니다.')
     }else if(password.length < 8 ){
       alert('비밀번호는 8자리 이상으로 적어주세요.')
-    }else if( !email.includes('@') || !email.includes('.com')){
-      alert('작성하진 이메일이 형식에 맞지 않습니다..')
+    }else if( !email.includes('@') || 
+    !(email[email.length -1] !== 'm' ||
+      email[email.length -2] !== 'o' ||
+      email[email.length -3] !== 'c' ||
+      email[email.length -1] !== '.')){
+      alert('작성하진 이메일이 형식에 맞지 않습니다.')
     }else{
       try { 
         let sendUserInfo = await server.post('/users/signup',
@@ -75,7 +84,7 @@ let Signup = () =>{
 
   return (
     <StyleDiv>
-      <TitleDiv>빚다 설마 처음 ?</TitleDiv>
+      <TitleDiv>빚다의 회원이 되어주세요!</TitleDiv>
       <InputsWithBtn inputInfo={inputInfo} inputHandler={inputHandler} />
       <MainSubmitBtn text={'회원가입'} submitHandler={submitHandler}/>
     </StyleDiv>

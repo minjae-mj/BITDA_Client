@@ -51,11 +51,20 @@ const OauthContainerDiv = styled.div`
   // margin-top : 0.4rem;
   img {
     cursor: pointer;
+    &:hover{
+      transform: scale(1.1);
+      transition: all 200ms ease-in-out;
+    }
   }
 `;
 
 const GotoSignup = styled.div`
   color : var(--color-primary);
+  &:hover{
+    transform: scale(1.1);
+    transition: all 100ms ease-in-out;
+    border-bottom : 1px solid var(--color-primary);
+  }
 `;
 
 const RightCardDiv = styled.div`
@@ -68,6 +77,14 @@ const RightCardDiv = styled.div`
   height : 70%;
   border : 1px solid var(--color-primary);
   border-radius : 0px 8px 8px 0px;
+  
+  &:hover{
+    div div {
+      transform: scale(1.8);
+      transition: all 200ms ease-in-out;
+      content:"Thank you for your attention!"
+    }
+  }
 `;
 
 
@@ -84,7 +101,6 @@ const CircleDiv = styled.div`
 
 const TitleInCircle = styled.div`
   color : var(--color-primary);
-
 `;
 
 let Signin = () =>{
@@ -203,7 +219,7 @@ let Signin = () =>{
       </LeftCardDiv>
       <RightCardDiv>
         <CircleDiv>
-          <TitleInCircle>WELCOME BACK!</TitleInCircle>
+          <TitleInCircle id='welcome'>WELCOME BACK!</TitleInCircle>
         </CircleDiv>
       </RightCardDiv>
     </>
