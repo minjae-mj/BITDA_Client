@@ -24,8 +24,6 @@ const TitleDiv = styled.div`
   positon : relative;
   top : 3rem;
   left:0rem;
-
-
 `;
 
 let Signup = () =>{
