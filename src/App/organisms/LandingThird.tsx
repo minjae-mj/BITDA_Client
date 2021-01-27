@@ -3,12 +3,15 @@ import LandingBtn from '../atoms/LandingBtn';
 import ImageWithText from '../molecules/ImageWithText';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom'; 
+import filterImg from '../../images/filter.png'
+import cartImg from '../../images/cart.png'
+import likeImg from '../../images/likes.png'
 
 interface Card {
   desc: string; 
   imgUrl: string; 
-}
 
+}
 
 const StyledH2 = styled.h2`
   color : #43658B;
@@ -25,14 +28,25 @@ const RowFlexBoxDiv = styled.div`
   display : flex;
   justify-content: space-between;
   margin-bottom : 40px;
+  @media screen and (max-width: 546px){
+    flex-direction : column;
+  }
 `;
 const ColumnFlexBox = styled.div`
   display : flex;
   flex-direction : column-reverse;
-  padding : 40px 32px;
-  border : 2px solid #FBC99D;
-  border-radius : 4px;
+  padding : 16px 16px;
+  background :#BADCF6;
+  border : 1px solid #BADCF6;
+  border-radius : 8px;
   margin : 0px 48px;
+
+  @media screen and (max-width: 768px){
+    margin : 0px 8px;
+  }
+  @media screen and (max-width: 546px){
+    margin : 6px 0px;
+  }
 `;
 
 
@@ -41,15 +55,18 @@ const LandingThird = (): JSX.Element => {
   const card: Card[] = [
     {
       desc: '취향기반 전통주 추천',
-      imgUrl: 'imgUrl-1'
+      imgUrl: filterImg,
+
+    },
+    {
+      desc: '마음에 든 전통주 찜',
+      imgUrl: likeImg,
+
     },
     {
       desc: '전통주 사러 바로 가기',
-      imgUrl: 'imgUrl-2'
-    },
-    {
-      desc: '내 마음에 드는 전통주 키핑',
-      imgUrl: 'imgUrl-3'
+      imgUrl: cartImg,
+
     }
   ]
 
