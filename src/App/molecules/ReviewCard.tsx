@@ -20,27 +20,6 @@ interface Props {
   },
 }
 
-const StyleReviewCard = styled.div`
-  display: flex; 
-  flex-direction: column; 
-  width: 20%; 
-  height: 15rem; 
-  padding: .5rem 1rem; 
-
-  border: none; 
-  box-shadow: 2px 3px 3px #FBC99D;
-`
-
-const StyleUserImage = styled.div`
-  border-radius: 50%; 
-`
-
-const StyleUser = styled.div`
-  display: flex; 
-  width: 100%;  
-  justify-content: space-between; 
-`
-
 const ReviewCard = ({ drinkId, review }: Props) => {
   const { id, text, rating, user } = review; 
   const { userName, userImage } = user; 
@@ -65,19 +44,60 @@ const ReviewCard = ({ drinkId, review }: Props) => {
     <StyleReviewCard>
       <StyleUser>
         <StyleUserImage>
-          <img src={userImage} width="100px" height="100px" alt='' />
+          <div>
+            <img style={{ borderRadius: '80%', marginRight: '8px' }} src={userImage} width="100px" height="100px" alt='' />
+          </div>
+          <span>{userName}</span>
         </StyleUserImage>
-        <span>{userName}</span>
-        <span><StarIcon fill="yellow" /></span>
-        <span>{rating}</span>
-        {state.user.id === user.id ? <span onClick={handleRemoveReivew}>X</span> : ""}
+        <StyleRating>
+          <span style={{ marginRight: '8px' }}><StarIcon fill="yellow" /></span>
+          <span>{rating}</span>
+          {state.user.id === user.id ? <span onClick={handleRemoveReivew}>X</span> : ""}
+        </StyleRating>
       </StyleUser>
-      <p>{text}</p>
+      <StyleText>{text}</StyleText>
     </StyleReviewCard>
   ); 
 }
 
 export default ReviewCard; 
 
+
+const StyleReviewCard = styled.div`
+  width: 25%; 
+  padding: 1.8rem 1.5rem; 
+  margin: 1rem .5rem; 
+  border-radius: 5px; 
+
+  box-shadow: 1px 3px 5px #ddadaf;
+  //border: 1px solid var(--color-primary); 
+`
+
+const StyleUser = styled.div`
+  display: flex; 
+  width: 100%;  
+  justify-content: space-around; 
+  align-items: center; 
+  font-size: 1.4rem; 
+`
+const StyleText = styled.p`
+  margin-top: 2rem; 
+  font-size: 1.8rem; 
+`
+
+const StyleUserImage = styled.div`
+  display: flex; 
+  align-items: center; 
+
+  // border: 1px solid green; 
+`
+
+const StyleRating = styled.div`
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between; 
+
+  // border: 1px solid blue; 
+`
 
 

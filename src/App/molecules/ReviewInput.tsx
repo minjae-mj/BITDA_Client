@@ -11,17 +11,6 @@ interface Props {
   updateReviews?: (data: any) => void;
 }
 
-const StyleReviewLabel = styled.div`
-  display: flex; 
-  align-items: center; 
-`
-
-const StyleRatingIcon = styled.div`
-  display: flex; 
-  align-items: center; 
-  margin-left: 1rem; 
-`
-
 const ReviewInput = ({ drinkId }: Props) => {
   const dispatch = useDispatch();
   const accessToken = localStorage.getItem('accessToken')
@@ -53,34 +42,33 @@ const ReviewInput = ({ drinkId }: Props) => {
     dispatch(updateReviews(data.reviews));
 
     setRating(0);
-    let inputForReview  : any = document.querySelector('#textArea');
-    inputForReview.value = '';
+    document.querySelector('#textArea')!.innerHTML = ""! 
   }
 
   return (
    <>
      <StyleReviewLabel>
-      <p>나의 별점</p>
-      <StyleRatingIcon>
-        {
-          [1, 2, 3, 4, 5].map(index => {
-             return (
-              <RatingIcon 
-                index={index} 
-                rating={rating} 
-                hoverRating={hoverRating}
-                onMouseEnter={onMouseEnter} 
-                onMouseLeave={onMouseLeave} 
-                onSaveRating={onSaveRating} />
-            ) 
-          })
-        }
-      </StyleRatingIcon>
+        <StyleText>나의 별점</StyleText>
+        <StyleRatingIcon>
+          {
+            [1, 2, 3, 4, 5].map(index => {
+              return (
+                <RatingIcon 
+                  index={index} 
+                  rating={rating} 
+                  hoverRating={hoverRating}
+                  onMouseEnter={onMouseEnter} 
+                  onMouseLeave={onMouseLeave} 
+                  onSaveRating={onSaveRating} />
+              ) 
+            })
+          }
+        </StyleRatingIcon>
      </StyleReviewLabel>
-     <textarea id='textArea' style={{
+     <StyleTextarea id='textArea' style={{
           width: "70%",
           height: "30vh",
-        }} onChange={handleInput}></textarea>
+        }} onChange={handleInput} />
      <BtnWithEvent text="나의 리뷰 등록" handleSubmit={handleSubmit} />
    </>
   )
@@ -88,3 +76,25 @@ const ReviewInput = ({ drinkId }: Props) => {
 
 export default ReviewInput; 
 
+const StyleReviewLabel = styled.div`
+  display: flex; 
+  align-items: center; 
+  margin-top: 4rem;  
+`
+
+const StyleRatingIcon = styled.div`
+  display: flex; 
+  align-items: center; 
+  margin-left: 1rem; 
+`
+
+const StyleText = styled.p`
+  font-size: 2rem; 
+  color: var(--color-primary);
+`
+
+const StyleTextarea = styled.textarea`
+  border: 1px solid var(--color-primary); 
+  border-radius: 5px; 
+  margin: 1rem auto; 
+`
