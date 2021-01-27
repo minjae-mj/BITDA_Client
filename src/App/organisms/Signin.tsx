@@ -4,9 +4,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../reducers'; 
 import MainSubmitBtn from '../atoms/MainSubmitBtn'
 import InputsWithBtn from '../molecules/InputsWithBtn'
-import google from '../../images/google_oauth.png'; 
-import kakao from '../../images/kakao_oauth.png';
+// import google from '../../images/google_oauth.png'; 
+// import kakao from '../../images/kakao_oauth.png';
+import google from '../../images/googleimg.png'; 
+import kakao from '../../images/kakaoImg.png';
 import server, { clientURL } from '../../apis/server'; 
+import styled from 'styled-components';
 
 interface Info {
   email: string;
@@ -19,6 +22,70 @@ interface LoginInfo {
     accessToken: string;
   }
 }
+
+const LeftCardDiv = styled.div`
+  flex-basis : 40%;
+  height : 70%;
+  display : flex;
+  flex-direction : column;
+  justify-content : space-between;
+  // justify-content : center;
+  align-items: center;
+  border : 1px solid var(--color-primary);
+  border-radius : 8px 0px 0px 8px;
+  background: var(--color-white);
+  padding : 4.8rem 1.6rem;
+`;
+const TitleDiv = styled.div`
+  font-size : 1.6rem;
+  color : var(--color-primary);
+  // margin : 3.2rem 0rem 2.4rem 0rem;
+  positon : relative;
+  top : 3rem;
+  left: 0rem;
+`;
+const OauthContainerDiv = styled.div`
+  width : 30%;
+  display : flex;
+  justify-content: space-evenly;
+  // margin-top : 0.4rem;
+  img {
+    cursor: pointer;
+  }
+`;
+
+const GotoSignup = styled.div`
+  color : var(--color-primary);
+`;
+
+const RightCardDiv = styled.div`
+  display : flex;
+  flex-basis : 40%;
+  flex-direction : column;
+  justify-content : center;
+  align-items: center;
+  background : var(--color-primary);
+  height : 70%;
+  border : 1px solid var(--color-primary);
+  border-radius : 0px 8px 8px 0px;
+`;
+
+
+const CircleDiv = styled.div`
+  background: var(--color-white);
+  border : 1px solid var(--color-white);
+  border-radius : 50%;
+  height : 90%;
+  width : 75%;
+  display : flex;
+  justify-content : center;
+  align-items : center;
+`;
+
+const TitleInCircle = styled.div`
+  color : var(--color-primary);
+
+`;
 
 let Signin = () =>{
   let history = useHistory();
@@ -46,8 +113,8 @@ let Signin = () =>{
   const submitHandler = async () => {
     try { 
       let getLoginInfo = await server.post('/users/signin', 
-       { ...info },
-       { headers: { "Content-Type": "application/json" }, 
+      { ...info },
+      { headers: { "Content-Type": "application/json" }, 
         withCredentials: true }
       )
       .then((res) => {
@@ -115,21 +182,32 @@ let Signin = () =>{
     } 
 
   return (
-    <div>
-      <InputsWithBtn inputInfo={inputInfo} inputHandler={inputHandler} />
-      <div onClick={kakaoLoginHandler} >
-        <img src={kakao} alt='Kakao Oauth'/>
-      </div>
-      <div onClick={googleLoginHandler} >
-        <img src={google} alt='Google Oauth'/>
-      </div>
-      <MainSubmitBtn submitHandler={submitHandler} text={'로그인하기'}/>
-      <div>아직 회원이 아니신가요?</div>
-      <Link to='/users/signup'>
-        {/* <MainSubmitBtn text={'회원가입'}/> */}
-        <div>회원가입 하러가기</div>
-      </Link>
-    </div>
+    <>
+      <LeftCardDiv>
+        <TitleDiv>로그인하기</TitleDiv>
+        <InputsWithBtn inputInfo={inputInfo} inputHandler={inputHandler} />
+        <OauthContainerDiv>
+          <div onClick={kakaoLoginHandler} >
+            <img src={kakao} alt='Kakao Oauth'/>
+          </div>
+          <div onClick={googleLoginHandler} >
+            <img src={google} alt='Google Oauth'/>
+          </div>
+        </OauthContainerDiv>
+        <MainSubmitBtn submitHandler={submitHandler} text={'로그인하기'}/>
+        <div>아직 회원이 아니신가요?</div>
+        <Link to='/users/signup'>
+          {/* <MainSubmitBtn text={'회원가입'}/> */}
+          <GotoSignup>회원가입 하러가기</GotoSignup>
+        </Link>
+      </LeftCardDiv>
+      <RightCardDiv>
+        <CircleDiv>
+          <TitleInCircle>WELCOME BACK!</TitleInCircle>
+        </CircleDiv>
+      </RightCardDiv>
+    </>
   )
 }
 export default Signin ;
+
