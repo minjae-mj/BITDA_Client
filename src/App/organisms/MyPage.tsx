@@ -6,8 +6,7 @@ import MyPageAddDrink from './MyPageAddDrink';
 import styled from 'styled-components'; 
 
 const StyleMyPage = styled.div`
-  width: 100%;
-  height: 80vh; 
+  height: 100vh; 
   display: flex; 
 `
 

@@ -3,8 +3,7 @@ import MyPage from '../organisms/MyPage';
 import styled from 'styled-components'; 
 
 const StyleMyPageTemplate = styled.div`
-  width: 100%;
-  height: 80vh; 
+  margin-top: 7.2rem; 
 `
 const MyPageTemplate = (): JSX.Element => {
   
