@@ -1,11 +1,11 @@
-import React from 'react'; 
+import React, { useEffect } from 'react';
 import MyPageTemplate from '../../templates/MyPageTemplate';
 
 const MyPage = () => {
-  
-  return (
-    <MyPageTemplate />
-  )
-}
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  }, []);
+  return <MyPageTemplate />;
+};
 
-export default MyPage; 
+export default MyPage;

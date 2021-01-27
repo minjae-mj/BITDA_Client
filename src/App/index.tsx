@@ -1,17 +1,16 @@
-import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'; 
-import NavBar from './organisms/NavBar'; 
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import NavBar from './organisms/NavBar';
 import Footer from './molecules/Footer';
-import Landing from './pages/Landing'
+import Landing from './pages/Landing';
 import Main from './pages/Main/Main';
-import MyPage from './pages/Mypage'; 
+import MyPage from './pages/Mypage';
 import DrinkDetail from './pages/DrinkDetail';
 import Signin from './pages/Sign/Signin';
 import Signup from './pages/Sign/Signup';
-import './App.css'; 
+import './App.css';
 
 function App() {
-
   return (
     <Router>
       <div>
@@ -22,7 +21,7 @@ function App() {
             <Landing />
           </Route>
           <Route exact path="/users/signin">
-            <Signin /> 
+            <Signin />
           </Route>
           <Route exact path="/users/signup">
             <Signup />
@@ -36,12 +35,15 @@ function App() {
           <Route exact path="/users/mypage">
             <MyPage />
           </Route>
+          <Route exact path="/*">
+            <Landing />
+          </Route>
         </Switch>
 
         <Footer />
-    </div>
+      </div>
     </Router>
   );
 }
 
-export default App; 
+export default App;

@@ -1,8 +1,8 @@
-import axios from 'axios'; 
+import axios from 'axios';
 
-export const clientURL = 'http://localhost:3000'
+export const clientURL = 'http://localhost:3000';
 
 export default axios.create({
-    baseURL: 'https://www.bitda.ml'
-    // baseURL: 'http://localhost:8080'
+  //baseURL: 'https://www.bitda.ml'
+  baseURL: 'http://localhost:8080',
 });
