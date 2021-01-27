@@ -2,6 +2,7 @@ import React from 'react';
 import LandingBtn from '../atoms/LandingBtn'; 
 import ImageWithText from '../molecules/ImageWithText';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom'; 
 
 interface Card {
   desc: string; 
@@ -66,7 +67,9 @@ const LandingThird = (): JSX.Element => {
         }
       </RowFlexBoxDiv>
 
-      <LandingBtn text="전통주 보러가기" />
+      <Link to="/drinks/list">
+        <LandingBtn text="전통주 보러가기" />
+      </Link>
     </>
   )
 }
