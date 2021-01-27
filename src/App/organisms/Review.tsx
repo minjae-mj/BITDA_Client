@@ -14,20 +14,6 @@ interface Params {
   drinkId: string; 
 }
 
-const StyleReview = styled.div`
-  display: flex;
-  flex-direction: column;  
-  width: 80%; 
-  
-  margin: 1rem auto; 
-`
-
-const StyleReviewCard = styled.div`
-  display: flex; 
-  flex-wrap: wrap; 
-  justify-content: space-between; 
-`
-
 const Review = () => {
   const { drinkId }: Params = useParams(); 
   const [idx , setIdx] = useState(0);
@@ -62,22 +48,62 @@ const Review = () => {
     }
   }
 
+  const [leftHover, setLeftHover] = useState(false); 
+  const [rightHover, setRightHover] = useState(false); 
+
   return (
     <StyleReview>
-      <p>리뷰</p>
-      <LeftArrow handleClick={preReviewsHandler} fill="#ED6663" />
-      <StyleReviewCard>
-        {!state.length ? <div style={{ width: "100%" }}>첫 리뷰를 작성해주세요.</div> : 
-          fourReviews.map(review => {
-            return <ReviewCard key={review.id} review={review} drinkId={drinkId} />
-          })
-        }
-      </StyleReviewCard>
-      <RightArrow handleClick={preReviewsHandler} fill="#ED6663" />
-      <ReviewInput drinkId={drinkId} />
+      <StyleText>리뷰</StyleText>
+      <StyleReviewList>
+        <div onMouseEnter={() => setLeftHover(true)} onMouseLeave={() => setLeftHover(false)}>
+          <LeftArrow handleClick={preReviewsHandler} fill={leftHover? "#ED6663": "#FFA372"} />
+        </div>
+        <StyleReviewCard>
+          {!state.length ? <div style={{ width: "100%" }}>첫 리뷰를 작성해주세요.</div> : 
+            fourReviews.map(review => {
+              return <ReviewCard key={review.id} review={review} drinkId={drinkId} />
+            })
+          }
+        </StyleReviewCard>
+        <div onMouseEnter={() => setRightHover(true)} onMouseLeave={() => setRightHover(false)}>
+          <RightArrow handleClick={preReviewsHandler} fill={rightHover? "#ED6663": "#FFA372"} />
+        </div>
+      </StyleReviewList> 
+      <div>
+         <ReviewInput drinkId={drinkId} />
+      </div>  
+      
     </StyleReview>
   )
 
 }
 
 export default Review; 
+
+const StyleReview = styled.div`
+  display: flex; 
+  flex-direction: column; 
+  width: 80%; 
+  margin: 7rem auto; 
+
+  // border: 1px solid green; 
+`
+const StyleText = styled.p`
+  font-size: 2rem; 
+  color: var(--color-primary); 
+`
+const StyleReviewList = styled.div`
+  display: flex; 
+  justify-content: space-around; 
+  align-items: center; 
+  height: 28rem; 
+
+  // border: 1px solid red; 
+`
+const StyleReviewCard = styled.div`
+  display: flex; 
+  width: 100%; 
+  height: inherit; 
+
+  // background-color: orange;  
+`

@@ -1,5 +1,5 @@
 import React from 'react'; 
-import { ReactComponent as LeftArrowSvg } from '../../images/left-arrow.svg'
+import { ReactComponent as LeftArrowSvg } from '../../images/left_arrow.svg'
 
 interface Props {
   fill?: string
