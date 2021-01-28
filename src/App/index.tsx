@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import NavBar from './organisms/NavBar';
 import Footer from './molecules/Footer';
@@ -9,6 +9,7 @@ import DrinkDetail from './pages/DrinkDetail';
 import Signin from './pages/Sign/Signin';
 import Signup from './pages/Sign/Signup';
 import './App.css';
+
 
 function App() {
   return (
@@ -33,6 +34,9 @@ function App() {
             <DrinkDetail />
           </Route>
           <Route exact path="/users/mypage">
+            <MyPage />
+          </Route>
+          <Route path="/users/mypage/:subpage">
             <MyPage />
           </Route>
           <Route exact path="/*">

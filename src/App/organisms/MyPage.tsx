@@ -1,41 +1,64 @@
-import React, { useState } from 'react'; 
-import MyPageSidebar from '../molecules/MyPageSidebar'; 
+import React from 'react'; 
+import { Switch, Link, Route} from 'react-router-dom';
 import MyPageBookmark from './MyPageBookmark'; 
 import MyPageProfile from './MyPageProfile'; 
 import MyPageAddDrink from './MyPageAddDrink'; 
 import styled from 'styled-components'; 
-import backgroundImg from '../../images/background.png'
-
-const StyleMyPage = styled.div`
-  height: 100vh; 
-  display: flex; 
-`
-const StyleMyPageContent = styled.div`
-  width: 100%; 
-  padding: 5rem 9rem; 
-
-  // background-image: url(${backgroundImg});
-  // background-size: cover;
-`
+import BtnWithEventBlue from '../atoms/BtnWithEventBlue';
 
 const MyPage = (): JSX.Element => {
-  const [page, setPage] = useState('bookmark'); 
-
-  const handleClick = (e: any) => {
-    const target = e.target.value; 
-    setPage(target); 
-  }
   
   return (
     <StyleMyPage>
-      <MyPageSidebar handleClick={handleClick} />
+      <StyleMyPageSidebar>
+        <Link to="/users/mypage/bookmark">
+          <BtnWithEventBlue value="bookmark" text="내 취향 전통주" />
+        </Link>
+        <Link to="/users/mypage/profile">
+          <BtnWithEventBlue value="myProfile" text="프로필 수정" />
+        </Link>
+        <Link to="/users/mypage/addDrink">
+          <BtnWithEventBlue value="addDrink" text="전통주 등록" />
+        </Link>
+      </StyleMyPageSidebar>
+
       <StyleMyPageContent>
-        {page === 'bookmark' && <MyPageBookmark /> }
-        {page === 'myProfile' && <MyPageProfile /> }
-        {page === 'addDrink' && <MyPageAddDrink /> }
+        <Switch>
+          <Route exact path="/users/mypage">
+              <MyPageBookmark />
+          </Route>
+          <Route exact path="/users/mypage/bookmark">
+            <MyPageBookmark />
+          </Route>
+          <Route exact path="/users/mypage/profile">
+            <MyPageProfile />
+          </Route>
+          <Route exact path="/users/mypage/addDrink">
+            <MyPageAddDrink />
+          </Route>
+        </Switch>
       </StyleMyPageContent>
     </StyleMyPage>
   )
 }
 
 export default MyPage; 
+
+const StyleMyPage = styled.div`
+  height: 100vh; 
+  display: flex; 
+`
+const StyleMyPageSidebar = styled.div`
+  display: flex; 
+  flex-direction: column; 
+  justify-content: start; 
+  align-items: center; 
+  padding-top: 3rem; 
+  flex-basis: 12%; 
+
+  background-color: var(--color-secondary);  
+`
+const StyleMyPageContent = styled.div`
+  flex-basis: 88%;  
+  padding: 5rem 9rem; 
+`
