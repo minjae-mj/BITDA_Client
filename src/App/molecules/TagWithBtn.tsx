@@ -3,6 +3,18 @@ import { useDispatch, useSelector } from 'react-redux';
 // import { RootState } from '../../reducers';
 import { updateTypes } from '../../actions';
 import MainSelectBtn from '../atoms/MainSelectBtn';
+import styled from 'styled-components';
+
+const StyleTagContainer = styled.div`
+  margin-top: 1.5rem;
+`;
+
+const StyleSelectText = styled.span`
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #58595b;
+  margin-bottom: 5rem;
+`;
 
 type Props = {
   title: string;
@@ -24,14 +36,14 @@ const TagWithBtn = ({ title, buttonList, type }: Props): JSX.Element => {
   };
 
   return (
-    <div>
-      <span>{title}</span>
+    <StyleTagContainer>
+      <StyleSelectText>{title}</StyleSelectText>
       <MainSelectBtn
         type={type}
         buttonList={buttonList}
         clickHandler={clickHandler}
       />
-    </div>
+    </StyleTagContainer>
   );
 };
 

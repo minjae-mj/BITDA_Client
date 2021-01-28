@@ -10,7 +10,11 @@ type Props = {
 };
 
 const StyleDrinkCard = styled.div`
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  height: 46rem;
+  border-radius: 11px;
+  box-shadow: 0.5rem 0.5rem 0.5rem 0 rgba(0, 0, 0, 0.16);
 `;
 
 const StyledDrinkImg = styled.img`
@@ -23,8 +27,18 @@ const StyledDrinkImg = styled.img`
 `;
 
 const StyledDrinkName = styled.span`
-  color: #43658b;
-  font-size: 1.5em;
+  margin-top: 1rem;
+  margin-left: 1rem;
+  color: #58595b;
+  font-size: 1.6em;
+  font-weight: 500;
+`;
+
+const StyledDrinkAlcohol = styled.span`
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: #58595b;
+  margin-left: 1rem;
 `;
 
 let ImgWithInfo = ({ info }: Props): JSX.Element => {
@@ -32,7 +46,7 @@ let ImgWithInfo = ({ info }: Props): JSX.Element => {
     <StyleDrinkCard>
       <StyledDrinkImg src={info.drinkImage} alt={info.drinkName} />
       <StyledDrinkName>{info.drinkName}</StyledDrinkName>
-      <div>{info.alcohol}%</div>
+      <StyledDrinkAlcohol>도수: {info.alcohol}%</StyledDrinkAlcohol>
     </StyleDrinkCard>
   );
 };
