@@ -44,11 +44,15 @@ const MyPageProfile = (): JSX.Element => {
   useEffect(() => {
     const userInfo = state.user; 
     setUserInfo(userInfo); 
+  
+    console.log(userInfo)
   },[change])
 
   useEffect(() => {
     const userInfo = state.user; 
     setUserInfo(userInfo); 
+
+    console.log(userInfo)
   })
 
   const updateUserInfo = async (newToken: string) => {
@@ -181,6 +185,7 @@ const MyPageProfile = (): JSX.Element => {
           <span>가입일: </span><span>{createdAt.slice(0, 10)}</span>
         </StyleFormElement>
 
+        {userInfo.provider !== 'google' && userInfo.provider !== 'kakao' ? 
         <StyleFormElement>
           <span>비밀번호 관리</span>
           <StyleBtnWithEventBlueSml onClick={()=> setPasswordModal(pre => !pre)}>비밀번호 변경하기</StyleBtnWithEventBlueSml>
@@ -193,6 +198,8 @@ const MyPageProfile = (): JSX.Element => {
             </div>
           )}
         </StyleFormElement>
+        : null
+        }
         
       </StyleProfileForm>
     </div>
@@ -225,7 +232,7 @@ const StyleLabelClick = styled.label`
   margin-left: 2.2rem;  
 `
 const StyleProfileForm = styled.div`
-  height: 43vh; 
+  // height: 43vh; 
   // display: flex; 
   // flex-direction: column; 
   // justify-content: space-around; 
@@ -242,7 +249,7 @@ const StyleFormElement = styled.div`
   margin: 1.8rem 0; 
 `
 const StyleEmptyDiv = styled.div`
-  height: 5rem; 
+  height: 4.8rem; 
 `
 const HiddenInput = styled.input`
   display: none;

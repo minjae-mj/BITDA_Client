@@ -66,9 +66,9 @@ export default ReviewCard;
 const StyleReviewCard = styled.div`
   position: relative; 
   width: 25%; 
-  height: 30rem; 
+  height: 35rem; 
   padding: 1.8rem 1.5rem; 
-  margin: 1rem .5rem; 
+  margin: 1rem 1.6rem; 
   border-radius: 5px; 
 
   box-shadow: var(--box-shadow); 
