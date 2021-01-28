@@ -5,7 +5,6 @@ import DrinkDescContainer from '../molecules/DrinkDescContainer';
 import BtnWithEvent from '../atoms/BtnWithEvent';
 import BtnPlain from '../atoms/BtnPlain';
 import server from '../../apis/server';
-import LikeIcon from '../atoms/LikeIcon';
 
 interface Params {
   drinkId: string;
@@ -90,9 +89,9 @@ const DrinkDesc = (): JSX.Element => {
       <StyleImageBox>
         <StyleImage src={drink.drinkImage} />
         {isLogin && drink.bookmark ? (
-          <StyleLikeIcon>
-            <LikeIcon />
-          </StyleLikeIcon>
+          <StyleHeartIcon>
+            <StyleHeart className="fas fa-heart" />
+          </StyleHeartIcon>
         ) : (
           ''
         )}
@@ -142,7 +141,7 @@ const StyleImage = styled.img`
   width: 38rem;
   height: inherit;
 `;
-const StyleLikeIcon = styled.div`
+const StyleHeartIcon = styled.div`
   position: absolute;
   top: 1.7rem;
   left: 5.8rem;
@@ -162,3 +161,7 @@ const StyleButtonContainer = styled.div`
 
   // border: 1px solid green;
 `;
+const StyleHeart = styled.i`
+  font-size: 2.8rem; 
+  color: #fcc200; 
+`
