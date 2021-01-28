@@ -7,15 +7,29 @@ const StyleSelectContainer = styled.div`
   padding: 3rem;
   display: flex;
   justify-content: center;
+  background-color: #fdf4f4;
+`;
+
+const StyleSelectTitle = styled.div`
+  padding-bottom: 1rem;
+  font-size: 2rem;
+  color: #43658b;
+  font-weight: 500;
+  border-bottom: solid 1px lightgray;
 `;
 
 const StyleSelectContent = styled.div`
   width: 70%;
 `;
 
-const StyleSelectTitle = styled.span`
-  font-size: 2rem;
-  color: #43658b;
+const StyleDiv = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`;
+
+const StyleButtonArea = styled.div`
+  width: 100%;
 `;
 
 interface Props {
@@ -41,25 +55,33 @@ const MainSelectSection = ({
   return (
     <StyleSelectContainer>
       <StyleSelectContent>
-        <StyleSelectTitle>당신의 취향은?</StyleSelectTitle>
-        <TagWithBtn
-          title={'종류'}
-          buttonList={typeButtonList}
-          type={'category'}
-        />
-        <TagWithBtn
-          title={'가격'}
-          buttonList={priceButtonList}
-          type={'price'}
-        />
-        <TagWithBtn title={'맛'} buttonList={tasteButtonList} type={'taste'} />
-        <TagWithBtn
-          title={'도수'}
-          buttonList={alcoholeButtonList}
-          type={'alcohol'}
-        />
-        <DrinkListBtn text={'취향 빚기'} submitHandler={submitHandler} />
-        <DrinkListBtn text={'전체 보기'} submitHandler={selectAllHandler} />
+        <StyleSelectTitle>여러분의 취향을 선택해주세요!</StyleSelectTitle>
+        <StyleDiv>
+          <StyleButtonArea>
+            <TagWithBtn
+              title={'어떤 종류의 술을 선호하시나요?'}
+              buttonList={typeButtonList}
+              type={'category'}
+            />
+            <TagWithBtn
+              title={'희망하시는 가격대는 어떤가요?'}
+              buttonList={priceButtonList}
+              type={'price'}
+            />
+            <TagWithBtn
+              title={'평소 내가 좋아하는 맛은?'}
+              buttonList={tasteButtonList}
+              type={'taste'}
+            />
+            <TagWithBtn
+              title={'도수는 어떤가요?'}
+              buttonList={alcoholeButtonList}
+              type={'alcohol'}
+            />
+            <DrinkListBtn text={'취향 빚기'} submitHandler={submitHandler} />
+            <DrinkListBtn text={'전체 보기'} submitHandler={selectAllHandler} />
+          </StyleButtonArea>
+        </StyleDiv>
       </StyleSelectContent>
     </StyleSelectContainer>
   );

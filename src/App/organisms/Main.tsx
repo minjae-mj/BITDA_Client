@@ -46,7 +46,7 @@ const Main = (): JSX.Element => {
     dispatch(updateTypes('price', ''));
     dispatch(updateTypes('taste', ''));
     dispatch(updateTypes('alcohol', ''));
-    console.log(state.types);
+    setIsFiltered(false);
   };
 
   window.onscroll = async (e: any) => {
@@ -96,7 +96,7 @@ const Main = (): JSX.Element => {
         submitHandler={submitHandler}
         selectAllHandler={selectAllHandler}
       />
-      <MainDrinkList drinkList={drinkList} />
+      <MainDrinkList drinkList={drinkList} isFiltered={isFiltered} />
     </StyledMainContainer>
   );
 };

@@ -12,7 +12,7 @@ const StyledBtn = styled.button`
   border-radius: 4px;
   color: var(--color-white);
   width: 10%;
-  height: 3.2rem;
+  height: 4rem;
   margin-top: 1.6rem;
   margin-right: 1rem;
 `;

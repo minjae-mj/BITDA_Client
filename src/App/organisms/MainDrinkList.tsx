@@ -4,6 +4,7 @@ import ImgWithInfo from '../molecules/ImgWithInfo';
 import { Link } from 'react-router-dom';
 
 interface Props {
+  isFiltered: boolean;
   drinkList: {
     id: number;
     drinkName: string;
@@ -18,7 +19,17 @@ const StyleDrinkListContent = styled.div`
 `;
 
 const StyledDrinkListArea = styled.div`
-  width: 83%;
+  width: 70%;
+  margin-top: 2rem;
+`;
+
+const StyleDrinkListTitle = styled.div`
+  font-size: 1.7rem;
+  color: #43658b;
+  font-weight: 500;
+  padding: 0.5rem;
+  border-bottom: solid 1px lightgray;
+  margin-left: 1rem;
 `;
 
 const StyledDrinkList = styled.ul`
@@ -30,13 +41,16 @@ const StyledDrinkList = styled.ul`
 const StyledDrinkItem = styled.li`
   width: 30rem;
   height: 45rem;
-  margin: 0.7rem;
+  margin: 1.5rem;
 `;
 
-let MainDrinkList = ({ drinkList }: Props): JSX.Element => {
+let MainDrinkList = ({ drinkList, isFiltered }: Props): JSX.Element => {
   return (
     <StyleDrinkListContent>
       <StyledDrinkListArea>
+        <StyleDrinkListTitle>
+          {isFiltered ? '내 취향 전통주' : '모든 전통주'}
+        </StyleDrinkListTitle>
         <StyledDrinkList>
           {drinkList.map(
             (drink): JSX.Element => (
