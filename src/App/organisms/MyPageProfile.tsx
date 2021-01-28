@@ -39,11 +39,17 @@ const MyPageProfile = (): JSX.Element => {
     newPassword : '',
     confirmPassword : ''
   });
+  const [change, setChange] = useState(false); 
 
   useEffect(() => {
     const userInfo = state.user; 
     setUserInfo(userInfo); 
-  },[])
+  },[change])
+
+  useEffect(() => {
+    const userInfo = state.user; 
+    setUserInfo(userInfo); 
+  })
 
   const updateUserInfo = async (newToken: string) => {
     try {
@@ -56,6 +62,7 @@ const MyPageProfile = (): JSX.Element => {
       const { data } = user;
       dispatch(signIn(data)); 
       localStorage.setItem('accessToken', newToken); 
+      setChange(prev => !prev); 
     } catch (err) {
       console.log(err);
     }
@@ -77,6 +84,7 @@ const MyPageProfile = (): JSX.Element => {
 
       alert('이미지가 변경되었습니다.'); 
       updateUserInfo(uploading.data.accessToken); 
+      
     }catch(err){ 
       console.log(err)
     }
@@ -97,7 +105,8 @@ const MyPageProfile = (): JSX.Element => {
       .then(data => updateUserInfo(data.accessToken)); 
 
       alert('닉네임이 변경되었습니다.')
-      setNameModal(false); 
+      setNameModal(false);  
+      // window.location.reload(); 
       
     }catch(err){
       console.log(err)
