@@ -16,7 +16,11 @@ export const StyleBtnWithEvent = styled.button`
   font-size: 1.5rem; 
   width: 48%; 
   height: 4.8rem;
-  transition: all 0.1s;
+  transition: all .1s;
+
+  &:hover {
+    background-color: #D5544B; 
+  }
 
   &:active {
     transform: translateY(3px);

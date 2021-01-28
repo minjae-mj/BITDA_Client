@@ -84,7 +84,7 @@ const StyleReview = styled.div`
   display: flex; 
   flex-direction: column; 
   width: 80%; 
-  margin: 7rem auto; 
+  margin: 10rem auto; 
 
   // border: 1px solid green; 
 `

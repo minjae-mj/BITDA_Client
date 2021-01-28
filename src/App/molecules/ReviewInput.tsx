@@ -12,7 +12,6 @@ interface Props {
 }
 
 const ReviewInput = ({ drinkId }: Props) => {
-  const isLogin = localStorage.getItem('isLogin');
   const dispatch = useDispatch();
   const accessToken = localStorage.getItem('accessToken')
 
@@ -29,26 +28,33 @@ const ReviewInput = ({ drinkId }: Props) => {
     setReviewText(value); 
   }
 
-  const handleSubmit = async (e: any) => {
-    if (!isLogin) {
-      return alert('로그인 해 주세요.');
-    }
+  const textArea: any = document.querySelector('#textArea')
 
-    const review = await server.post('/reviews/add', {
+  const handleSubmit = async (e: any) => {
+    if (!accessToken) {
+      alert('로그인 해 주세요.');
+    } else {
+      const review = await server.post('/reviews/add', {
         rating, 
         text: reviewText,
         drinkId
       }, 
       { headers: {'Authorization': `Bearer ${accessToken}` }
-    }); 
+      }); 
 
-    const reviewList = await server.get(`/reviews/list/${drinkId}`); 
-    const { data }: any = reviewList;  
-    dispatch(updateReviews(data.reviews));
+      const reviewList = await server.get(`/reviews/list/${drinkId}`); 
+      const { data }: any = reviewList;  
+      dispatch(updateReviews(data.reviews));
 
-    setRating(0);
-    const textArea: any = document.querySelector('#textArea')
-    textArea.value = ""; 
+      setRating(0);
+      textArea.value = ""; 
+    }
+  }
+
+  const handleClickTextarea = () => {
+    if(!accessToken) {
+      alert('로그인 해 주세요.');
+    }
   }
 
   return (
@@ -72,10 +78,14 @@ const ReviewInput = ({ drinkId }: Props) => {
         </StyleRatingIcon>
      </StyleReviewLabel>
      <StyleReviewInput>
-      <StyleTextarea id='textArea' maxLength={100} onChange={handleInput} placeholder="리뷰를 100자 이내로 남겨주세요." />
+      <StyleTextarea id='textArea' maxLength={150} onChange={handleInput} onClick={handleClickTextarea} placeholder="리뷰를 150자 이내로 남겨주세요." />
+      
       <StyleReviewRegister>
-        <BtnWithEvent text="나의 리뷰 등록" handleSubmit={handleSubmit} />
+        <StyleEmptyDiv>
+          <BtnWithEvent text="나의 리뷰 등록" handleSubmit={handleSubmit} />
+        </StyleEmptyDiv>
       </StyleReviewRegister>
+     
      </StyleReviewInput>
    </>
   )
@@ -86,7 +96,7 @@ export default ReviewInput;
 const StyleReviewLabel = styled.div`
   display: flex; 
   align-items: center; 
-  margin-top: 6rem;  
+  margin-top: 10rem;  
 `
 const StyleRatingIcon = styled.div`
   display: flex; 
@@ -122,6 +132,12 @@ const StyleTextarea = styled.textarea`
   }
 `
 const StyleReviewRegister = styled.div`
+  display: flex; 
+  justify-content: flex-end; 
   width: 100%; 
-  align-self: self-end;
+`
+const StyleEmptyDiv = styled.div`
+  display: flex; 
+  width: 30rem; 
+  justify-content: flex-end; 
 `

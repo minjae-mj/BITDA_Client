@@ -85,16 +85,13 @@ const StyleContent = styled.div`
   height: 31rem; 
   font-size: 2.2rem; 
   color: #808080; 
-  padding: 1rem 1.8rem; 
-  border: 1px solid #EE6F57;  
+  padding: 3rem 1.8rem; 
+  border: 1px solid var(--color-primary);  
   border-top-right-radius: 5px; 
   border-bottom-right-radius: 5px; 
   border-bottom-left-radius: 5px; 
 
   margin-bottom: 5px; 
-
-  display: flex; 
-  align-items: center; 
 `
 const StyleIntro = styled.div`
   display: flex; 
