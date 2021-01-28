@@ -13,10 +13,11 @@ const StyleLandingBtn = styled.button`
   font-size: 12px; 
   width: 100px; 
   height: 40px;
+  transition: all 250ms ease-in-out;
+
   &:hover {
-    background :#c25452;
-    border: 1px solid #c25452; 
-    transition: all 250ms ease-in-out;
+    background-color: #D5544B; 
+    border: 1px solid #D5544B; 
   }
 ` 
 
