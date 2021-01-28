@@ -45,17 +45,17 @@ const MyPageProfile = (): JSX.Element => {
     setUserInfo(userInfo); 
   },[])
 
-  const updateUserInfo = async () => {
+  const updateUserInfo = async (newToken: string) => {
     try {
       const user = await server.get('/users/mypage', {
         headers: {
-          Authorization: `Bearer ${accessToken}`,
+          Authorization: `Bearer ${newToken}`,
         },
       });
 
       const { data } = user;
       dispatch(signIn(data)); 
-      
+      localStorage.setItem('accessToken', newToken); 
     } catch (err) {
       console.log(err);
     }
@@ -76,7 +76,7 @@ const MyPageProfile = (): JSX.Element => {
       }})
 
       alert('이미지가 변경되었습니다.'); 
-      updateUserInfo(); 
+      updateUserInfo(uploading.data.accessToken); 
     }catch(err){ 
       console.log(err)
     }
@@ -93,10 +93,12 @@ const MyPageProfile = (): JSX.Element => {
       {headers : {
         Authorization : `Bearer ${accessToken}`
       }})
+      .then(res => res.data)
+      .then(data => updateUserInfo(data.accessToken)); 
 
       alert('닉네임이 변경되었습니다.')
       setNameModal(false); 
-      updateUserInfo(); 
+      
     }catch(err){
       console.log(err)
     }
@@ -130,6 +132,9 @@ const MyPageProfile = (): JSX.Element => {
       {headers : {
         Authorization : `Bearer ${accessToken}`
       }})      
+      .then(res => res.data)
+      .then(data => updateUserInfo(data.accessToken)); 
+
       alert('비밀번호가 변경되었습니다.')
       setPasswordModal(false); 
     } catch(err){
