@@ -7,12 +7,17 @@ type LandingBtnProps = {
 
 const StyleLandingBtn = styled.button`
   color: #F6F5F5; 
-  background-color: #ED6663; 
-  border: 1px solid #ED6663; 
+  background: var(--color-primary); 
+  border: 1px solid var(--color-primary); 
   border-radius: 5px; 
   font-size: 12px; 
   width: 100px; 
-  height: 40px; 
+  height: 40px;
+  &:hover {
+    background :#c25452;
+    border: 1px solid #c25452; 
+    transition: all 250ms ease-in-out;
+  }
 ` 
 
 const LandingBtn = ({ text }: LandingBtnProps ) => {

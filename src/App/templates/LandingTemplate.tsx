@@ -7,8 +7,10 @@ import LandingThird from '../organisms/LandingThird'
 
 const First = styled.div`
   height: 48rem; 
-  border: 2px solid palevioletred;
-  background : var(--color-primary);
+  // border: 2px solid palevioletred;
+  // background : var(--color-primary);
+  position: relative;
+  overflow:hidden;
 `
 const Second = styled.div`
   display: flex; 

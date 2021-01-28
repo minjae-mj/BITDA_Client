@@ -12,6 +12,10 @@ const StyledH1 = styled.h1`
 const StyledDiv = styled.div`
   padding-top : 24rem;
   padding-left : 10rem;
+  z-index : 2;
+  position : absolute;
+  top: 0px;
+  left : 0px;
 `;
 
 const LandingFirstInfo = (): JSX.Element => {
@@ -20,7 +24,7 @@ const LandingFirstInfo = (): JSX.Element => {
     <StyledDiv>
       <StyledH1>전통주도 내 취향에 맞게<br />취향을 빚다</StyledH1>
       <Link to="/drinks/list">
-        <LandingBtn text="전통주 보러가기" />
+        <LandingBtn  text="전통주 보러가기" />
       </Link>
     </StyledDiv>
   )
