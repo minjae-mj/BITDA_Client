@@ -1,38 +1,35 @@
-import React from 'react'; 
-import styled from 'styled-components'; 
+import React from 'react';
+import styled from 'styled-components';
 
 type LandingBtnProps = {
-  text: string;    
-}
+  text: string;
+};
 
 const StyleLandingBtn = styled.button`
-  color: #F6F5F5; 
-  background: var(--color-primary); 
-  border: 1px solid var(--color-primary); 
-  border-radius: 5px; 
-  font-size: 2rem; 
-  width: 16rem; 
+  color: #f6f5f5;
+  background: var(--color-primary);
+  border: 1px solid var(--color-primary);
+  border-radius: 5px;
+  font-size: 2rem;
+  width: 16rem;
   height: 5.6rem;
   transition: all 250ms ease-in-out;
-
+  margin-top: 2rem;
   &:hover {
-    background-color: #D5544B; 
-    border: 1px solid #D5544B; 
+    background-color: #d5544b;
+    border: 1px solid #d5544b;
   }
-` 
+`;
 
-const LandingBtn = ({ text }: LandingBtnProps ) => {
+const LandingBtn = ({ text }: LandingBtnProps) => {
+  return <StyleLandingBtn>{text}</StyleLandingBtn>;
+};
 
-  return (
-    <StyleLandingBtn>{text}</StyleLandingBtn>
-  )
-}
-
-export default LandingBtn; 
+export default LandingBtn;
 
 //reference
-// import React from 'react'; 
-// import styled from 'styled-components'; 
+// import React from 'react';
+// import styled from 'styled-components';
 
 // const StyleTestBtn = styled.input`
 //   padding: 0.5em;
@@ -44,7 +41,7 @@ export default LandingBtn;
 // `;
 
 // interface TestBtnProps {
-//   color: string; 
+//   color: string;
 // }
 
 // const TestBtn = ({ color }: TestBtnProps) => {
@@ -53,9 +50,9 @@ export default LandingBtn;
 //       <StyleTestBtn color={color} />
 //     </div>
 //   )
-// }; 
+// };
 
-// export default TestBtn; 
+// export default TestBtn;
 
 // 구글 클라이언트 아이디
 // 161712089232-v1udttltgin8n37iou92c03qrckdrvkv.apps.googleusercontent.com

@@ -40,7 +40,7 @@ const StyledDrinkList = styled.ul`
 
 const StyledDrinkItem = styled.li`
   width: 23%;
-  height: auto;
+  height: 20em;
   margin: 1%;
   border-radius: 11px;
   box-shadow: 0.5rem 0.5rem 0.5rem 0 rgba(0, 0, 0, 0.16);
