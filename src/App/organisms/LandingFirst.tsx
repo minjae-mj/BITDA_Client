@@ -13,27 +13,17 @@ const StyledSlider = styled(Slider)`
     outline: none;
     width: 100%;
     height: 30%;
-    // position : absolute;
     position: relative;
     margin: 0px;
   }
 `;
 const StyledImg = styled.img`
-  /* max-width: 100%; */
-  /* max-height: 50%; */
   width: 100%;
   height: 85rem;
   opacity: 0.8;
   filter: contrast(1.35) brightness(80%);
 `;
 
-const StyledBlackDiv = styled.div`
-  background-color: black;
-  width: 100%;
-  height: 100%;
-  /* opacity: 0.9; */
-  z-index: 10;
-`;
 
 const LandingFirst = (): JSX.Element => {
   const settings = {
@@ -46,25 +36,22 @@ const LandingFirst = (): JSX.Element => {
     autoplaySpeed: 3000,
     pauseOnHover: false,
     adaptiveHeight: true,
-    // variableWidth: true
-    // centerMode: true,
-    // fade : true,
   };
 
   return (
     <>
       <StyledSlider {...settings}>
-        <StyledBlackDiv>
+        <div>
           <StyledImg src={first} alt="first"></StyledImg>
-        </StyledBlackDiv>
+        </div>
 
-        <StyledBlackDiv>
+        <div>
           <StyledImg src={second} alt="second"></StyledImg>
-        </StyledBlackDiv>
+        </div>
 
-        <StyledBlackDiv>
+        <div>
           <StyledImg src={third} alt="third"></StyledImg>
-        </StyledBlackDiv>
+        </div>
       </StyledSlider>
       <LandingFirstInfo />
     </>
