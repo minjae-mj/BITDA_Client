@@ -125,8 +125,7 @@ const MyPageAddDrink = (): JSX.Element => {
       let addDrink = await server.post('/drinks/add', formData);
       // const textArea: any = document.querySelector('.textArea')
       // textArea.value = "";
-      history.push('/addDrink')
-      window.location.reload();
+
       console.log(drinkData.drinkImage);
     } catch (err) {
       console.log(err);
@@ -143,8 +142,8 @@ const MyPageAddDrink = (): JSX.Element => {
       {/* <StyleLabelClick htmlFor="image_uploads">이미지 등록</StyleLabelClick> */}
       <div style={{"backgroundColor": "#efefef", "width":"150px", "height" : "150px"}}>
       </div>
-    <input type="text" id="fileName" className="file_input_textbox" value = {drinkData.drinkImage.name}></input>
-     <HiddenInput type='file' accept="image/*,.pdf" id="imgFile" name="imgFile" onChange={handleChangeFile} />
+    {/* <input type="text" id="fileName" className="file_input_textbox" value = {drinkData.drinkImage.name}></input> */}
+     <input type='file' accept="image/*,.pdf" id="imgFile" name="imgFile" onChange={onChange} />
        <MainSubmitBtn text={'등록'} submitHandler={addDrinkHandler} />
       </StyleDiv>
     </div>
