@@ -15,15 +15,15 @@ interface Card {
 const StyledH2 = styled.h2`
   color: #43658b;
   text-align: center;
-  margin-bottom: 64px;
+  margin-bottom: 6.4rem;
   padding-top: 10rem;
-  // &::after {
-  //   width: 100%
-  //   height: 2px
-  //   border-bottom : 1px solid #43658B;
-  // }
   font-family: 'Nanum Pen Script', cursive;
   font-size: 5rem;
+  @media screen and (max-width: 546px) {
+    padding-top : 5rem;
+    margin-bottom: 3.2rem;
+    font-size : 3.8rem;
+  }
 `;
 
 const RowFlexBoxDiv = styled.div`
@@ -31,6 +31,9 @@ const RowFlexBoxDiv = styled.div`
   justify-content: space-between;
   font-family: 'Nanum Pen Script', cursive;
   margin-bottom: 40px;
+  @media screen and (max-width: 1200px) {
+    justify-content : center;
+  }
   @media screen and (max-width: 546px) {
     flex-direction: column;
   }
@@ -38,17 +41,29 @@ const RowFlexBoxDiv = styled.div`
 const ColumnFlexBox = styled.div`
   display: flex;
   flex-direction: column-reverse;
-  padding: 16px 16px;
+  padding: 16px 0px;
   background: #badcf6;
   border: 1px solid #badcf6;
   border-radius: 8px;
-  margin: 0px 48px;
+  margin: 0px 40px;
   width: 30rem;
-  @media screen and (max-width: 768px) {
-    margin: 0px 8px;
+
+  @media screen and (max-width: 1200px) {
+    margin: 0px 16px;
   }
+  @media screen and (max-width: 1000px) {
+    margin: 0px 8px;
+    width : 25rem;
+  }
+  
+  @media screen and (max-width: 820px) {
+    margin: 0px 8px;
+    width : 20rem;
+  }
+
   @media screen and (max-width: 546px) {
     margin: 6px 0px;
+    width : 25rem;
   }
 `;
 
@@ -63,14 +78,14 @@ const LandingThird = (): JSX.Element => {
       imgUrl: likeImg,
     },
     {
-      desc: '전통주 사러 바로 가기',
+      desc: '전통주 사러 가기',
       imgUrl: cartImg,
     },
   ];
 
   const styleImg = {
-    width: '11rem',
-    height: '13rem',
+    width: '14rem',
+    height: '15rem',
     size: '2.8rem',
     lineHeight: 1.6,
   };

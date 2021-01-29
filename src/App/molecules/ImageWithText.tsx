@@ -25,12 +25,10 @@ interface CssProps {
 const StyledDiv = styled.div`
   display: flex;
   justify-content: center;
-  //align-items: center;
-  line-height: 1.6;
+  line-height: 1.2;
   flex-direction: column;
   flex-basis: 50%;
   padding: 16px 16px;
-  // border : 1px solid red;
 `;
 const StyledPictureDiv = styled.div`
   flex-basis: 50%;
@@ -39,21 +37,32 @@ const StyledPictureDiv = styled.div`
   padding: 16px 16px;
   display: flex;
   justify-content: center;
-  // border : 1px solid red;
 `;
 
 const StyledImage = styled.img`
   width: ${(props: any) => props.width || '50rem'};
   height: ${(props: any) => props.height || '60rem'};
+
+
+
+  @media screen and (max-width: 1200px) {
+    width: ${(props: any) => props.width || '30rem'};
+    height: ${(props: any) => props.height || '40rem'};
+
+    display : flex;
+    justify-content : center;
+  }
 `;
 const StyledP = styled.p`
   color: #58595b;
   font-size: ${(props: CssProps) => props.size || '2.2rem'};
-  padding: 0rem 3rem;
+  padding: 0rem 2.4rem;
   margin-bottom: 2rem;
-  //text-align: center;
   font-weight: 700;
   line-height: ${(props: CssProps) => props.lineHeight || 2};
+  @media screen and (max-width: 546px) {
+    font-size: 1.8rem;
+  }
 `;
 
 const ImageWithText = ({ info, css }: ImageWithTextProps): JSX.Element => {

@@ -16,6 +16,11 @@ const StyledDiv = styled.div`
   position: absolute;
   top: 0px;
   left: 0px;
+
+  @media screen and (max-width: 1440px) {
+    padding-top: 30rem;
+    padding-left: 10rem;
+  }
 `;
 
 const LandingFirstInfo = (): JSX.Element => {

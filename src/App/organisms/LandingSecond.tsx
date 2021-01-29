@@ -22,21 +22,32 @@ const StyledH2 = styled.h2`
   margin-bottom: 64px;
   font-family: 'Nanum Pen Script', cursive;
   font-size: 5rem;
-  // &::after {
-  //   width: 100%
-  //   height: 2px
-  //   border-bottom : 1px solid #43658B;
-  // }
+  
+  @media screen and (max-width: 546px) {
+    font-size : 3.8rem;
+    margin-bottom: 24px;
+    
+  }
 `;
 
 const FlexBoxDiv = styled.div`
   display: flex;
   margin-bottom: 8rem;
   padding-left: 40px;
+
+  @media screen and (max-width: 935px) {
+    display : flex;
+    flex-direction : column-reverse;
+    padding-left: 0px;
+  }
 `;
 const ReversedFlexBoxDiv = styled.div`
   display: flex;
   flex-direction: row-reverse;
+  @media screen and (max-width: 935px) {
+    display : flex;
+    flex-direction : column-reverse;
+  }
 `;
 
 const LandingSecond = (): JSX.Element => {
@@ -52,8 +63,7 @@ const LandingSecond = (): JSX.Element => {
       imgUrl: test1,
     },
     second: {
-      desc: `
-       아직도 전통주가 생소하다면?`,
+      desc: `아직도 전통주가 생소하다면?`,
       desc2: `'빚다'에서 당신도 몰랐던 전통주 취향을 발견하세요!
         새로운 취향, 아니 어쩌면 그 이상의 것들을 찾아가실지도 몰라요. 
         여러분의 즐거운 전통주 탐구생활에 빚다가 함께하겠습니다! 
@@ -62,10 +72,6 @@ const LandingSecond = (): JSX.Element => {
       imgUrl: test2,
     },
   };
-
-  /*   const imgStyle  = {
-    height : ''
-  } */
 
   return (
     <div>

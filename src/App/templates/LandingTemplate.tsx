@@ -6,20 +6,23 @@ import LandingThird from '../organisms/LandingThird';
 
 const First = styled.div`
   height: 80rem;
-  // border: 2px solid palevioletred;
-  // background : var(--color-primary);
   position: relative;
   overflow: hidden;
+
+  @media screen and (max-width: 1440px) {
+    height : 62rem;
+  }
 `;
 const Second = styled.div`
   display: flex;
   flex-direction: column;
-  /* margin: auto;  
-  max-width: 80%;  */
   background-color: #fdf4f4;
   align-items: center;
   padding: 100px 80px 100px 80px;
-  // border: 2px solid palevioletred;
+  @media screen and (max-width: 546px) {
+    padding: 36px 80px;
+  }
+  
 `;
 
 const Third = styled.div`
@@ -30,10 +33,11 @@ const Third = styled.div`
   align-items: center;
   text-align: center;
   padding: 40px 0px 64px 0px;
-  // border: 2px solid lightblue;
+  @media screen and (max-width: 546px) {
+    padding-top : 0px;
+  }
 `;
 const LandingContainer = styled.div`
-  /* padding-top : 1rem; */
   display: flex;
   flex-direction: column;
   justify-content: center;
