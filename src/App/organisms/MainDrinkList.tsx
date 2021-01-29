@@ -39,9 +39,11 @@ const StyledDrinkList = styled.ul`
 `;
 
 const StyledDrinkItem = styled.li`
-  width: 30rem;
-  height: 45rem;
-  margin: 1.5rem;
+  width: 23%;
+  height: auto;
+  margin: 1%;
+  border-radius: 11px;
+  box-shadow: 0.5rem 0.5rem 0.5rem 0 rgba(0, 0, 0, 0.16);
 `;
 
 let MainDrinkList = ({ drinkList, isFiltered }: Props): JSX.Element => {
