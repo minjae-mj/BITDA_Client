@@ -2,7 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import ImageWithText from '../molecules/ImageWithText';
 import test1 from '../../images/mapImg.png';
-import test2 from '../../images/wanted.png';
+// import test2 from '../../images/wanted.png';
+import test2 from '../../images/findyourtaste.png';
 interface Info {
   first: {
     desc: string;
