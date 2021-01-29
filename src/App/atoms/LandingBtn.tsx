@@ -10,9 +10,9 @@ const StyleLandingBtn = styled.button`
   background: var(--color-primary); 
   border: 1px solid var(--color-primary); 
   border-radius: 5px; 
-  font-size: 12px; 
-  width: 100px; 
-  height: 40px;
+  font-size: 2rem; 
+  width: 16rem; 
+  height: 5.6rem;
   transition: all 250ms ease-in-out;
 
   &:hover {

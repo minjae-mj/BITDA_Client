@@ -6,7 +6,7 @@ import LandingThird from '../organisms/LandingThird'
 
 
 const First = styled.div`
-  height: 48rem; 
+  height: 65rem; 
   // border: 2px solid palevioletred;
   // background : var(--color-primary);
   position: relative;
@@ -15,10 +15,11 @@ const First = styled.div`
 const Second = styled.div`
   display: flex; 
   flex-direction: column;
-  margin: auto;  
-  max-width: 80%; 
+  /* margin: auto;  
+  max-width: 80%;  */
+  background-color : #fdf4f4;
   align-items : center;
-  padding : 80px 0px 40px 0px;
+  padding : 100px 80px 100px 80px;
   // border: 2px solid palevioletred;
   `
   
@@ -33,7 +34,10 @@ const Second = styled.div`
 // border: 2px solid lightblue;
 `
 const LandingContainer = styled.div`
-  padding-top : 7.2rem;
+  /* padding-top : 1rem; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;
 
 const LandingTemplate = (): JSX.Element => {

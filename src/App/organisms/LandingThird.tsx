@@ -22,6 +22,8 @@ const StyledH2 = styled.h2`
   //   height: 2px
   //   border-bottom : 1px solid #43658B;
   // }
+  font-family: 'Nanum Pen Script', cursive; 
+  font-size : 5rem;
 `;
 
 const RowFlexBoxDiv = styled.div`
