@@ -143,8 +143,8 @@ const MyPageAddDrink = (): JSX.Element => {
       {/* <StyleLabelClick htmlFor="image_uploads">이미지 등록</StyleLabelClick> */}
       <div style={{"backgroundColor": "#efefef", "width":"150px", "height" : "150px"}}>
       </div>
-    {/* <input type="text" id="fileName" className="file_input_textbox" value = {drinkData.drinkImage.name}></input> */}
-     <input type='file' accept="image/*,.pdf" id="imgFile" name="imgFile" onChange={handleChangeFile} />
+    <input type="text" id="fileName" className="file_input_textbox" value = {drinkData.drinkImage.name}></input>
+     <HiddenInput type='file' accept="image/*,.pdf" id="imgFile" name="imgFile" onChange={handleChangeFile} />
        <MainSubmitBtn text={'등록'} submitHandler={addDrinkHandler} />
       </StyleDiv>
     </div>

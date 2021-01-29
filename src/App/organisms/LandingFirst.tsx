@@ -4,27 +4,37 @@ import LandingFirstInfo from '../molecules/LandingFirstInfo';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import first from '../../images/first.png'
-import second from '../../images/second.png'
-import third from '../../images/third.png'
-
-
+import first from '../../images/배너13.jpg'
+import second from '../../images/배너11.jpg'
+import third from '../../images/민재님거2.jpg'
 
 const StyledSlider = styled(Slider)`
     .slick-slide div{
       outline: none; 
       width : 100%;
-      height : 50%;
+      height : 70%;
       // position : absolute;
       position : relative;
       margin : 0px;
     }
 `;
 const StyledImg = styled.img`
-  max-width:100%;
-  max-height:50%;
+  /* max-width: 100%; */
+  /* max-height: 50%; */
+  width: 100%;
+  height: 100%;
+  opacity: 0.8; 
+  filter: contrast(1.35) brightness(80%);
 
 `;
+
+const StyledBlackDiv = styled.div`
+ background-color: black ;
+ width: 100%; 
+ height: 100%; 
+ /* opacity: 0.9; */
+ z-index: 10;
+ `
 
 
 const LandingFirst = (): JSX.Element => {
@@ -36,28 +46,30 @@ const LandingFirst = (): JSX.Element => {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay : true,
-    autoplaySpeed : 2500,
+    autoplaySpeed : 3000,
     pauseOnHover : false,
     adaptiveHeight : true,
+    // variableWidth: true
     // centerMode: true,
     // fade : true,
   };
 
   return (
     <>
+  
       <StyledSlider {...settings}>
-
-        <div>
+  
+        <StyledBlackDiv>
           <StyledImg src={first} alt='first'></StyledImg>
-        </div>
+        </StyledBlackDiv>
 
-        <div>
+        <StyledBlackDiv>
           <StyledImg src={second} alt='second'></StyledImg>
-        </div>
+          </StyledBlackDiv>
 
-        <div>
+        <StyledBlackDiv>
           <StyledImg src={third} alt='third'></StyledImg>
-        </div>
+        </StyledBlackDiv>
 
       </StyledSlider>      
       <LandingFirstInfo />

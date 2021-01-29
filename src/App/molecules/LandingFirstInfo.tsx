@@ -4,13 +4,15 @@ import styled from 'styled-components';
 import LandingBtn from '../atoms/LandingBtn';
 
 
-const StyledH1 = styled.h1`
+const StyledH1 = styled.p`
   color : #F6F5F5;
   padding-bottom : 16px; 
+  font-family: 'Nanum Pen Script', cursive;
+  font-size: 5.6rem;
 `;
 
 const StyledDiv = styled.div`
-  padding-top : 24rem;
+  padding-top : 35rem;
   padding-left : 10rem;
   z-index : 2;
   position : absolute;

@@ -4,8 +4,8 @@ import styled from 'styled-components';
 import logo from '../../images/Logo.png'
 
 const StyledLogo = styled.img`
-  width : 5.8rem;
-  height : 4.4rem;
+  width : 8.2rem;
+  height : 5.8rem;
 `;
 
 
