@@ -1,35 +1,36 @@
-import React from 'react'; 
-import { Link } from 'react-router-dom'; 
+import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import LandingBtn from '../atoms/LandingBtn';
 
-
 const StyledH1 = styled.p`
-  color : #F6F5F5;
-  padding-bottom : 16px; 
+  color: #f6f5f5;
+  padding-bottom: 16px;
   font-family: 'Nanum Pen Script', cursive;
   font-size: 5.6rem;
 `;
 
 const StyledDiv = styled.div`
-  padding-top : 35rem;
-  padding-left : 10rem;
-  z-index : 2;
-  position : absolute;
+  padding-top: 40rem;
+  padding-left: 15rem;
+  position: absolute;
   top: 0px;
-  left : 0px;
+  left: 0px;
 `;
 
 const LandingFirstInfo = (): JSX.Element => {
-
   return (
     <StyledDiv>
-      <StyledH1>전통주도 내 취향에 맞게<br />취향을 빚다</StyledH1>
+      <StyledH1>
+        전통주도 내 취향에 맞게
+        <br />
+        취향을 빚다
+      </StyledH1>
       <Link to="/drinks/list">
-        <LandingBtn  text="전통주 보러가기" />
+        <LandingBtn text="전통주 보러가기" />
       </Link>
     </StyledDiv>
-  )
-}
+  );
+};
 
-export default LandingFirstInfo; 
+export default LandingFirstInfo;

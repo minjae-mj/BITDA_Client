@@ -1,54 +1,51 @@
-import React from 'react'; 
+import React from 'react';
 import styled from 'styled-components';
-import LandingFirstInfo from '../molecules/LandingFirstInfo'; 
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import Slider from "react-slick";
-import first from '../../images/배너13.jpg'
-import second from '../../images/배너11.jpg'
-import third from '../../images/민재님거2.jpg'
+import LandingFirstInfo from '../molecules/LandingFirstInfo';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import Slider from 'react-slick';
+import first from '../../images/배너13.jpg';
+import second from '../../images/배너11.jpg';
+import third from '../../images/민재님거2.jpg';
 
 const StyledSlider = styled(Slider)`
-    .slick-slide div{
-      outline: none; 
-      width : 100%;
-      height : 70%;
-      // position : absolute;
-      position : relative;
-      margin : 0px;
-    }
+  .slick-slide div {
+    outline: none;
+    width: 100%;
+    height: 30%;
+    // position : absolute;
+    position: relative;
+    margin: 0px;
+  }
 `;
 const StyledImg = styled.img`
   /* max-width: 100%; */
   /* max-height: 50%; */
   width: 100%;
-  height: 100%;
-  opacity: 0.8; 
+  height: 85rem;
+  opacity: 0.8;
   filter: contrast(1.35) brightness(80%);
-
 `;
 
 const StyledBlackDiv = styled.div`
- background-color: black ;
- width: 100%; 
- height: 100%; 
- /* opacity: 0.9; */
- z-index: 10;
- `
-
+  background-color: black;
+  width: 100%;
+  height: 100%;
+  /* opacity: 0.9; */
+  z-index: 10;
+`;
 
 const LandingFirst = (): JSX.Element => {
-
   const settings = {
     dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    autoplay : true,
-    autoplaySpeed : 3000,
-    pauseOnHover : false,
-    adaptiveHeight : true,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    pauseOnHover: false,
+    adaptiveHeight: true,
     // variableWidth: true
     // centerMode: true,
     // fade : true,
@@ -56,25 +53,22 @@ const LandingFirst = (): JSX.Element => {
 
   return (
     <>
-  
       <StyledSlider {...settings}>
-  
         <StyledBlackDiv>
-          <StyledImg src={first} alt='first'></StyledImg>
+          <StyledImg src={first} alt="first"></StyledImg>
         </StyledBlackDiv>
 
         <StyledBlackDiv>
-          <StyledImg src={second} alt='second'></StyledImg>
-          </StyledBlackDiv>
-
-        <StyledBlackDiv>
-          <StyledImg src={third} alt='third'></StyledImg>
+          <StyledImg src={second} alt="second"></StyledImg>
         </StyledBlackDiv>
 
-      </StyledSlider>      
+        <StyledBlackDiv>
+          <StyledImg src={third} alt="third"></StyledImg>
+        </StyledBlackDiv>
+      </StyledSlider>
       <LandingFirstInfo />
     </>
-  )
-}
+  );
+};
 
-export default LandingFirst; 
+export default LandingFirst;
