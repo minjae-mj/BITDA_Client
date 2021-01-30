@@ -65,7 +65,7 @@ let Signup = () =>{
     !(email[email.length -1] !== 'm' ||
       email[email.length -2] !== 'o' ||
       email[email.length -3] !== 'c' ||
-      email[email.length -1] !== '.')){
+      email[email.length -4] !== '.')){
       alert('작성하진 이메일이 형식에 맞지 않습니다.')
     }else{
       try { 
