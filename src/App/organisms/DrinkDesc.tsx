@@ -5,6 +5,7 @@ import DrinkDescContainer from '../molecules/DrinkDescContainer';
 import BtnWithEvent from '../atoms/BtnWithEvent';
 import BtnPlain from '../atoms/BtnPlain';
 import server from '../../apis/server';
+import FooterStamp from '../atoms/FooterStamp';
 
 interface Params {
   drinkId: string;
@@ -90,7 +91,10 @@ const DrinkDesc = (): JSX.Element => {
         <StyleImage src={drink.drinkImage} />
         {isLogin && drink.bookmark ? (
           <StyleHeartIcon>
-            <StyleHeart className="fas fa-heart" />
+            {/* <StyleHeart className="fas fa-heart" /> */}
+            <StyleStamp>
+              <FooterStamp />
+            </StyleStamp>
           </StyleHeartIcon>
         ) : (
           ''
@@ -144,7 +148,7 @@ const StyleImage = styled.img`
 const StyleHeartIcon = styled.div`
   position: absolute;
   top: 1.7rem;
-  left: 5.8rem;
+  right: 5.8rem;
 `;
 const StyleDrinkDescBox = styled.div`
   flex-basis: 60%;
@@ -161,7 +165,11 @@ const StyleButtonContainer = styled.div`
 
   // border: 1px solid green;
 `;
-const StyleHeart = styled.i`
-  font-size: 2.8rem; 
-  color: #fcc200; 
+const StyleStamp = styled.div`
+  width: 3rem; 
+  height: 8rem; 
 `
+// const StyleHeart = styled.i`
+//   font-size: 2.8rem; 
+//   color: #fcc200; 
+// `
