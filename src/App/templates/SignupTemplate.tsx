@@ -20,7 +20,8 @@ const LeftRedDiv = styled.div`
   justify-content : space-evenly;
   align-items : flex-end;
 
-  border : 2px solid var(--color-primary);
+  border : 1px solid var(--color-primary);
+  border-right : 0px;
   border-radius : 8px 0px 0px 8px;
   background : var(--color-primary);
   height : 70%;
