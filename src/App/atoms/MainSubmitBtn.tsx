@@ -17,6 +17,10 @@ const StyledBtn = styled.button`
   &:hover {
     background : #4E89AE;
   }
+
+  @media screen and (max-width: 720px) {
+    margin-top : 0rem;
+  }
 `;
 
 const MainSubmitBtn = ({ text, submitHandler }: Props ): JSX.Element => {

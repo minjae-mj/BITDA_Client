@@ -26,6 +26,11 @@ const LeftCardDiv = styled.div`
   border-radius : 8px 0px 0px 8px;
   background: var(--color-white);
   padding : 4.8rem 1.6rem;
+  font-size : 1.6rem;
+
+  @media screen and (max-width: 720px) {
+    font-size : 1.2rem;
+  }
 `;
 const TitleDiv = styled.div`
   font-size : 1.6rem;
@@ -42,6 +47,11 @@ const OauthContainerDiv = styled.div`
       transition: all 200ms ease-in-out;
     }
   }
+  @media screen and (max-width: 720px) {
+    div {
+      margin : 0rem 0.8rem;
+    }
+  }
 `;
 
 const GotoSignup = styled.div`
@@ -51,6 +61,8 @@ const GotoSignup = styled.div`
     transition: all 100ms ease-in-out;
     border-bottom : 1px solid var(--color-primary);
   }
+
+  
 `;
 
 const RightCardDiv = styled.div`
