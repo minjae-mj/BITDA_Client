@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom'
 import styled from 'styled-components'
 
 const StyleDiv = styled.div`
-  flex-basis : 40%;
+  flex-basis : 35%;
   display : flex;
   flex-direction : column;
   justify-content : center;

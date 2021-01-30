@@ -3,6 +3,7 @@ import Signup from '../organisms/Signup';
 import styled from 'styled-components'; 
 import backgroundPic from '../../images/background.png'
 import minjae from '../../images/minjae.png'
+import signupCard from '../../images/signupCard.png'
 
 const SignupContainer = styled.div`
   height : 86vh;
@@ -14,7 +15,7 @@ const SignupContainer = styled.div`
 `;
 
 const LeftRedDiv = styled.div`
-  flex-basis : 40%;
+  flex-basis : 35%;
   display : flex;
   justify-content : space-evenly;
   align-items : flex-end;
@@ -25,34 +26,15 @@ const LeftRedDiv = styled.div`
   height : 70%;
   color : var(--color-white);
   font-size : 3.2rem;
-  // align-items : center;
   position: relative;
+  overflow : hidden;
 `;
 
-const Minjae = styled.img`
-  width : 40%;
-  height : 90%;
-  align-items : flex-end;
-  // position: relative;
-  // top : 1.9rem;
-  // margin-top : 3.8rem;
-  @media screen and (max-width: 700px){
-    width : 30%;
-    height : 80%;
-    transition : all 500ms ease-in-out;
-  }
+const StyledSignupCard = styled.img`
+  width : 100%;
+  height: 100%;
 `;
 
-const WelcomeDiv = styled.div`
-  margin-top : 11rem;
-  margin-bottom : 16rem;
-  @media screen and (max-width: 700px){
-    margin-top : 18rem;
-    margin-bottom : 12rem;
-    font-size : 2.4rem;
-    transition : all 500ms ease-in-out;
-  }
-`;
 
 const SignupTemplate = (): JSX.Element => {
 
@@ -60,10 +42,7 @@ const SignupTemplate = (): JSX.Element => {
     <SignupContainer>
       
       <LeftRedDiv>
-        <Minjae src={minjae} alt='minjae-mj'></Minjae>
-        <WelcomeDiv>
-          WELCOME <br/>to BITDA!
-        </WelcomeDiv>
+        <StyledSignupCard src={signupCard} alt='signup card'></StyledSignupCard>
       </LeftRedDiv>
 
       <Signup />
