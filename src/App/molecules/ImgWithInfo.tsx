@@ -12,13 +12,14 @@ type Props = {
 const StyleDrinkCard = styled.div`
   display: flex;
   flex-direction: column;
-  height: 85%;
+  height: 20em;
 `;
 
 const StyledDrinkImg = styled.img`
   width: 100%;
-  height: 100%;
+  height: 17em;
   border-radius: 6px;
+  transition: all 200ms ease-in-out;
   &:hover {
     opacity: 0.8;
   }
@@ -28,7 +29,7 @@ const StyledDrinkName = styled.span`
   margin-top: 1rem;
   margin-left: 1rem;
   color: #58595b;
-  font-size: 1.6rem;
+  font-size: 100%;
   font-weight: 500;
 `;
 

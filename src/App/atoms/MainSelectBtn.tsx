@@ -9,27 +9,28 @@ interface BtnProps {
   clickHandler: (e: any) => void;
 }
 const StyledButton = styled.button`
-  color: #ee6f57;
+  color: var(--color-primary);
   background-color: #f7f7f7;
   border: 0;
-  border-radius: 6px;
-  border: solid 1px #ee6f57;
-  font-size: 1.5rem;
-  font-weight: 500;
+  border-radius: 50px;
+  border: solid 2px var(--color-primary);
+  font-size: 1.2rem;
+  font-weight: bold;
   padding: 4px 8px;
   outline: none;
   cursor: pointer;
-  width: 10%;
-  height: 4rem;
-  margin: 0.5rem;
+  width: 8rem;
+  height: 8rem;
+  margin: 0.5rem 2.5rem;
+  transition: all 300ms ease-in-out;
   &:hover {
     color: #f6f5f5;
-    background-color: #ee6f57;
+    background-color: var(--color-primary);
   }
 `;
 const ActiveBtn = styled(StyledButton)`
   color: #f6f5f5;
-  background-color: #ee6f57;
+  background-color: var(--color-primary);
 `;
 
 const StyleBtnContainer = styled.div`

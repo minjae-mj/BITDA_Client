@@ -2,17 +2,20 @@ import React from 'react';
 import DrinkListBtn from '../atoms/DrinkListBtn';
 import TagWithBtn from '../molecules/TagWithBtn';
 import styled from 'styled-components';
-
+import test1 from '../../images/background.png';
 const StyleSelectContainer = styled.div`
   padding: 3rem;
   display: flex;
   justify-content: center;
   background-color: #fdf4f4;
+  background: url(${test1}) center no-repeat;
+  //filter: contrast(1.35) brightness(80%);
 `;
 
 const StyleSelectTitle = styled.div`
   padding-bottom: 1rem;
-  font-size: 2rem;
+  margin-top: 2rem;
+  font-size: 2.3rem;
   color: #43658b;
   font-weight: 500;
   border-bottom: solid 1px lightgray;
@@ -25,11 +28,22 @@ const StyleSelectContent = styled.div`
 const StyleDiv = styled.div`
   width: 100%;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
 `;
 
 const StyleButtonArea = styled.div`
   width: 100%;
+  position: relative;
+  left: 24%;
+  @media screen and (max-width: 1500px) {
+    left: 15%;
+  }
+`;
+
+const StyledSubmitBtnArea = styled.div`
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
 `;
 
 interface Props {
@@ -64,23 +78,25 @@ const MainSelectSection = ({
               type={'category'}
             />
             <TagWithBtn
-              title={'희망하시는 가격대는 어떤가요?'}
-              buttonList={priceButtonList}
-              type={'price'}
-            />
-            <TagWithBtn
               title={'평소 내가 좋아하는 맛은?'}
               buttonList={tasteButtonList}
               type={'taste'}
             />
             <TagWithBtn
-              title={'도수는 어떤가요?'}
+              title={'희망하시는 가격대는 어떤가요?'}
+              buttonList={priceButtonList}
+              type={'price'}
+            />
+            <TagWithBtn
+              title={'도수 취향은 어떤가요?'}
               buttonList={alcoholeButtonList}
               type={'alcohol'}
             />
+          </StyleButtonArea>
+          <StyledSubmitBtnArea>
             <DrinkListBtn text={'취향 빚기'} submitHandler={submitHandler} />
             <DrinkListBtn text={'전체 보기'} submitHandler={selectAllHandler} />
-          </StyleButtonArea>
+          </StyledSubmitBtnArea>
         </StyleDiv>
       </StyleSelectContent>
     </StyleSelectContainer>
