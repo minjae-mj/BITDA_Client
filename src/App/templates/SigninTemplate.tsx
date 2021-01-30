@@ -1,7 +1,9 @@
 import React from 'react'; 
 import Signin from '../organisms/Signin'
 import styled from 'styled-components'; 
-import backgroundPic from '../../images/background.png'
+// import backgroundPic from '../../images/background.png'
+
+
 
 const StyleSigninTemplate = styled.div`
   // margin-top: 7.2rem;
@@ -11,9 +13,9 @@ const StyleSigninTemplate = styled.div`
   display : flex;
   justify-content: center;
   align-items : center;
-  background-image: url(${backgroundPic});
+  `
+/* background-image: url(${backgroundPic}); */
 
-`
 const SigninTemplate = (): JSX.Element => {
 
   return (

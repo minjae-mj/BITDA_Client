@@ -4,32 +4,23 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../reducers'; 
 import MainSubmitBtn from '../atoms/MainSubmitBtn'
 import InputsWithBtn from '../molecules/InputsWithBtn'
-// import google from '../../images/google_oauth.png'; 
-// import kakao from '../../images/kakao_oauth.png';
 import google from '../../images/googleimg.png'; 
 import kakao from '../../images/kakaoImg.png';
 import server, { clientURL } from '../../apis/server'; 
 import styled from 'styled-components';
+import signinCard from '../../images/signinCard.png'
 
 interface Info {
   email: string;
   password: string;
 }
 
-interface LoginInfo {
-  data: {
-    admin: number; 
-    accessToken: string;
-  }
-}
-
 const LeftCardDiv = styled.div`
-  flex-basis : 40%;
+  flex-basis : 35%;
   height : 70%;
   display : flex;
   flex-direction : column;
   justify-content : space-between;
-  // justify-content : center;
   align-items: center;
   border : 1px solid var(--color-primary);
   border-radius : 8px 0px 0px 8px;
@@ -39,16 +30,11 @@ const LeftCardDiv = styled.div`
 const TitleDiv = styled.div`
   font-size : 1.6rem;
   color : var(--color-primary);
-  // margin : 3.2rem 0rem 2.4rem 0rem;
-  positon : relative;
-  top : 3rem;
-  left: 0rem;
 `;
 const OauthContainerDiv = styled.div`
   width : 30%;
   display : flex;
   justify-content: space-evenly;
-  // margin-top : 0.4rem;
   img {
     cursor: pointer;
     &:hover{
@@ -69,39 +55,25 @@ const GotoSignup = styled.div`
 
 const RightCardDiv = styled.div`
   display : flex;
-  flex-basis : 40%;
+  flex-basis : 35%;
   flex-direction : column;
   justify-content : center;
   align-items: center;
   background : var(--color-primary);
+  
+  width : 100%;
   height : 70%;
   border : 1px solid var(--color-primary);
   border-radius : 0px 8px 8px 0px;
-  
-  &:hover{
-    div div {
-      transform: scale(1.8);
-      transition: all 200ms ease-in-out;
-      content:"Thank you for your attention!"
-    }
-  }
+  overflow:hidden;
+
 `;
 
-
-const CircleDiv = styled.div`
-  background: var(--color-white);
-  border : 1px solid var(--color-white);
-  border-radius : 50%;
-  height : 90%;
-  width : 75%;
-  display : flex;
-  justify-content : center;
-  align-items : center;
+const StyledSigninCard = styled.img`
+  width : 100%;
+  height : 100%;
 `;
 
-const TitleInCircle = styled.div`
-  color : var(--color-primary);
-`;
 
 let Signin = () =>{
   let history = useHistory();
@@ -213,17 +185,15 @@ let Signin = () =>{
         <MainSubmitBtn submitHandler={submitHandler} text={'로그인하기'}/>
         <div>아직 회원이 아니신가요?</div>
         <Link to='/users/signup'>
-          {/* <MainSubmitBtn text={'회원가입'}/> */}
           <GotoSignup>회원가입 하러가기</GotoSignup>
         </Link>
       </LeftCardDiv>
       <RightCardDiv>
-        <CircleDiv>
-          <TitleInCircle id='welcome'>WELCOME BACK!</TitleInCircle>
-        </CircleDiv>
+        <StyledSigninCard src={signinCard} alt='signin Card'></StyledSigninCard>
       </RightCardDiv>
     </>
   )
 }
 export default Signin ;
+
 
