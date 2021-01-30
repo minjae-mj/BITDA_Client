@@ -6,7 +6,7 @@ import BtnWithEvent from '../atoms/BtnWithEvent';
 import BtnPlain from '../atoms/BtnPlain';
 import server from '../../apis/server';
 import FooterStamp from '../atoms/FooterStamp';
-import LoadingModal from '../molecules/LoadingModal';
+
 interface Params {
   drinkId: string;
 }
@@ -30,7 +30,6 @@ const DrinkDesc = (): JSX.Element => {
   const isLogin = localStorage.getItem('isLogin');
   const accessToken = localStorage.getItem('accessToken');
   const { drinkId }: Params = useParams();
-  const [isLoading, setIsloading] = useState(false);
   const [drink, setDrink] = useState<DrinkInfo>({
     id: '',
     drinkName: '',
@@ -48,22 +47,16 @@ const DrinkDesc = (): JSX.Element => {
 
   useEffect(() => {
     if (accessToken) {
-      setIsloading(true);
       server({
         method: 'get',
         url: `/drinks/detail/${drinkId}`,
         headers: { Authorization: `Bearer ${accessToken}` },
-      })
-        .then((res) => setDrink(res.data))
-        .then(() => setIsloading(false));
+      }).then((res) => setDrink(res.data));
     } else {
-      setIsloading(true);
       server({
         method: 'get',
         url: `/drinks/detail/${drinkId}`,
-      })
-        .then((res) => setDrink(res.data))
-        .then(() => setIsloading(false));
+      }).then((res) => setDrink(res.data));
     }
   }, []);
 
@@ -72,7 +65,7 @@ const DrinkDesc = (): JSX.Element => {
   };
 
   const handleAddBookmark = () => {
-    if (!isLogin) {
+    if (!accessToken) {
       return alert('로그인 해 주세요.');
     }
     server.post(
@@ -94,8 +87,6 @@ const DrinkDesc = (): JSX.Element => {
 
   return (
     <StyleDrinkDesc>
-      {isLoading && <LoadingModal />}
-
       <StyleImageBox>
         <StyleImage src={drink.drinkImage} />
         {isLogin && drink.bookmark ? (
@@ -141,17 +132,16 @@ const StyleDrinkDesc = styled.div`
 `;
 const StyleImageBox = styled.div`
   position: relative;
-  width: 45%;
   height: 50vh;
-  flex-basis: 40%;
+  flex-basis: 35%;
   text-align: center;
-
+  padding-right: 4rem;
   // border: 1px solid var(--color-secondary);
 `;
 const StyleImage = styled.img`
   border: none;
   box-shadow: var(--box-shadow);
-  width: 38rem;
+  width: 100%;
   height: inherit;
 `;
 const StyleHeartIcon = styled.div`
@@ -160,10 +150,9 @@ const StyleHeartIcon = styled.div`
   right: 5.8rem;
 `;
 const StyleDrinkDescBox = styled.div`
-  flex-basis: 60%;
+  flex-basis: 65%;
   display: flex;
   flex-direction: column;
-
   // border: 1px solid red;
 `;
 const StyleButtonContainer = styled.div`
@@ -171,12 +160,12 @@ const StyleButtonContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 0 1.5rem;
-
+  margin-top: 1rem;
   // border: 1px solid green;
 `;
 const StyleStamp = styled.div`
-  width: 3rem;
-  height: 8rem;
+  width: 4rem;
+  height: 9rem;
 `;
 // const StyleHeart = styled.i`
 //   font-size: 2.8rem;
