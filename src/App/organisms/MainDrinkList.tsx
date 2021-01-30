@@ -25,8 +25,8 @@ const StyledDrinkListArea = styled.div`
 
 const StyleDrinkListTitle = styled.div`
   font-size: 1.7rem;
-  color: #43658b;
-  font-weight: 500;
+  color: var(--color-primary);
+  font-weight: bold;
   padding: 0.5rem;
   border-bottom: solid 1px lightgray;
   margin-left: 1rem;
