@@ -10,7 +10,8 @@ const StyleSelectContainer = styled.div`
   display: flex;
   justify-content: center;
   background-color: #fdf4f4;
-  //background: url(${test1}) center no-repeat;
+  background: url(${test1}) no-repeat;
+  background-size: 100%;
   //filter: contrast(1.35) brightness(80%);
 `;
 
