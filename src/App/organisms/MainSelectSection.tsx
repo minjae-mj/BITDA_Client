@@ -3,20 +3,22 @@ import DrinkListBtn from '../atoms/DrinkListBtn';
 import TagWithBtn from '../molecules/TagWithBtn';
 import styled from 'styled-components';
 import test1 from '../../images/background.png';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../reducers';
 const StyleSelectContainer = styled.div`
   padding: 3rem;
   display: flex;
   justify-content: center;
   background-color: #fdf4f4;
-  background: url(${test1}) center no-repeat;
+  //background: url(${test1}) center no-repeat;
   //filter: contrast(1.35) brightness(80%);
 `;
 
 const StyleSelectTitle = styled.div`
   padding-bottom: 1rem;
-  margin-top: 2rem;
+  margin: 2rem 0;
   font-size: 2.3rem;
-  color: #43658b;
+  color: var(--color-primary);
   font-weight: 500;
   border-bottom: solid 1px lightgray;
 `;
@@ -65,11 +67,16 @@ const MainSelectSection = ({
   ];
   let tasteButtonList = ['달콤함', '탄산감', '바디감', '고소함', '깔끔함'];
   let alcoholeButtonList = ['약한편', '있는편'];
-
+  const accessToken = localStorage.getItem('accessToken');
+  const state = useSelector(
+    (state: RootState) => state.signinReducer.user.userName
+  );
   return (
     <StyleSelectContainer>
       <StyleSelectContent>
-        <StyleSelectTitle>여러분의 취향을 선택해주세요!</StyleSelectTitle>
+        <StyleSelectTitle>
+          {accessToken ? `${state}님` : `여러분`}의 취향을 선택해주세요!
+        </StyleSelectTitle>
         <StyleDiv>
           <StyleButtonArea>
             <TagWithBtn

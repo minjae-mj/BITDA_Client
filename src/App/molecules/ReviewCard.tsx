@@ -42,6 +42,12 @@ const ReviewCard = ({ drinkId, review }: Props) => {
 
   return (
     <StyleReviewCard>
+      <StyleRating>
+        <span style={{ marginRight: '3px' }}>
+          <StarIcon fill="#ffdb58" />
+        </span>
+        <span>{rating}</span>
+      </StyleRating>
       <StyleUser>
         <StyleUserImage>
           <div>
@@ -55,12 +61,6 @@ const ReviewCard = ({ drinkId, review }: Props) => {
           </div>
           <span>{userName}</span>
         </StyleUserImage>
-        <StyleRating>
-          <span style={{ marginRight: '3px' }}>
-            <StarIcon fill="#ffdb58" />
-          </span>
-          <span>{rating}</span>
-        </StyleRating>
       </StyleUser>
       <StyleText>{text}</StyleText>
       {state.user.id === user.id ? (
@@ -113,12 +113,13 @@ const StyleUserImage = styled.div`
 `;
 const StyleRating = styled.div`
   position: absolute;
-  top: 1px;
-  right: 7px;
+  top: 2.5rem;
+  right: 1.3rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-
+  font-size: 1.5rem;
+  color: #808080;
   // border: 1px solid blue;
 `;
 const StyleRemoveBtn = styled.span`

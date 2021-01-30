@@ -34,6 +34,10 @@ const ReviewInput = ({ drinkId }: Props) => {
     if (!accessToken) {
       alert('로그인 해 주세요.');
     } else {
+      if (!reviewText.length) {
+        alert('리뷰 내용을 입력해주세요.');
+        return;
+      }
       const review = await server.post(
         '/reviews/add',
         {
@@ -43,7 +47,7 @@ const ReviewInput = ({ drinkId }: Props) => {
         },
         { headers: { Authorization: `Bearer ${accessToken}` } }
       );
-
+      setReviewText('');
       const reviewList = await server.get(`/reviews/list/${drinkId}`);
       const { data }: any = reviewList;
       dispatch(updateReviews(data.reviews));

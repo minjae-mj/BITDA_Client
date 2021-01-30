@@ -6,6 +6,7 @@ import BtnWithEvent from '../atoms/BtnWithEvent';
 import BtnPlain from '../atoms/BtnPlain';
 import server from '../../apis/server';
 import FooterStamp from '../atoms/FooterStamp';
+import LoadingModal from '../molecules/LoadingModal';
 
 interface Params {
   drinkId: string;
@@ -29,6 +30,7 @@ interface DrinkInfo {
 const DrinkDesc = (): JSX.Element => {
   const isLogin = localStorage.getItem('isLogin');
   const accessToken = localStorage.getItem('accessToken');
+  const [isLoading, setIsLoading] = useState(false);
   const { drinkId }: Params = useParams();
   const [drink, setDrink] = useState<DrinkInfo>({
     id: '',
@@ -47,16 +49,26 @@ const DrinkDesc = (): JSX.Element => {
 
   useEffect(() => {
     if (accessToken) {
+      setIsLoading(true);
       server({
         method: 'get',
         url: `/drinks/detail/${drinkId}`,
         headers: { Authorization: `Bearer ${accessToken}` },
-      }).then((res) => setDrink(res.data));
+      })
+        .then((res) => setDrink(res.data))
+        .then(() => {
+          setIsLoading(false);
+        });
     } else {
+      setIsLoading(true);
       server({
         method: 'get',
         url: `/drinks/detail/${drinkId}`,
-      }).then((res) => setDrink(res.data));
+      })
+        .then((res) => setDrink(res.data))
+        .then(() => {
+          setIsLoading(false);
+        });
     }
   }, []);
 
@@ -87,6 +99,7 @@ const DrinkDesc = (): JSX.Element => {
 
   return (
     <StyleDrinkDesc>
+      {isLoading && <LoadingModal />}
       <StyleImageBox>
         <StyleImage src={drink.drinkImage} />
         {isLogin && drink.bookmark ? (
@@ -127,8 +140,6 @@ const StyleDrinkDesc = styled.div`
   display: flex;
   width: 80%;
   margin: 2rem auto;
-
-  // border: 1px solid black;
 `;
 const StyleImageBox = styled.div`
   position: relative;
@@ -136,7 +147,6 @@ const StyleImageBox = styled.div`
   flex-basis: 35%;
   text-align: center;
   padding-right: 4rem;
-  // border: 1px solid var(--color-secondary);
 `;
 const StyleImage = styled.img`
   border: none;
@@ -153,7 +163,6 @@ const StyleDrinkDescBox = styled.div`
   flex-basis: 65%;
   display: flex;
   flex-direction: column;
-  // border: 1px solid red;
 `;
 const StyleButtonContainer = styled.div`
   display: flex;
@@ -161,13 +170,8 @@ const StyleButtonContainer = styled.div`
   justify-content: space-between;
   padding: 0 1.5rem;
   margin-top: 1rem;
-  // border: 1px solid green;
 `;
 const StyleStamp = styled.div`
   width: 4rem;
   height: 9rem;
 `;
-// const StyleHeart = styled.i`
-//   font-size: 2.8rem;
-//   color: #fcc200;
-// `
