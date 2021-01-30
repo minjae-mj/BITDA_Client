@@ -17,6 +17,11 @@ const StyledBtn = styled.button`
   margin-right: 1rem;
   font-size: 2rem;
   font-weight: bold;
+  transition: all 300ms ease-in-out;
+  &:hover {
+    background: #4e89ae;
+    border: 1px solid #4e89ae;
+  }
 `;
 
 const DrinkListBtn = ({ text, submitHandler }: Props): JSX.Element => {
