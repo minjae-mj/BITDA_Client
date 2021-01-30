@@ -12,16 +12,22 @@ type Props = {
 const StyleDrinkCard = styled.div`
   display: flex;
   flex-direction: column;
-  height: 20em;
+  height: 21em;
+  @media screen and (max-width: 1500px) {
+    height: 20em;
+  }
 `;
 
 const StyledDrinkImg = styled.img`
   width: 100%;
-  height: 17em;
+  height: 18em;
   border-radius: 6px;
   transition: all 200ms ease-in-out;
   &:hover {
     opacity: 0.8;
+  }
+  @media screen and (max-width: 1500px) {
+    height: 14em;
   }
 `;
 
@@ -29,8 +35,11 @@ const StyledDrinkName = styled.span`
   margin-top: 1rem;
   margin-left: 1rem;
   color: #58595b;
-  font-size: 100%;
-  font-weight: 500;
+  font-size: 1.5rem;
+  font-weight: bold;
+  @media screen and (max-width: 1500px) {
+    font-size: 1.2rem;
+  }
 `;
 
 const StyledDrinkAlcohol = styled.span`
