@@ -11,10 +11,12 @@ const StyledBtn = styled.button`
   border: 1px solid #a4caed;
   border-radius: 4px;
   color: var(--color-white);
-  width: 10%;
-  height: 4rem;
+  width: 15rem;
+  height: 4.5rem;
   margin-top: 1.6rem;
   margin-right: 1rem;
+  font-size: 2rem;
+  font-weight: bold;
 `;
 
 const DrinkListBtn = ({ text, submitHandler }: Props): JSX.Element => {

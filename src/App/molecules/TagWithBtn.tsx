@@ -7,13 +7,14 @@ import styled from 'styled-components';
 
 const StyleTagContainer = styled.div`
   margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
 `;
 
 const StyleSelectText = styled.span`
   font-size: 1.5rem;
   font-weight: 500;
   color: #58595b;
-  margin-bottom: 5rem;
 `;
 
 type Props = {
