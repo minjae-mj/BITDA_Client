@@ -24,9 +24,14 @@ const BookmarkCard = ({ bookmark }: Props): JSX.Element => {
   const onMouseEnter = () => setHover(true); 
   const onMouseLeave = () => setHover(false); 
 
-  const handleRemoveBookmark = () => {
-    server.post('/drinks/unlike',{ drinkId: drink.id }, { headers: { Authorization: `Bearer ${accessToken}`}}); 
-    window.location.reload();
+  const handleRemoveBookmark = async () => {
+    try{
+      let removeBookmark = await server.post('/drinks/unlike',{ drinkId: drink.id }, { headers: { Authorization: `Bearer ${accessToken}`}})
+      .then(()=> window.location.reload())
+    }catch(err){
+      console.log(err)
+    }
+    
   }
 
   return (
