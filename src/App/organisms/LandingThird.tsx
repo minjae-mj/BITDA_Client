@@ -20,9 +20,9 @@ const StyledH2 = styled.h2`
   font-family: 'Nanum Pen Script', cursive;
   font-size: 5rem;
   @media screen and (max-width: 546px) {
-    padding-top : 5rem;
+    padding-top: 5rem;
     margin-bottom: 3.2rem;
-    font-size : 3.8rem;
+    font-size: 3.8rem;
   }
 `;
 
@@ -31,8 +31,9 @@ const RowFlexBoxDiv = styled.div`
   justify-content: space-between;
   font-family: 'Nanum Pen Script', cursive;
   margin-bottom: 40px;
+  transition: transform 0.7s, opacity 1s;
   @media screen and (max-width: 1200px) {
-    justify-content : center;
+    justify-content: center;
   }
   @media screen and (max-width: 546px) {
     flex-direction: column;
@@ -53,17 +54,17 @@ const ColumnFlexBox = styled.div`
   }
   @media screen and (max-width: 1000px) {
     margin: 0px 8px;
-    width : 25rem;
+    width: 25rem;
   }
-  
+
   @media screen and (max-width: 820px) {
     margin: 0px 8px;
-    width : 20rem;
+    width: 20rem;
   }
 
   @media screen and (max-width: 546px) {
     margin: 6px 0px;
-    width : 25rem;
+    width: 25rem;
   }
 `;
 
@@ -90,11 +91,32 @@ const LandingThird = (): JSX.Element => {
     lineHeight: 1.6,
   };
 
+  const isElementUnderBottom = (elem: any, triggerDiff: any) => {
+    const { top } = elem.getBoundingClientRect();
+    const { innerHeight } = window;
+    return top > innerHeight + (triggerDiff || 0);
+  };
+
+  const handleScroll = () => {
+    const elems = document.querySelectorAll('.up-on-scroll');
+    elems.forEach((elem: any) => {
+      if (isElementUnderBottom(elem, -200)) {
+        elem.style.opacity = '0';
+        elem.style.transform = 'translateY(100px)';
+      } else {
+        elem.style.opacity = '1';
+        elem.style.transform = 'translateY(0px)';
+      }
+    });
+  };
+
+  window.addEventListener('scroll', handleScroll);
+
   return (
     <>
       <StyledH2>빚다에서 무엇을 할 수 있나요?</StyledH2>
 
-      <RowFlexBoxDiv>
+      <RowFlexBoxDiv className="up-on-scroll">
         {card.map((info) => (
           <ColumnFlexBox key={info.desc}>
             <ImageWithText info={info} css={styleImg} />

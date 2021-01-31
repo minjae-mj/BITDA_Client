@@ -95,12 +95,16 @@ const StyleUser = styled.div`
   font-size: 1.4rem;
   margin-top: 2rem;
   margin-bottom: 2.5rem;
+  font-family: 'sans-serif';
+  color: #58595b;
 
   // border: 1px solid green;
 `;
 const StyleText = styled.p`
   margin-top: 2rem;
   font-size: 1.6rem;
+  font-family: 'sans-serif';
+  color: #58595b;
   @media screen and (max-width: 1500px) {
     font-size: 1.4rem;
   }

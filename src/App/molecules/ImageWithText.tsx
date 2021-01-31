@@ -29,6 +29,7 @@ const StyledDiv = styled.div`
   flex-direction: column;
   flex-basis: 50%;
   padding: 16px 16px;
+  transition: transform 0.7s, opacity 1s;
 `;
 const StyledPictureDiv = styled.div`
   flex-basis: 50%;
@@ -42,15 +43,13 @@ const StyledPictureDiv = styled.div`
 const StyledImage = styled.img`
   width: ${(props: any) => props.width || '50rem'};
   height: ${(props: any) => props.height || '60rem'};
-
-
-
+  transition: transform 0.7s, opacity 1s;
   @media screen and (max-width: 1200px) {
     width: ${(props: any) => props.width || '30rem'};
     height: ${(props: any) => props.height || '40rem'};
 
-    display : flex;
-    justify-content : center;
+    display: flex;
+    justify-content: center;
   }
 `;
 const StyledP = styled.p`
@@ -59,6 +58,7 @@ const StyledP = styled.p`
   padding: 0rem 2.4rem;
   margin-bottom: 2rem;
   font-weight: 700;
+
   line-height: ${(props: CssProps) => props.lineHeight || 2};
   @media screen and (max-width: 546px) {
     font-size: 1.8rem;
@@ -66,9 +66,30 @@ const StyledP = styled.p`
 `;
 
 const ImageWithText = ({ info, css }: ImageWithTextProps): JSX.Element => {
+  const isElementUnderBottom = (elem: any, triggerDiff: any) => {
+    const { top } = elem.getBoundingClientRect();
+    const { innerHeight } = window;
+    return top > innerHeight + (triggerDiff || 0);
+  };
+
+  const handleScroll = () => {
+    const elems = document.querySelectorAll('.up-on-scroll');
+    elems.forEach((elem: any) => {
+      if (isElementUnderBottom(elem, -20)) {
+        elem.style.opacity = '0';
+        elem.style.transform = 'translateY(100px)';
+      } else {
+        elem.style.opacity = '1';
+        elem.style.transform = 'translateY(0px)';
+      }
+    });
+  };
+
+  window.addEventListener('scroll', handleScroll);
+
   return (
     <>
-      <StyledDiv>
+      <StyledDiv className="up-on-scroll">
         <StyledP size={css?.size} lineHeight={css?.lineHeight}>
           {info.desc}
         </StyledP>
@@ -80,6 +101,7 @@ const ImageWithText = ({ info, css }: ImageWithTextProps): JSX.Element => {
           alt="imgs"
           height={css?.height}
           width={css?.width}
+          className="up-on-scroll"
         />
       </StyledPictureDiv>
     </>

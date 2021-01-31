@@ -1,13 +1,17 @@
-import React from 'react'; 
-import { Switch, Link, Route} from 'react-router-dom';
-import MyPageBookmark from './MyPageBookmark'; 
-import MyPageProfile from './MyPageProfile'; 
-import MyPageAddDrink from './MyPageAddDrink'; 
-import styled from 'styled-components'; 
+import React from 'react';
+import { Switch, Link, Route } from 'react-router-dom';
+import MyPageBookmark from './MyPageBookmark';
+import MyPageProfile from './MyPageProfile';
+import MyPageAddDrink from './MyPageAddDrink';
+import styled from 'styled-components';
 import BtnWithEventBlue from '../atoms/BtnWithEventBlue';
-
+import { useSelector } from 'react-redux';
+import { RootState } from '../../reducers';
 const MyPage = (): JSX.Element => {
-  
+  const state = useSelector(
+    (state: RootState) => state.signinReducer.user.admin
+  );
+
   return (
     <StyleMyPage>
       <StyleMyPageSidebar>
@@ -17,15 +21,19 @@ const MyPage = (): JSX.Element => {
         <Link to="/users/mypage/profile">
           <BtnWithEventBlue value="myProfile" text="프로필 수정" />
         </Link>
-        <Link to="/users/mypage/addDrink">
-          <BtnWithEventBlue value="addDrink" text="전통주 등록" />
-        </Link>
+        {state ? (
+          <Link to="/users/mypage/addDrink">
+            <BtnWithEventBlue value="addDrink" text="전통주 등록" />
+          </Link>
+        ) : (
+          ''
+        )}
       </StyleMyPageSidebar>
 
       <StyleMyPageContent>
         <Switch>
           <Route exact path="/users/mypage">
-              <MyPageBookmark />
+            <MyPageBookmark />
           </Route>
           <Route exact path="/users/mypage/bookmark">
             <MyPageBookmark />
@@ -39,26 +47,26 @@ const MyPage = (): JSX.Element => {
         </Switch>
       </StyleMyPageContent>
     </StyleMyPage>
-  )
-}
+  );
+};
 
-export default MyPage; 
+export default MyPage;
 
 const StyleMyPage = styled.div`
-  height: 100vh; 
-  display: flex; 
-`
+  height: 100vh;
+  display: flex;
+`;
 const StyleMyPageSidebar = styled.div`
-  display: flex; 
-  flex-direction: column; 
-  justify-content: start; 
-  align-items: center; 
-  padding-top: 3rem; 
-  flex-basis: 12%; 
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  padding-top: 3rem;
+  flex-basis: 12%;
 
-  background-color: var(--color-secondary);  
-`
+  background-color: var(--color-secondary);
+`;
 const StyleMyPageContent = styled.div`
-  flex-basis: 88%;  
-  padding: 5rem 9rem; 
-`
+  flex-basis: 88%;
+  padding: 5rem 9rem;
+`;

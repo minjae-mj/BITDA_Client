@@ -11,7 +11,8 @@ const StyleSelectContainer = styled.div`
   justify-content: center;
   background-color: #fdf4f4;
   background: url(${test1}) no-repeat;
-  background-size: 100%;
+  background-size: 100% 100%;
+
   //filter: contrast(1.35) brightness(80%);
 `;
 
@@ -20,8 +21,11 @@ const StyleSelectTitle = styled.div`
   margin: 2rem 0;
   font-size: 2.3rem;
   color: var(--color-primary);
-  font-weight: 500;
+  font-weight: bold;
   border-bottom: solid 1px lightgray;
+  @media screen and (max-width: 1440px) {
+    font-size: 2rem;
+  }
 `;
 
 const StyleSelectContent = styled.div`
@@ -40,6 +44,9 @@ const StyleButtonArea = styled.div`
   left: 24%;
   @media screen and (max-width: 1500px) {
     left: 15%;
+  }
+  @media screen and (max-width: 1440px) {
+    left: 18%;
   }
 `;
 
