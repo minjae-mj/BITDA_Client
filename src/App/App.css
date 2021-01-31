@@ -1,0 +1,55 @@
+:root {
+  --color-primary: #ed6663;
+  --color-secondary: #a4caed;
+  --color-white: #fafafa;
+  --color-darkblue: #43658b;
+  --box-shadow: 3px 2px 7px #d3d3d3;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%; /* 1rem = 10px, 10px/16px = 62.5% */
+}
+
+body {
+  font-family: 'Noto Serif KR', serif;
+  /* 'Nanum Pen Script', cursive; */
+  background-color: #fafafa;
+  font-weight: 400;
+  /* line-height: 1.6; */
+
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-size: 2rem;
+
+  min-height: 100vh;
+}
+
+ul {
+  list-style: none;
+}
+
+button {
+  cursor: pointer;
+  outline: none;
+}
+
+button:focus {
+  outline: none;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
