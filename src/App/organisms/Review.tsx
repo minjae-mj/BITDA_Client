@@ -35,7 +35,6 @@ const Review = () => {
 
   window.addEventListener('resize', () => {
     let width = document.body.clientWidth;
-    //setWindowX(width);
     if (width < 1440) {
       setReviewLength(3);
     } else if (width > 1440) {
@@ -108,8 +107,6 @@ const StyleReview = styled.div`
   flex-direction: column;
   width: 80%;
   margin: 10rem auto;
-
-  // border: 1px solid green;
 `;
 const StyleText = styled.p`
   font-size: 2rem;
@@ -133,6 +130,4 @@ const StyleNoReivew = styled.div`
   font-size: 1.8rem;
   color: var(--color-primary);
   text-align: center;
-
-  // border: 1px solid black;
 `;

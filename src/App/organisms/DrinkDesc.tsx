@@ -104,7 +104,6 @@ const DrinkDesc = (): JSX.Element => {
         <StyleImage src={drink.drinkImage} />
         {isLogin && drink.bookmark ? (
           <StyleHeartIcon>
-            {/* <StyleHeart className="fas fa-heart" /> */}
             <StyleStamp>
               <FooterStamp />
             </StyleStamp>

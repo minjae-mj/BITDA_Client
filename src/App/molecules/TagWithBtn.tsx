@@ -1,6 +1,5 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import { RootState } from '../../reducers';
 import { updateTypes } from '../../actions';
 import MainSelectBtn from '../atoms/MainSelectBtn';
 import styled from 'styled-components';
@@ -30,7 +29,7 @@ const TagWithBtn = ({ title, buttonList, type }: Props): JSX.Element => {
   const dispatch = useDispatch();
 
   let clickHandler = (e: any): void => {
-    let target = e.target.innerText; // 1만원 이하... 등등
+    let target = e.target.innerText; 
 
     if (state[type] === target) {
       dispatch(updateTypes(type, ''));

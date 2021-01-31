@@ -102,9 +102,6 @@ let Signin = () => {
 
   const [errorMessage, setErrorMessage] = useState('');
 
-  const state = useSelector((state: RootState) => state.signinReducer);
-  const dispatch = useDispatch();
-
   let inputInfo = [
     { placeholder: '이메일', type: 'email' },
     { placeholder: '비밀번호', type: 'password' },
@@ -115,7 +112,6 @@ let Signin = () => {
     let type = e.target.dataset.type;
 
     setInfo({ ...info, [type]: target });
-    console.log(info);
   };
 
   const submitHandler = async () => {
@@ -136,7 +132,6 @@ let Signin = () => {
           )
           .then((res) => {
             const { data } = res;
-            // dispatch(signIn(data.admin, data.accessToken));
             localStorage.setItem('isLogin', JSON.stringify(true));
             localStorage.setItem('accessToken', data.accessToken);
             localStorage.setItem('oauth', 'local');
@@ -149,7 +144,6 @@ let Signin = () => {
     }
   };
 
-  // Kakao Oauth 관련
   const redirectUrl: string = `${clientURL}/users/signin`;
   const clientIDForKakao: string = 'a58db4c46f3113c111f06599a69d529b';
   const KAKAO_LOGIN_URL: string = `https://kauth.kakao.com/oauth/authorize?client_id=${clientIDForKakao}&redirect_uri=${redirectUrl}&response_type=code`;
@@ -159,7 +153,6 @@ let Signin = () => {
     localStorage.setItem('oauth', 'kakao');
   };
 
-  // Google Oauth 관련
   const clientIDForGoogle: string =
     '161712089232-v1udttltgin8n37iou92c03qrckdrvkv.apps.googleusercontent.com';
   const GOOGLE_LOGIN_URL: string = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${clientIDForGoogle}&redirect_uri=${redirectUrl}&response_type=code&scope=https://www.googleapis.com/auth/userinfo.email+https://www.googleapis.com/auth/userinfo.profile`;
@@ -187,13 +180,11 @@ let Signin = () => {
         res = await server.post(`/users/google`, { authorizationCode });
       }
       const { data } = res;
-      // dispatch(signIn(data.admin, data.accessToken));
       localStorage.setItem('isLogin', JSON.stringify(true));
       localStorage.setItem('accessToken', data.accessToken);
       history.push('/');
       window.location.reload();
     } catch (err) {
-      console.log('소셜로그인 에러');
       console.log(err);
     }
   };

@@ -60,16 +60,12 @@ export default DrinkDescContainer;
 const StyleDrinkDescContainer = styled.div`
   flex-basis: 88%;
   padding: 0 1.5rem;
-
-  // background-color: yellow;
 `;
 const StyleTabContainer = styled.div`
   display: flex;
   height: 4rem;
   font-size: 1.6rem;
   cursor: pointer;
-
-  // background-color: lightblue;
 `;
 const StyleTab = styled.span`
   outline: none;

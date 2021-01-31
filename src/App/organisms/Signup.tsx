@@ -20,7 +20,6 @@ const StyleDiv = styled.div`
 const TitleDiv = styled.div`
   font-size: 1.6rem;
   color: var(--color-primary);
-  // margin : 3.2rem 0rem 2.4rem 0rem;
   positon: relative;
   top: 3rem;
   left: 0rem;
@@ -87,7 +86,6 @@ let Signup = () => {
         let sendUserInfo = await server.post(
           '/users/signup',
           { userName, email, password }
-          // { headers: { "Content-Type": "application/json" }, withCredentials: true }
         );
         localStorage.setItem('oauth', 'local');
         alert('정상적으로 회원가입 되었습니다.');

@@ -1,8 +1,6 @@
 import React from 'react'; 
 import Signup from '../organisms/Signup';
 import styled from 'styled-components'; 
-// import backgroundPic from '../../images/background.png'
-// import minjae from '../../images/minjae.png'
 import signupCard from '../../images/signupCard.png'
 
 const SignupContainer = styled.div`
@@ -12,7 +10,7 @@ const SignupContainer = styled.div`
   justify-content : center;
   align-items : center;
   `;
-  /* background-image: url(${backgroundPic}); */
+
 
 const LeftRedDiv = styled.div`
   flex-basis : 35%;

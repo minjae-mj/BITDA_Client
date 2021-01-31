@@ -12,8 +12,6 @@ const StyleSelectContainer = styled.div`
   background-color: #fdf4f4;
   background: url(${test1}) no-repeat;
   background-size: 100% 100%;
-
-  //filter: contrast(1.35) brightness(80%);
 `;
 
 const StyleSelectTitle = styled.div`

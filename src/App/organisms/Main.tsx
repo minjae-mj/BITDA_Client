@@ -78,7 +78,7 @@ const Main = (): JSX.Element => {
               setDrinkList(drinkList.concat(data));
             }
           } catch (error) {
-            console.log('no more');
+            console.log(error);
           }
         } else {
           try {
@@ -99,7 +99,7 @@ const Main = (): JSX.Element => {
               setDrinkList(drinkList.concat(data));
             }
           } catch (error) {
-            console.log('no more');
+            console.log(error);
           }
         }
       }

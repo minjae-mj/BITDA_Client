@@ -56,7 +56,7 @@ const ReviewCard = ({ drinkId, review }: Props) => {
               src={userImage}
               width="65px"
               height="65px"
-              alt="user image"
+              alt="user_image"
             />
           </div>
           <span>{userName}</span>
@@ -97,8 +97,6 @@ const StyleUser = styled.div`
   margin-bottom: 2.5rem;
   font-family: 'sans-serif';
   color: #58595b;
-
-  // border: 1px solid green;
 `;
 const StyleText = styled.p`
   margin-top: 2rem;
@@ -112,8 +110,6 @@ const StyleText = styled.p`
 const StyleUserImage = styled.div`
   display: flex;
   align-items: center;
-
-  // border: 1px solid green;
 `;
 const StyleRating = styled.div`
   position: absolute;
@@ -124,7 +120,6 @@ const StyleRating = styled.div`
   justify-content: space-between;
   font-size: 1.5rem;
   color: #808080;
-  // border: 1px solid blue;
 `;
 const StyleRemoveBtn = styled.span`
   position: absolute;
