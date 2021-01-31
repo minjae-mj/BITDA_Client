@@ -13,8 +13,11 @@ const StyleTagContainer = styled.div`
 
 const StyleSelectText = styled.span`
   font-size: 1.8rem;
-  font-weight: bold;
-  color: var(--color-darkblue);
+  font-weight: 500;
+  color: #58595b;
+  @media screen and (max-width: 1440px) {
+    font-size: 1.5rem;
+  }
 `;
 
 type Props = {

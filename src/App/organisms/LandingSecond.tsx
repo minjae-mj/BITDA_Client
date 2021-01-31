@@ -23,11 +23,10 @@ const StyledH2 = styled.h2`
   margin-bottom: 64px;
   font-family: 'Nanum Pen Script', cursive;
   font-size: 5rem;
-  
+
   @media screen and (max-width: 546px) {
-    font-size : 3.8rem;
+    font-size: 3.8rem;
     margin-bottom: 24px;
-    
   }
 `;
 
@@ -37,17 +36,18 @@ const FlexBoxDiv = styled.div`
   padding-left: 40px;
 
   @media screen and (max-width: 935px) {
-    display : flex;
-    flex-direction : column-reverse;
+    display: flex;
+    flex-direction: column-reverse;
     padding-left: 0px;
   }
 `;
 const ReversedFlexBoxDiv = styled.div`
   display: flex;
   flex-direction: row-reverse;
+
   @media screen and (max-width: 935px) {
-    display : flex;
-    flex-direction : column-reverse;
+    display: flex;
+    flex-direction: column-reverse;
   }
 `;
 
@@ -77,10 +77,10 @@ const LandingSecond = (): JSX.Element => {
   return (
     <div>
       <StyledH2> 1000가지의 전통주를 전부 마시기엔 인생이 너무 짧다! </StyledH2>
-      <FlexBoxDiv>
+      <FlexBoxDiv className="up-on-scroll">
         <ImageWithText info={info.first} />
       </FlexBoxDiv>
-      <ReversedFlexBoxDiv>
+      <ReversedFlexBoxDiv className="up-on-scroll">
         <ImageWithText info={info.second} />
       </ReversedFlexBoxDiv>
     </div>

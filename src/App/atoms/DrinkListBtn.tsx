@@ -22,6 +22,11 @@ const StyledBtn = styled.button`
     background: #4e89ae;
     border: 1px solid #4e89ae;
   }
+  @media screen and (max-width: 1440px) {
+    font-size: 1.5rem;
+    width: 12rem;
+    height: 3.5rem;
+  }
 `;
 
 const DrinkListBtn = ({ text, submitHandler }: Props): JSX.Element => {

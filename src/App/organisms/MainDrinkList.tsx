@@ -2,7 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import ImgWithInfo from '../molecules/ImgWithInfo';
 import { Link } from 'react-router-dom';
-
+import { useSelector } from 'react-redux';
+import { RootState } from '../../reducers';
 interface Props {
   isFiltered: boolean;
   drinkList: {
@@ -49,24 +50,48 @@ const StyledDrinkItem = styled.li`
   }
 `;
 
+const StyledEmptyList = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30rem;
+  color: #58595b;
+  text-align: center;
+  line-height: 2;
+`;
+
 let MainDrinkList = ({ drinkList, isFiltered }: Props): JSX.Element => {
+  const accessToken = localStorage.getItem('accessToken');
+  const state = useSelector(
+    (state: RootState) => state.signinReducer.user.userName
+  );
+
   return (
     <StyleDrinkListContent>
       <StyledDrinkListArea>
         <StyleDrinkListTitle>
           {isFiltered ? '내 취향 전통주' : '모든 전통주'}
         </StyleDrinkListTitle>
-        <StyledDrinkList>
-          {drinkList.map(
-            (drink): JSX.Element => (
-              <StyledDrinkItem key={drink.id}>
-                <Link to={`/drinks/detail/${drink.id}`}>
-                  <ImgWithInfo info={drink} />
-                </Link>
-              </StyledDrinkItem>
-            )
-          )}
-        </StyledDrinkList>
+        {drinkList.length ? (
+          <StyledDrinkList>
+            {drinkList.map(
+              (drink): JSX.Element => (
+                <StyledDrinkItem key={drink.id}>
+                  <Link to={`/drinks/detail/${drink.id}`}>
+                    <ImgWithInfo info={drink} />
+                  </Link>
+                </StyledDrinkItem>
+              )
+            )}
+          </StyledDrinkList>
+        ) : (
+          <StyledEmptyList>
+            {accessToken ? `${state}님` : `여러분`}의 취향에 알맞는 전통주를
+            찾지 못하였습니다.
+            <br />
+            더욱 더 발전하는 빚다가 되겠습니다.
+          </StyledEmptyList>
+        )}
       </StyledDrinkListArea>
     </StyleDrinkListContent>
   );

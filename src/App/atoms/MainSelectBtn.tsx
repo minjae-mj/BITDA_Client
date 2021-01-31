@@ -27,6 +27,11 @@ const StyledButton = styled.button`
     color: #f6f5f5;
     background-color: var(--color-primary);
   }
+  @media screen and (max-width: 1440px) {
+    font-size: 1rem;
+    width: 7rem;
+    height: 7rem;
+  }
 `;
 const ActiveBtn = styled(StyledButton)`
   color: #f6f5f5;
