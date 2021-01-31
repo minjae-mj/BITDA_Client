@@ -28,7 +28,7 @@ const RatingIcon = (props: Props) => {
       onMouseEnter={() => onMouseEnter(index)}
       onMouseLeave={() => onMouseLeave()}
       onClick={() => onSaveRating(index)}>
-       <StarIcon fill={fill} />
+      <StarIcon fill={fill} />
     </div>
   )
 }

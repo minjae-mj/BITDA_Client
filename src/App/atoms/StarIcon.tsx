@@ -8,9 +8,9 @@ interface Props {
 const StarIcon = ({ fill = "#dcdcdc" }: Props) => {
 
   return (
-   <div>
-     <StarSvg style={{ marginRight: '3px' }}fill={fill} />
-   </div>
+  <div>
+    <StarSvg style={{ marginRight: '3px' }}fill={fill} />
+  </div>
   )
 }
 

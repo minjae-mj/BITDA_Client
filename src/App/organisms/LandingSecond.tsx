@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import ImageWithText from '../molecules/ImageWithText';
-import test1 from '../../images/mapImg.png';
-// import test2 from '../../images/wanted.png';
-import test2 from '../../images/findyourtaste.png';
+import mapImg from '../../images/mapImg.png';
+import findyourtaste from '../../images/findyourtaste.png';
+
 interface Info {
   first: {
     desc: string;
@@ -61,7 +61,7 @@ const LandingSecond = (): JSX.Element => {
       `,
       desc2: `특별한 날에 함께하기 좋은 전통주.
       하지만 어디서부터 어떻게 골라야 할지 몰라서 망설이셨나요? `,
-      imgUrl: test1,
+      imgUrl: mapImg,
     },
     second: {
       desc: `아직도 전통주가 생소하다면?`,
@@ -70,7 +70,7 @@ const LandingSecond = (): JSX.Element => {
         여러분의 즐거운 전통주 탐구생활에 빚다가 함께하겠습니다! 
       `,
 
-      imgUrl: test2,
+      imgUrl: findyourtaste,
     },
   };
 

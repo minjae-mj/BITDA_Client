@@ -45,14 +45,11 @@ const MyPageProfile = (): JSX.Element => {
     const userInfo = state.user;
     setUserInfo(userInfo);
 
-    console.log(userInfo);
   }, [change]);
 
   useEffect(() => {
     const userInfo = state.user;
     setUserInfo(userInfo);
-
-    console.log(userInfo);
   });
 
   const updateUserInfo = async (newToken: string) => {
@@ -115,7 +112,6 @@ const MyPageProfile = (): JSX.Element => {
 
       alert('닉네임이 변경되었습니다.');
       setNameModal(false);
-      // window.location.reload();
     } catch (err) {
       console.log(err);
     }
@@ -270,15 +266,12 @@ const StyleProfileBox = styled.div`
   justify-content: center;
   padding: 2.3rem 5rem;
   font-size: 1.2rem;
-
-  // border: 1px solid green;
 `;
 const StyleImage = styled.img`
   width: 14rem;
   height: 14rem;
   border-radius: 50%;
   border: solid 3px var(--color-secondary);
-  //background-color: var(--color-primary);
 `;
 const StyleLabelClick = styled.label`
   cursor: pointer;
@@ -287,18 +280,12 @@ const StyleLabelClick = styled.label`
   margin-left: 3.5rem;
 `;
 const StyleProfileForm = styled.div`
-  // height: 43vh;
-  // display: flex;
-  // flex-direction: column;
-  // justify-content: space-around;
   font-size: 1.6rem;
 
   color: #808080;
   border-left: 5px solid #4e89ae;
   padding: 2.3rem 5rem;
   margin-top: 4.5rem;
-
-  // border: 1px solid red;
 `;
 const StyleFormElement = styled.div`
   margin: 1.8rem 0;

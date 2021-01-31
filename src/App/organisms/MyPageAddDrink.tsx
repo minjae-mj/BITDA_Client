@@ -1,11 +1,8 @@
 import React, { useState, useRef } from 'react';
-import { Link, useHistory } from 'react-router-dom';
 import server from '../../apis/server';
 import MainSubmitBtn from '../atoms/MainSubmitBtn';
 import InputsWithBtn from '../molecules/InputsWithBtn';
 import styled from 'styled-components';
-import Input from '../atoms/Inputs';
-import { createNoSubstitutionTemplateLiteral } from 'typescript';
 
 const StyledContainer = styled.div`
   display: flex;
@@ -134,7 +131,6 @@ const MyPageAddDrink = (): JSX.Element => {
     let target = e.target.value;
     let type = e.target.dataset.type;
     setDrinkData({ ...drinkData, [type]: target });
-    console.log(drinkData);
   };
   const handleDesc = (key: string) => (e: any) => {
     setDrinkData({ ...drinkData, [key]: e.target.value });
@@ -245,7 +241,6 @@ const MyPageAddDrink = (): JSX.Element => {
     }
   };
 
-  //FileReader
   return (
     <StyledContainer >
       <StyledFileInput
@@ -286,26 +281,5 @@ const MyPageAddDrink = (): JSX.Element => {
     </StyledContainer>
   );
 };
-
-/* const StyleLabelClick = styled.label`
-  display: flex;
-  color: #f6f5f5;
-  background-color: var(--color-secondary);
-  border: 1px solid var(--color-secondary);
-  border-radius: 5px;
-  font-size: 1.5rem;
-  // height: 4.8rem;
-  margin: 5px auto;
-  padding: 10px;
-  justify-content: center;
-  align-items: center;
-  &:hover {
-    color: #4e89ae;
-  }
-  cursor: pointer;
-  &:focus {
-    color: #4e89ae;
-  }
-`; */
 
 export default MyPageAddDrink;

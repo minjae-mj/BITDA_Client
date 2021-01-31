@@ -6,7 +6,7 @@ import BtnBookmark, { StyleBtnBookmarkReverse } from '../atoms/BtnBookmark';
 
 interface Props {
   bookmark: {
-    id: number; // 북마크 아이디
+    id: number; 
     drink: {
       id: number; 
       drinkName: string; 
@@ -49,7 +49,7 @@ const BookmarkCard = ({ bookmark }: Props): JSX.Element => {
 
 export default BookmarkCard; 
 
-const StyleBookmarkCard = styled.div` // flex-item;
+const StyleBookmarkCard = styled.div` 
   position: relative; 
   flex-basis: 22%; 
   padding: 1rem; 

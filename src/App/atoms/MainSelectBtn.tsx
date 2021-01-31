@@ -1,6 +1,5 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-// import { RootState } from '../../reducers';
 import styled from 'styled-components';
 
 interface BtnProps {

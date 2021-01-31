@@ -4,7 +4,7 @@ import server from '../../apis/server';
 import BookmarkCard from '../molecules/BookmarkCard'; 
 
 interface Bookmark {
-  id: number; // 북마크 아이디
+  id: number; 
   drink: {
     id: number; 
     drinkName: string; 
@@ -23,12 +23,10 @@ const MyPageBookmark = (): JSX.Element => {
       });
 
       const { data } = bookmarks; 
-      setBookmarkList(data.drinks); 
-      console.log(bookmarkList); 
+      setBookmarkList(data.drinks);  
     }
 
     getBookmarkList();  
-    console.log(bookmarkList); 
   }, []); 
   
   return (
@@ -48,8 +46,6 @@ const StyleMyPageBookmark = styled.div`
   flex-wrap: wrap; 
   justify-content: flex-start; 
   align-items: center;
-  
-  // border: 1px solid blue; 
 `
 const StyleText = styled.p`
   font-size: 1.7rem; 
