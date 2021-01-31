@@ -76,25 +76,34 @@ const DrinkDesc = (): JSX.Element => {
     window.open(drink.url, '_blank');
   };
 
-  const handleAddBookmark = () => {
+  const handleAddBookmark = async () => {
     if (!accessToken) {
       return alert('로그인 해 주세요.');
+    }else {
+      try{
+        let addBookmark = await server.post(
+          '/drinks/like',
+          { drinkId },
+          { headers: { Authorization: `Bearer ${accessToken}` } }
+        ).then(()=>window.location.reload())
+      }catch(err){
+        console.log(err)
+      }
     }
-    server.post(
-      '/drinks/like',
-      { drinkId },
-      { headers: { Authorization: `Bearer ${accessToken}` } }
-    );
-    window.location.reload();
   };
 
-  const handleRemoveBookmark = () => {
-    server.post(
-      '/drinks/unlike',
-      { drinkId },
-      { headers: { Authorization: `Bearer ${accessToken}` } }
-    );
-    window.location.reload();
+  const handleRemoveBookmark = async () => {
+    try{
+      let removeBookmark = await server.post(
+        '/drinks/unlike',
+        { drinkId },
+        { headers: { Authorization: `Bearer ${accessToken}` } }
+      )
+      .then(()=>window.location.reload())
+    }catch(err){
+      console.log(err)
+    }
+    
   };
 
   return (
