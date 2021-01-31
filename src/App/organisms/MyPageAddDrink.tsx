@@ -4,6 +4,8 @@ import server from '../../apis/server';
 import MainSubmitBtn from '../atoms/MainSubmitBtn';
 import InputsWithBtn from '../molecules/InputsWithBtn';
 import styled from 'styled-components';
+import Input from '../atoms/Inputs';
+import { createNoSubstitutionTemplateLiteral } from 'typescript';
 
 const StyledContainer = styled.div`
   display: flex;
@@ -117,7 +119,7 @@ const MyPageAddDrink = (): JSX.Element => {
   const [errorMessage, setErrorMessage] = useState('');
 
   const fileRef: any = useRef();
-
+  
   let inputInfo = [
     { placeholder: '전통주 이름', type: 'drinkName' },
     { placeholder: '종류', type: 'type' },
@@ -224,14 +226,28 @@ const MyPageAddDrink = (): JSX.Element => {
         drinkImage: null,
       });
       setErrorMessage('');
-    } catch (err) {
+     
+     
+      const infoInput1: any = document.querySelectorAll('.infoInput');
+      for (let el of infoInput1){
+        el.value = '';
+      }
+     
+      
+     fileRef.current.value = '';
+    
+     setImagePreviewUrl({
+       url : null,
+       name : null
+    })
+   } catch (err) {
       console.log(err);
     }
   };
 
   //FileReader
   return (
-    <StyledContainer>
+    <StyledContainer >
       <StyledFileInput
         type="file"
         ref={fileRef}
@@ -258,10 +274,9 @@ const MyPageAddDrink = (): JSX.Element => {
         )}
       </StyledImageArea>
 
-      <StyledInputArea>
+      <StyledInputArea >
         <InputsWithBtn inputInfo={inputInfo} inputHandler={inputHandler} />
-        <StyleDesc
-          className="textArea"
+        <StyleDesc className = 'infoInput'
           placeholder="설명"
           onChange={handleDesc('desc')}
         />
