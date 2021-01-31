@@ -4,6 +4,7 @@ import styled from 'styled-components';
 type Props = {
   inputInfo : {placeholder : string, type: string}[];
   inputHandler: (e: any) => void; 
+
 }
 
 const StyledInput = styled.input`
@@ -11,7 +12,7 @@ const StyledInput = styled.input`
   border:none;
   border-right:0px; 
   border-top:0px; 
-  boder-left:0px;
+  border-left:0px;
   height : 3.2rem;
   width : 80%;
   background: #fafafa;
@@ -35,13 +36,14 @@ export const StyledInputProfile = styled(StyledInput)`
 
 const Input = ({inputInfo, inputHandler }: Props): JSX.Element => {
 
+
   return (
     <>
     { inputInfo.map((info) => (
       info.type === 'password' || info.type === 'confirmPassword' ||info.type === 'newPassword'?
-      <StyledInput placeholder={info.placeholder} onChange={inputHandler} data-type={info.type} type='password'></StyledInput>
+      <StyledInput  placeholder={info.placeholder} onChange={inputHandler} data-type={info.type} type='password'></StyledInput>
       :
-      <StyledInput placeholder={info.placeholder} onChange={inputHandler} data-type={info.type}></StyledInput>
+      <StyledInput className = 'infoInput' placeholder={info.placeholder} onChange={inputHandler} data-type={info.type}></StyledInput>
     ))
     }
     </>
