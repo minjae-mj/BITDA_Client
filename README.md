@@ -34,19 +34,19 @@
   <br/>
   <li>
     <div>👨🏻‍💻  박재훈 (Full-stack)</div><br/>
-    <div>📧  email :  <a href='mailto:jaehunb350@gmail.com '>jaehunb350@gmail.com</a></div><br />
+    <div>📧  email :  <a href='mailto:jaehunb350@gmail.com'>jaehunb350@gmail.com</a></div><br />
     <div>🐱  git : <a href='https://github.com/qkrwogns9703'> https://github.com/qkrwogns9703</a></div><br/>
   </li>
   <br/>
   <li>
     <div>💁🏻‍♀️  권민재 (Front-end)</div><br/>
-    <div>📧  email :  <a href='mailto:dearmin27@gmail.com '>dearmin27@gmail.com</a></div><br />
+    <div>📧  email :  <a href='mailto:dearmin27@gmail.com'>dearmin27@gmail.com</a></div><br />
     <div>🐱  git : <a href='https://github.com/minjae-mj'>https://github.com/minjae-mj</a></div><br/>
   </li>
   <br/>
   <li>
     <div>👨🏻‍🎨  이동환 (Front-end)</div><br/>
-    <div>📧  email :  <a href='mailto:dawa9293@gmail.com '>dawa9293@gmail.com</a></div><br/>
+    <div>📧  email :  <a href='mailto:dawa9293@gmail.com'>dawa9293@gmail.com</a></div><br/>
     <div>🐱  git : <a href='https://github.com/dawa93'>https://github.com/dawa93</a></div>
   </li>
 </ul>
